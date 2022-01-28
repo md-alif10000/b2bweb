@@ -77,7 +77,7 @@
   margin: 20px;
   font-size: 50px;
 }
-.signIn h2{
+.signIn h2 {
   font-size: 38px;
 }
 .signIn p {
@@ -205,7 +205,6 @@
 
 .formContainer {
   max-width: 1400px;
-  height: 400px;
   display: flex;
   background: url("/images/form_bg.png");
   background-repeat: no-repeat;
@@ -259,7 +258,10 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  flex-direction: row;
+  flex-wrap: wrap;
+}
+.inputsContainer > div {
+  flex: 1;
 }
 
 .checkbox {
@@ -341,7 +343,6 @@
 
 .contact {
   padding: 5vw;
-
 }
 .contactBox {
   display: flex;
@@ -357,32 +358,148 @@
   border-radius: 50px;
   margin: 0 auto;
 }
-.contactBox img{
+.contactBox img {
   max-width: 500px;
   margin: 20px 0;
 }
-.contacts{
+.contacts {
   width: 100%;
-  display: flex;justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
-.contacts > div{
+.contacts > div {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.contacts > div h4{
+.contacts > div h4 {
   color: var(--primary);
 }
-.contacts > div span{
-  color: #0F3AB6;
+.contacts > div span {
+  color: #0f3ab6;
   margin: 15px 0;
 }
 
-.line{
+.line {
   height: 200px;
   width: 4px;
   margin: 20px 0;
   background: var(--primary);
   border-radius: 2px;
+}
+
+@media screen and (max-width: 1000px) {
+  .hero {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .img1,
+  .img2 {
+    width: 100px;
+  }
+  .img1 {
+    left: 30px;
+  }
+  .img2 {
+    right: 30px;
+  }
+  .imgContainer img {
+    width: 120px;
+    height: 180px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .hero img {
+    max-width: 200px;
+  }
+  .signIn img {
+    max-width: 300px;
+  }
+  .formContainer {
+    flex-direction: column;
+    width: 100%;
+    background-size: cover;
+    overflow: hidden;
+    border-radius: 30px;
+  }
+  .formContainer .left {
+    width: 100%;
+    flex: 1;
+  }
+  .formContainer .right {
+    width: 100%;
+    flex: 1;
+  }
+  .imagesContainer > div {
+    flex-wrap: wrap;
+  }
+  .success {
+    height: auto;
+  }
+  .successTestimonials {
+    flex-wrap: wrap;
+  }
+  .successTestimonials > div {
+    margin: 20px;
+  }
+  .contacts {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .success > img,
+  .contactBox img {
+    max-width: 300px;
+  }
+  .requirement .top img {
+    max-width: 300px;
+  }
+
+  .imagesContainer > div:first-child > .imgContainer:nth-child(2),
+  .imagesContainer > div:first-child > .imgContainer:nth-child(3) {
+    transform: translateY(0px);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .signIn img {
+    max-width: 200px;
+  }
+  .email {
+    width: 80vw;
+  }
+  .email button {
+    width: 80px;
+  }
+  .signIn h1 {
+    font-size: 34px;
+  }
+  .successTestimonials > div {
+    margin: 10px;
+  }
+  .contacts {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .line {
+    /* display: none!important; */
+
+    width: 220px;
+    height: 4px;
+    border-radius: 2px;
+  }
+  .success > img,
+  .contactBox img {
+    max-width: 200px;
+  }
+  .requirement .top img {
+    max-width: 200px;
+  }
+
+  .imagesContainer > div:first-child > .imgContainer:nth-child(2),
+  .imagesContainer > div:first-child > .imgContainer:nth-child(3) {
+    transform: translateY(0px);
+  }
 }

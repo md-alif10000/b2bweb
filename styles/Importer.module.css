@@ -7,14 +7,16 @@
 .main {
   display: flex;
 }
-.hero{
-    padding: 3vw;
+.hero {
+  padding: 3vw;
+}
+.hero img {
+  max-width: 600px;
 }
 .formContainer {
   flex: 3;
   background-color: #ffffff;
   margin: 20px;
- 
 }
 .formHeader {
   width: 100%;
@@ -66,8 +68,44 @@
   height: 60px;
   min-width: 250px;
 }
-.buttonContainer{
-    width: 100%;
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 900px) {
+  .main {
+    flex-direction: column;
+  }
+  .hero img {
+    max-width: 400px;
+  }
+  .checks {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .checks > div {
+    max-width: 40vw;
+    min-width: 30vw;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .hero img {
+    max-width: 300px;
+  }
+  .hero h1 {
+    font-size: 24px;
+  }
+  .inputGroup {
+    padding: 15px;
+  }
+  .formHeader h3{
+    font-size: 20px;
+  }
+  .checks > div{
+    font-size: 16px;
+  }
 }

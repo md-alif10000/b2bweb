@@ -73,3 +73,21 @@ a {
     opacity: 0;
   }
 }
+
+
+@media screen  and (max-width:500px) {
+
+
+  .swiper-slide{
+    width: 80vw!important;
+    text-align: center;
+  }
+  
+  .swiper-slide video{
+    width: 80vw!important;
+    height: 60vw;
+    border-radius: 20px!important;
+    object-fit: cover;
+  }
+  
+}

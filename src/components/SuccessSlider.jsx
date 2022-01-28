@@ -19,6 +19,11 @@ const SuccessSlider = () => {
     <div>
       <>
         <Swiper
+          autoplay={{
+            delay: 3500,
+            disableOnInteraction: true,
+          }}
+          loop={true}
           effect={"coverflow"}
           grabCursor={true}
           centeredSlides={true}

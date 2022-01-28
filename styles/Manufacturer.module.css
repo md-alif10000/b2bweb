@@ -89,16 +89,17 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.inputGroup > div{
+.inputGroup > div {
   flex: 1;
 }
-.inputGroup > div > *{
+.inputGroup > div > * {
   width: 100%;
 }
 
-.textarea{
+.textarea {
   flex: 1;
-  
+  min-width: 250px;
+
   height: 200px;
   border-radius: 20px;
   outline: none;
@@ -109,7 +110,7 @@
   letter-spacing: 0.6px;
 }
 
-.fileUploadBtn{
+.fileUploadBtn {
   font-size: 18px;
   font-weight: 500;
   padding: 10px 25px;
@@ -125,22 +126,21 @@
   margin: 20px auto;
   cursor: pointer;
 }
-.fileUpload input{
+.fileUpload input {
   display: none;
 }
-.checkbox{
-  margin:20px 10px;
+.checkbox {
+  margin: 20px 10px;
   color: white;
-
 }
-.checkbox input{
+.checkbox input {
   margin-right: 10px;
 }
-.checkbox a{
+.checkbox a {
   color: var(--secondary);
 }
 
-.submitButton{
+.submitButton {
   height: 70px;
   background: var(--secondary);
   color: white;
@@ -153,4 +153,53 @@
   text-align: center;
   border-radius: 15px;
   min-width: 200px;
+}
+
+@media screen and (max-width: 1000px) {
+  .formContainer > div:first-child {
+    display: none;
+  }
+  .hero > div:nth-child(2) img {
+    max-width: 300px;
+  }
+  .arrow {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .hero {
+    flex-direction: column;
+  }
+  .inputsHeading h2 {
+    font-size: 18px;
+  }
+  .formHeading h1 {
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .container {
+    padding: 10px;
+  }
+  .hero h1{
+    font-size: 24px;
+  }
+  .hero > div:nth-child(2) img {
+    max-width: 200px;
+    text-align: center;
+  }
+  .inputsHeading h2 {
+    font-size: 16px;
+  }
+  .formContainer {
+    width: 100%;
+  }
+  .inputsBody {
+    padding: 15px;
+  }
+  .formHeading img{
+    max-width: 250px;
+  }
 }

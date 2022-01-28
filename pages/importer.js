@@ -1,5 +1,5 @@
 import PrimaryHeader from "../src/components/PrimaryHeader";
-import { Input } from "../src/components/ui/ui";
+import { FloatingButton, Input } from "../src/components/ui/ui";
 import styles from "../styles/Importer.module.css";
 import {  BsCheckCircleFill } from "react-icons/bs";
 import Footer from "../src/components/Footer";
@@ -115,6 +115,7 @@ const Importer = () => {
         </div>
       </div>
       <Footer/>
+      <FloatingButton/>
     </>
   );
 };
