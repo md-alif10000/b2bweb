@@ -1,0 +1,128 @@
+.container {
+  min-height: 100vh;
+  position: relative;
+  height: auto;
+  overflow: hidden;
+}
+
+.hero {
+  padding: 50px 8vw;
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+}
+.hero h1 {
+  font-size: 38px;
+  color: var(--dark);
+  margin: 30px 10px;
+}
+.hero p {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 20px 10px;
+  letter-spacing: 1.2px;
+}
+.hero h1 > span {
+  color: var(--secondary);
+}
+
+.formContainer {
+  max-width: 1400px;
+  min-height: 700px;
+  display: flex;
+  border-radius: 10px;
+  background-color: var(--primary);
+  margin: 100px auto;
+  box-shadow: -3px 0px 34px -10px var(--primary);
+  -webkit-box-shadow: -3px 0px 34px -10px var(--primary);
+  -moz-box-shadow: -3px 0px 34px -10px var(--primary);
+  z-index: 999 !important;
+  backface-visibility: hidden;
+}
+.formContainer .left {
+  flex: 1;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background: url("/images/byer_form.jfif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  z-index: 99;
+}
+.formContainer .right {
+  flex: 2;
+  z-index: 999;
+  background-color: var(--primary);
+
+}
+.form {
+  max-width: 800px;
+  z-index: 999;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
+.form .inputs {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.checkboxContainer {
+  padding: 20px;
+  margin: 20px 0;
+}
+.checkboxContainer input {
+  margin: 5px;
+}
+.checkboxContainer span {
+  font-size: 14px;
+  color: white;
+  letter-spacing: 1px;
+}
+.checkboxContainer a {
+  color: #0f3ab6;
+  font-weight: 500;
+}
+.submitButton {
+  border-radius: 10px;
+  padding: 10px 20px;
+  text-align: center;
+  background: var(--secondary);
+  font-weight: 500;
+  font-size: 18px;
+  outline: none;
+  border: none;
+  color: white;
+  display: block;
+  margin: 10px auto;
+}
+
+
+
+
+.image1{
+  position: absolute;
+  right: 0;
+  width: 150px;
+}
+.image2{
+  position: absolute;
+  width: 700px;
+  right: 200px;
+  top: 300px;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.image3{
+  position: absolute;
+  width: 700px;
+  left: 0;
+  top: 1000px;
+  z-index: 1;
+}

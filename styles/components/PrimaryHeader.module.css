@@ -1,0 +1,23 @@
+.header{
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    padding:  10px 100px;
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+.button{
+    height: 45px;
+    padding: 10px 25px;
+    text-align: center;
+    font-weight: 500;
+    border-radius: 30px;
+    background-color: var(--primary);
+    color: white;
+    outline: none;
+    border: none;
+    width: 120px;
+    font-size: 18px;
+}

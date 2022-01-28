@@ -1,0 +1,35 @@
+.container {
+  height: 270px;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: var(--footer);
+}
+.footerTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.iconContainer {
+  display: flex;
+}
+.iconContainer > img {
+  width: 24px;
+  height: 24px;
+  margin: 10px;
+}
+.footerBottom {
+  text-align: center;
+}
+.hr{
+  width: 85vw;
+  margin: 0 auto;
+}
+.footerBottom span {
+  font-size: 14px;
+  color: white;
+  font-weight: 500;
+  letter-spacing: 0.9;
+}

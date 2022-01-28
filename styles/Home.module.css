@@ -1,121 +1,384 @@
-.container {
-  min-height: 100vh;
-  padding: 0 0.5rem;
+.hero {
+  height: 600px;
+  background: url("/images/home_bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  justify-content: space-between;
+  padding: 2vw 7vw;
 }
-
-.main {
-  padding: 5rem 0;
+.hero > div {
   flex: 1;
   display: flex;
+  color: white;
+}
+.left {
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
-
-.footer {
-  width: 100%;
-  height: 100px;
-  border-top: 1px solid #eaeaea;
+.left > h1 {
+  word-wrap: break-word;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: left;
 }
-
-.footer a {
-  display: flex;
+.left p {
+  font-size: 16px;
+  letter-spacing: 0.6px;
+  margin: 20px;
+}
+.left img {
+  margin: 20px;
+  width: 400px;
+}
+.right {
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
+}
+.right h2 {
+  font-size: 26px;
+  text-shadow: 2px black;
+}
+.email {
+  height: 45px;
+  width: 400px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 30px;
+}
+.email input {
   flex-grow: 1;
+  height: 100%;
+  padding: 10px 15px;
+  font-size: 16px;
+  outline: none;
+  border: none;
+}
+.email button {
+  width: 120px;
+  height: 100%;
+  border: none;
+  outline: none;
+  background-color: #001943;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  color: white;
 }
 
-.title a {
-  color: #0070f3;
-  text-decoration: none;
+.signIn {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 10px;
+}
+.signIn h1 {
+  color: var(--primary);
+  margin: 20px;
+}
+.signIn p {
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  max-width: 500px;
+  word-wrap: break-word;
+  text-align: center;
+  margin: 20px 10px;
+}
+.signIn img {
+  max-width: 500px;
+}
+.signIn button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: var(--primary);
+  color: white;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  margin: 20px 10px;
+  width: 200px;
+  transition: all 0.4s;
+}
+.signIn button:hover {
+  background-color: var(--footer);
 }
 
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
+.testimonials {
+  background: url("/images/rectangle3.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  padding: 100px 50px;
+  padding-top: 350px;
+  position: relative;
+}
+.testimonials p {
+  position: absolute;
+  font-size: 18px;
+  color: white;
+  left: 200px;
+  top: 160px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 30px;
+}
+.testimonials p strong {
+  color: var(--primary);
+}
+.imagesContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.imagesContainer > div {
+  display: flex;
+  justify-content: space-evenly;
+}
+.imgContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  margin: 3vw 1vw;
+}
+.imgContainer img {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 20px;
+  transition: all 0.4s;
+}
+.imgContainer img:hover {
+  transform: scale(1.2);
+}
+.imagesContainer > div:first-child > .imgContainer:nth-child(2),
+.imagesContainer > div:first-child > .imgContainer:nth-child(3) {
+  transform: translateY(-100px);
 }
 
-.title {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
+.img1 {
+  position: absolute;
+  left: 100px;
+  top: 280px;
+  width: 160px;
+}
+.img2 {
+  position: absolute;
+  right: 100px;
+  width: 160px;
+  bottom: 50px;
 }
 
-.title,
-.description {
+.requirement {
+  padding: 3vw;
+}
+.requirement h3 {
+  font-size: 24px;
+  text-align: center;
+  padding: 2vw 10px;
+}
+.requirement h3 span {
+  color: var(--primary);
+}
+.requirement .top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.requirement .top img {
+  max-width: 500px;
+}
+.requirement .top p {
+  font-size: 16px;
+  padding: 1vw 10px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 25px;
+}
+
+.formContainer {
+  max-width: 1400px;
+  height: 400px;
+  display: flex;
+  background: url("/images/form_bg.png");
+  background-repeat: no-repeat;
+  background-size: calc(70%);
+  margin: 0 auto;
+  overflow: hidden;
+}
+.formContainer .left {
+  flex: 3;
+  border-radius: 30px;
+  width: 70%;
+  background: url("/images/low_opacity.png");
+  background-repeat: no-repeat;
+  background-size: 85%;
+  padding: 2vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: white;
+  font-weight: 500;
+  overflow: hidden;
+  justify-content: space-around;
+}
+.formContainer .left p {
+  font-size: 16px;
+}
+.formContainer .left > div {
+  display: flex;
+  flex-direction: column;
+}
+.formContainer .left span {
+  margin-bottom: 15px;
+}
+.formContainer .right {
+  flex: 2;
+  background: var(--primary);
+  border-radius: 30px;
+  padding: 30px;
+  width: 40%;
+}
+.formContainer .right > * {
+  width: 100%;
+}
+.formContainer .right p {
+  font-size: 16px;
+  text-align: center;
+  color: white;
+  font-weight: 500;
+}
+.inputsContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.checkbox {
+  color: white;
+  margin: 20px;
+}
+.checkbox input {
+  margin: 10px;
+}
+.submitButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submitButton button {
+  padding: 10px 20px;
+  border-radius: 15px;
+  outline: none;
+  border: none;
+  font-size: 22px;
+  margin: 10px auto;
+  font-weight: 500;
+}
+
+.success {
+  height: 100vh;
+  padding: 2vw 5vw;
+  background-color: #001943;
+}
+.success h1 {
+  font-size: 38px;
+  color: white;
+}
+.success > img {
+  max-width: 600px;
+}
+.slider {
+  margin: 2vw auto;
+}
+
+.successTestimonials {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.successTestimonials > div {
+  width: 300px !important;
+  height: 220px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: white;
+  background: var(--primary);
+  justify-content: space-between;
+}
+.successTestimonials > div p {
+  padding: 20px;
+  font-size: 16px;
   text-align: center;
 }
 
-.description {
-  line-height: 1.5;
-  font-size: 1.5rem;
-}
-
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
-}
-
-.grid {
+.successTestimonials > div .user {
+  padding: 10px;
   display: flex;
+  background: var(--bg);
+  color: var(--footer);
+  font-weight: 500;
+  align-items: center;
+}
+.successTestimonials > div .user img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 10px;
+}
+
+.contact {
+  padding: 5vw;
+
+}
+.contactBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 80%;
+  max-width: 1200px;
+  padding: max(2vw, 20px);
+
+  background: #ffffff;
+  box-shadow: 0px 4px 50px rgba(83, 127, 255, 0.5);
+  border-radius: 50px;
+  margin: 0 auto;
+}
+.contactBox img{
+  max-width: 500px;
+  margin: 20px 0;
+}
+.contacts{
+  width: 100%;
+  display: flex;justify-content: space-between;
+}
+.contacts > div{
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
-  margin-top: 3rem;
+}
+.contacts > div h4{
+  color: var(--primary);
+}
+.contacts > div span{
+  color: #0F3AB6;
+  margin: 15px 0;
 }
 
-.card {
-  margin: 1rem;
-  padding: 1.5rem;
-  text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  width: 45%;
-}
-
-.card:hover,
-.card:focus,
-.card:active {
-  color: #0070f3;
-  border-color: #0070f3;
-}
-
-.card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-}
-
-.card p {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
-}
-
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
-}
-
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
+.line{
+  height: 200px;
+  width: 4px;
+  margin: 20px 0;
+  background: var(--primary);
+  border-radius: 2px;
 }

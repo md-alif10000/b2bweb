@@ -1,0 +1,12 @@
+.slideContainer{
+
+    width: 300px;
+    height: 200px;
+    border-radius: 20px;
+    object-fit: cover;
+    overflow: hidden;
+}
+.slideContainer img{
+    width: 300px!important;
+    height: 200px;
+}

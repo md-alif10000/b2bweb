@@ -1,0 +1,91 @@
+.container {
+  padding: 100px 6vw;
+}
+.hero {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.hero > div:last-child {
+  position: relative;
+}
+.hero h1 {
+  max-width: 400px;
+  text-align: left;
+  font-size: 38px;
+}
+.hero > div:nth-child(2) img {
+  max-width: 700px;
+}
+.arrow {
+  position: absolute;
+  top: -200px;
+  right: 0px;
+}
+
+.formContainer {
+  display: flex;
+  flex-basis: 1fr 2fr;
+  max-width: 1400px;
+  margin: 3vw auto;
+
+  background: url("/images/form_bg2.png");
+  background-size: contain;
+
+  height: 1600px;
+  background-repeat: no-repeat;
+}
+.formContainer > div:first-child {
+  flex: 1;
+}
+.formContainer .form {
+  flex: 4;
+  background: var(--primary);
+  border-radius: 30px;
+  box-shadow: 0px 4px 50px rgba(83, 127, 255, 0.5);
+}
+.formContainer .form form {
+}
+.formHeading {
+  display: flex;
+  flex-direction: column;
+  padding: max(4vw, 30px);
+}
+.formHeading h1 {
+  font-size: 40px;
+  color: white;
+  margin: 20px 0;
+}
+.formHeading h1 span {
+  color: #0f3ab6;
+}
+.formHeading img {
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+.formHeading p {
+  color: white;
+  font-size: 14px;
+  max-width: 300px;
+  line-height: 25px;
+  letter-spacing: 0.6px;
+}
+
+.inputsHeading {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  padding: 0 2vw;
+  align-items: center;
+  background: var(--secondary);
+  color: white;
+}
+.inputsBody {
+  padding: max(4vw, 30px);
+}
+.inputGroup {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

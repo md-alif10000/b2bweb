@@ -1,9 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&family=Roboto:wght@300;400;500;700;900&family=Source+Sans+Pro:wght@300;400;600;700&family=Titillium+Web:wght@200;300&display=swap');
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family:  Roboto,sans-serif;
+  overflow-x: hidden;
+  background-color: var(--bg);
+}
+
+
+body::-webkit-scrollbar {
+  width: 0.8em;
+  border-radius: 0.5rem;
+}
+ 
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgb(94, 164, 245);
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(108, 175, 238);
+  outline: 2px solid rgb(14, 99, 184);
 }
 
 a {
@@ -13,4 +31,28 @@ a {
 
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
+
+:root {
+  --primary: #537fff;
+  --secondary: #ffa030;
+  --bg: #f7f7f7;
+  --dark: #000000;
+  --footer: #1d5dc7;
+}
+
+
+.swiper-slide{
+  width: 500px!important;
+  text-align: center;
+}
+
+.swiper-slide video{
+  width: 500px!important;
+  height: 300px;
+  border-radius: 20px!important;
+  object-fit: cover;
+}
+
