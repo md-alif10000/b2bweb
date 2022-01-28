@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -19,7 +19,6 @@ const SuccessSlider = () => {
     <div>
       <>
         <Swiper
-        centeredSlides={true}
           effect={"coverflow"}
           grabCursor={true}
           centeredSlides={true}
@@ -37,35 +36,57 @@ const SuccessSlider = () => {
         >
           <div className={styles.slideContainer}>
             <SwiperSlide>
-              <video src="/videos/video1.mp4" autoPlay={true}  loop={true}></video>
+              <video
+                src="/videos/video1.mp4"
+                autoPlay={true}
+                controls={true}
+                loop={true}
+              ></video>
             </SwiperSlide>
           </div>
 
           <div className={styles.slideContainer}>
             <SwiperSlide>
-              <video src="/videos/video2.mp4" autoPlay={true} controls={true}   loop={true}></video>
+              <video
+                src="/videos/video2.mp4"
+                autoPlay={true}
+                controls={true}
+                loop={true}
+              ></video>
             </SwiperSlide>
           </div>
           <div className={styles.slideContainer}>
             <SwiperSlide>
-              <video src="/videos/video3.mp4" autoPlay={true} controls={true}  loop={true}></video>
+              <video
+                src="/videos/video3.mp4"
+                autoPlay={true}
+                controls={true}
+                loop={true}
+              ></video>
             </SwiperSlide>
           </div>
 
           <div className={styles.slideContainer}>
             <SwiperSlide>
-              <video src="/videos/video4.mp4" autoPlay={true} controls={true}  loop={true}></video>
+              <video
+                src="/videos/video4.mp4"
+                autoPlay={true}
+                controls={true}
+                loop={true}
+              ></video>
             </SwiperSlide>
           </div>
 
           <div className={styles.slideContainer}>
             <SwiperSlide>
-              <video src="/videos/video2.mp4" autoPlay={true}  controls={true} loop={true}></video>
+              <video
+                src="/videos/video2.mp4"
+                autoPlay={true}
+                controls={true}
+                loop={true}
+              ></video>
             </SwiperSlide>
           </div>
-
-          
-       
         </Swiper>
       </>
     </div>
