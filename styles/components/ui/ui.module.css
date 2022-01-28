@@ -16,6 +16,8 @@
   background-color: #eaf0ff;
   outline: 2px var(--footer);
   border: none;
+  font-size: 16px;
+  letter-spacing: 0.6px;
 }
 .input:focus {
   outline: 2px solid var(--footer);

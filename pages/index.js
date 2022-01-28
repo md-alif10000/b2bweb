@@ -3,9 +3,24 @@ import styles from "../styles/Home.module.css";
 import { FloatingButton, Input } from "../src/components/ui/ui";
 import SuccessSlider from "../src/components/SuccessSlider";
 import Footer from "../src/components/Footer";
-import Head from 'next/head'
+import Head from 'next/head';
+import { init } from "ityped";
+import { useRef,useEffect } from "react";
 
 const HomePage = () => {
+
+  const textRef = useRef();
+
+  useEffect(() => {
+    init(textRef.current, {
+      showCursor: true,
+      backDelay:1500,
+      backSpeed:40,
+      strings: ["Brand Owner","Manufacturer!", "Supplier"],
+    });
+  }, []);
+
+
   return (
     <>
       <Head>
@@ -40,7 +55,7 @@ const HomePage = () => {
 
         <div className={styles.signIn}>
           <h2>Are you a</h2>
-          <h1>Brand Owner, Manufacturer or Supplier? </h1>
+          <h1>  <span ref={textRef}> </span>{" "} ? </h1>
           <img src="/images/line.png" alt="" />
           <p>
             Join us in the mission to help local suppliers to connect acoss the

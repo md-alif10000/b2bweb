@@ -63,6 +63,8 @@
   border: none;
   margin: 20px auto;
   cursor: pointer;
+  height: 60px;
+  min-width: 250px;
 }
 .buttonContainer{
     width: 100%;

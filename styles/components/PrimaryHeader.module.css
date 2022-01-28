@@ -21,3 +21,7 @@
     width: 120px;
     font-size: 18px;
 }
+.header > div:last-child a{
+    color: var(--primary);
+    margin-right: 15px;
+}

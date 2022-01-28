@@ -75,6 +75,10 @@
 .signIn h1 {
   color: var(--primary);
   margin: 20px;
+  font-size: 50px;
+}
+.signIn h2{
+  font-size: 38px;
 }
 .signIn p {
   font-size: 16px;
