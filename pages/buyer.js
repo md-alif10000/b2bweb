@@ -1,8 +1,10 @@
 import PrimaryHeader from "../src/components/PrimaryHeader";
 import styles from "../styles/Buyer.module.css";
 import { Input } from "../src/components/ui/ui";
+import Footer from "../src/components/Footer";
 const Buyer = () => {
   return (
+    <>
     <div className={styles.container}>
       <PrimaryHeader />
 
@@ -53,6 +55,8 @@ const Buyer = () => {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

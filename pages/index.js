@@ -1,9 +1,8 @@
-import React from "react";
 import PrimaryHeader from "../src/components/PrimaryHeader";
 import styles from "../styles/Home.module.css";
 import { Input } from "../src/components/ui/ui";
 import SuccessSlider from "../src/components/SuccessSlider";
-import Footer from "../src/components/footer";
+import Footer from "../src/components/Footer";
 import Head from 'next/head'
 
 const HomePage = () => {

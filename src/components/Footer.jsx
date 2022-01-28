@@ -10,7 +10,7 @@ const Footer = () => {
           <Image src={"/images/logo.png"} width={300} height={120} />
         </div>
         <div className={styles.iconContainer}>
-          <img  src="/images/facebook.png" alt="" />
+          <img src="/images/facebook.png" alt="" />
           <img src="/images/pintarest.png" alt="" />
           <img src="/images/insta.png" alt="" />
         </div>

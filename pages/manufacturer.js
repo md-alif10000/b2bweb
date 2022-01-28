@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "../src/components/footer";
+import Footer from "../src/components/Footer";
 import PrimaryHeader from "../src/components/PrimaryHeader";
 import { Input } from "../src/components/ui/ui";
 import styles from "../styles/Manufacturer.module.css";

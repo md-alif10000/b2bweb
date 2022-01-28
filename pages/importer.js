@@ -1,8 +1,8 @@
 import PrimaryHeader from "../src/components/PrimaryHeader";
 import { Input } from "../src/components/ui/ui";
 import styles from "../styles/Buyer2.module.css";
-import { BsCheckCircle, BsCheckCircleFill } from "react-icons/bs";
-import Footer from "../src/components/footer";
+import {  BsCheckCircleFill } from "react-icons/bs";
+import Footer from "../src/components/Footer";
 
 const Importer = () => {
   return (
