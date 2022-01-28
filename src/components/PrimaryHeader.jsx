@@ -1,7 +1,7 @@
 import styles from "../../styles/components/PrimaryHeader.module.css";
 import Image from 'next/image'
 const PrimaryHeader = () => {
-  return <div  className={styles.header} >
+  return <div  className={styles.header}  id="header" >
       <div className={styles.logo} >
 
         <Image src={"/images/logo_white.png"} width={220} height={70}  />

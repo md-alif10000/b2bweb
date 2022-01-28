@@ -1,4 +1,5 @@
 import styles from "../../../styles/components/ui/ui.module.css";
+import { BsChevronDoubleUp } from "react-icons/bs";
 
 const Input = ({type,onChange,label,placeholder,width}) => {
   return (
@@ -9,4 +10,13 @@ const Input = ({type,onChange,label,placeholder,width}) => {
   );
 };
 
-export  { Input };
+
+const FloatingButton=()=>{
+  return <a href="#header"  className={styles.floatingButton}>
+    <BsChevronDoubleUp size={32} />
+
+
+  </a>
+}
+
+export  { Input ,FloatingButton};

@@ -1,24 +1,53 @@
-
-.inputContainer{
-    margin: 8px;
-    display: flex;
-    flex-direction: column;
+.inputContainer {
+  margin: 8px;
+  display: flex;
+  flex-direction: column;
 }
-.inputLabel{
-    font-size: 18px;
-    color: white;
-    margin: 10px;
-
+.inputLabel {
+  font-size: 18px;
+  color: white;
+  margin: 10px;
 }
 .input {
   height: 45px;
   border-radius: 20px;
   padding: 5px 15px;
   min-width: 200px;
-  background-color: #EAF0FF;
+  background-color: #eaf0ff;
   outline: 2px var(--footer);
   border: none;
 }
-.input:focus{
+.input:focus {
   outline: 2px solid var(--footer);
+}
+
+.floatingButton {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: white;
+  background-color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px -1px 23px 6px rgba(83, 127, 255, 0.5);
+-webkit-box-shadow: 0px -1px 23px 6px rgba(83, 127, 255, 0.5);
+-moz-box-shadow: 0px -1px 23px 6px rgba(83, 127, 255, 0.5);
+  right: 20px;
+  bottom: 20px;
+  cursor: pointer;
+  animation: Scaleup 3s ease-in-out 2s infinite ;
+  
+}
+
+@keyframes Scaleup {
+  0%{
+    transform: scale(0.8);
+
+  }
+  100%{
+    transform: scale(1.2);
+  }
+  
 }
