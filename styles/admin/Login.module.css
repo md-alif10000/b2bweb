@@ -1,0 +1,42 @@
+.loginForm {
+  width: 500px;
+  height: auto;
+  border-radius: 20px;
+  background-color: var(--primary);
+  padding: max(3vw, 20px);
+  margin: auto auto;
+  margin-top: 100px;
+}
+.loginForm h2 {
+  font-size: 24px;
+  text-align: center;
+  color: white;
+}
+.loginForm form {
+  width: 100%;
+}
+.loginForm form > div:last-child {
+  width: 100%;
+  text-align: center;
+}
+.submitButton {
+  width: 200px;
+  border-radius: 15px;
+  font-size: 18px;
+  color: white;
+  background: var(--secondary);
+  outline: none;
+  border: none;
+  transition: all 0.4s;
+  height: 45px;
+  margin: 10px auto;
+}
+.submitButton:hover {
+  background: rgb(206, 156, 17);
+}
+
+@media screen and (max-width: 550px) {
+  .loginForm {
+    width: 90vw;
+  }
+}

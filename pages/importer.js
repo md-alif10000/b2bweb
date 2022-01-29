@@ -7,6 +7,7 @@ import {
   QuantityInput,
 } from "../src/components/ui/ui";
 import styles from "../styles/Importer.module.css";
+import { ToastContainer, toast } from "react-toastify";
 import { BsCheckCircleFill, BsPlusCircle } from "react-icons/bs";
 import Footer from "../src/components/Footer";
 import axios from "axios";
@@ -43,6 +44,9 @@ const Importer = () => {
         shippingInfo,
         userInfo,
       });
+      if (res.status == 201) {
+        toast.success("Successfully submitted your quotation");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -50,6 +54,7 @@ const Importer = () => {
 
   return (
     <>
+    <ToastContainer/>
       <PrimaryHeader />
       <div className={styles.container}>
         <div className={styles.hero}>
