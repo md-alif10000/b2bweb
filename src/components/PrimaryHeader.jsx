@@ -5,9 +5,9 @@ const PrimaryHeader = () => {
   return (
     <div className={styles.header} id="header">
       <div className={styles.logo}>
-        <a href="/">
-          <img src={"/images/logo_white.png"}  width={200} height={80}/>
-        </a>
+        <Link href="/" passHref>
+          <img src={"/images/logo_white.png"} width={200} height={80} />
+        </Link>
       </div>
 
       <div>
