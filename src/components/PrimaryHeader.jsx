@@ -12,11 +12,11 @@ const PrimaryHeader = () => {
 
       <div>
         <Link href={"/manufacturer"} passHref>
-          <a href="/manufacturer">Manufacturer</a>
+          <a >Manufacturer</a>
         </Link>
 
         <Link href={"/importer"} passHref>
-          <a href="/importer">Importer</a>
+          <a>Importer</a>
         </Link>
 
         <button className={styles.button}>Login</button>
