@@ -55,3 +55,37 @@
   }
   
 }
+
+.quantityInput,.budgetInput{
+
+  display: flex;
+  height: 45px;
+  overflow: hidden;
+  border-radius: 15px;
+  background-color: #eaf0ff;
+  min-width: 200px;
+  max-width: 400px;
+  margin: 15px;
+}
+.quantityInput input,.budgetInput input{
+  height: 100%;
+  padding: 5px 10px;
+  outline: none;
+  border: none;
+  flex-grow: 1;
+  background-color: inherit;
+  font-size: 16px;
+}
+.quantityInput select,.budgetInput span{
+  width: 80px;
+  height: 100%;
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
+  background-color: var(--primary);
+  color: white;
+  font-size: 16px;
+  outline: none;
+  padding: 10px;
+  text-align: center;
+
+}

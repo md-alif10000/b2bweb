@@ -35,6 +35,44 @@
 .inputGroup {
   padding: 30px 5vw;
 }
+.multiInput{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.multiInput textarea{
+  flex-grow: 1;
+  margin: 20px;
+  border-radius: 20px;
+  height: 180px;
+  min-width: 250px;
+  padding: 10px;
+  outline: none;
+
+  border: none;
+  font-size: 16px;
+  background-color: #eaf0ff;
+  resize: none;
+}
+.multiInput > *{
+  flex: 1;
+}
+.productImagePicker  div {
+
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  justify-content: space-around;
+   background-color: #eaf0ff;
+   margin: 15px;
+
+}
+.productImagePicker input{
+  display: none;
+}
 .checkboxContainer {
   padding: 2vw 5vw;
   font-size: 13px;
