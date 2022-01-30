@@ -115,7 +115,7 @@ const ManufacturersQuotations = () => {
                 <h2>Product Images</h2>
                 <div className={styles.imagesContainer}>
                   {productInfo.images.map((index) => (
-                    <img src={index["url"]} alt="" />
+                    <img src={index["url"]} alt="" key={index} />
                   ))}
                 </div>
               </div>

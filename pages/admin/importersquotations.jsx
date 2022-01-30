@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import styles from "../../styles/admin/ImportersQuotations.module.css";
 import PrimaryHeader from '../../src/components/PrimaryHeader'
 
-const importersquotations = () => {
+const Importersquotations = () => {
   const [data, setdata] = useState([]);
 
   const getQuotations = async () => {
@@ -96,4 +96,4 @@ const importersquotations = () => {
   );
 };
 
-export default importersquotations;
+export default Importersquotations;
