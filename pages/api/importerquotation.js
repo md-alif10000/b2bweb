@@ -1,7 +1,6 @@
 import ImporterQuotation from "../../models/ImporterQuotation";
 import connectDatabase from "../../utils/dbconnect";
 
-
 export default async function handler(req, res) {
   const { method } = req;
   await connectDatabase();
@@ -18,9 +17,6 @@ export default async function handler(req, res) {
   if (method == "POST") {
     const { productInfo, shippingInfo, userInfo } = req.body;
 
-
-   
-
     if (
       !productInfo.productName &&
       !productInfo.productCategory &&
@@ -34,8 +30,6 @@ export default async function handler(req, res) {
         .status(400)
         .json({ error: "All fields of Product is required" });
     }
-
-    
 
     // try {
     const quotation = new ImporterQuotation({

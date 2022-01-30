@@ -9,6 +9,8 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 
 const Manufacturer = () => {
+  const [files, setfiles] = useState([]);
+
   const [productInfo, setproductInfo] = useState({
     name: "",
     category: "",
@@ -33,12 +35,34 @@ const Manufacturer = () => {
 
   const addManufacturer = async (e) => {
     e.preventDefault();
+
+    if (files.length == 0) return toast.error("Product image is required");
+
     try {
-      console.log({
-        productInfo,
-        businessInfo,
-        ...userInfo,
-      });
+      const images = [];
+      const uploadFile = async () => {
+        for (let i = 0; i < files.length; i++) {
+         
+          const data = new FormData();
+          data.append("file", files[i]);
+          data.append("upload_preset", "b2bwebsite");
+          const uploadedFile = await axios.post(
+            "https://api.cloudinary.com/v1_1/mdalif/image/upload",
+            data
+          );
+          console.log(uploadedFile);
+          const { secure_url, public_id } = uploadedFile.data;
+          console.log(secure_url);
+          console.log(public_id);
+          images.push({ public_id, url: secure_url });
+        }
+      };
+      await uploadFile();
+
+      console.log("Images", images);
+      if (images.length == 0) return toast.warn("Product Image is required 2");
+
+      productInfo.images = images;
 
       const res = await axios.post("/api/manufacturer", {
         productInfo,
@@ -284,7 +308,11 @@ const Manufacturer = () => {
                         />{" "}
                       </span>{" "}
                     </label>
-                    <input type={"file"} id="productPicture" />
+                    <input
+                      type={"file"}
+                      id="productPicture"
+                      onChange={(e) => setfiles([...files, e.target.files[0]])}
+                    />
                   </div>
 
                   <h2 style={{ color: "white" }}>

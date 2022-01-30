@@ -27,22 +27,6 @@ export default async function handler(req, res) {
         .json({ error: "All fields of Product is required" });
     }
 
-    let images = req.files ? req.files : [];
-    let productImages = [];
-    if (req.files) {
-      if (req.files.length > 0) {
-        for (let i = 0; i < images.length; i++) {
-          const result = await cloudinary.v2.uploader.upload(images[i].path, {
-            folder: "manufacturer",
-          });
-          productImages.push({
-            public_id: result.public_id,
-            url: result.secure_url,
-          });
-        }
-      }
-    }
-
     // try {
     const manufacturer = new Manufacturer({
       fullName,
@@ -57,5 +41,17 @@ export default async function handler(req, res) {
     // } catch (error) {
     //   res.status(500).json({ error });
     // }
+  }
+  if (method ==="DELETE") {
+    const { _id } = req.body;
+    console.log(req.body);
+
+    try {
+      const deletedManufacturer = await Manufacturer.deleteOne({ _id });
+      return res.status(200).json({ deletedManufacturer });
+    } catch (error) {
+      console.log(error);
+      return res.status(500);
+    }
   }
 }
