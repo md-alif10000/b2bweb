@@ -1,6 +1,7 @@
 import ImporterQuotation from "../../models/ImporterQuotation";
 import connectDatabase from "../../utils/dbconnect";
 
+
 export default async function handler(req, res) {
   const { method } = req;
   await connectDatabase();
@@ -16,6 +17,10 @@ export default async function handler(req, res) {
   }
   if (method == "POST") {
     const { productInfo, shippingInfo, userInfo } = req.body;
+
+
+   
+
     if (
       !productInfo.productName &&
       !productInfo.productCategory &&
@@ -30,21 +35,7 @@ export default async function handler(req, res) {
         .json({ error: "All fields of Product is required" });
     }
 
-    let images = req.files ? req.files : [];
-    let productImages = [];
-    if (req.files) {
-      if (req.files.length > 0) {
-        for (let i = 0; i < images.length; i++) {
-          const result = await cloudinary.v2.uploader.upload(images[i].path, {
-            folder: "importers",
-          });
-          productImages.push({
-            public_id: result.public_id,
-            url: result.secure_url,
-          });
-        }
-      }
-    }
+    
 
     // try {
     const quotation = new ImporterQuotation({

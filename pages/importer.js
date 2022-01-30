@@ -13,6 +13,9 @@ import Footer from "../src/components/Footer";
 import axios from "axios";
 
 const Importer = () => {
+  const [terms, setterms] = useState(false);
+  const [businessCard, setbusinessCard] = useState(false);
+  const [file, setfile] = useState(null);
   const [productInfo, setproductInfo] = useState({
     productName: "",
     productCategory: "",
@@ -21,6 +24,7 @@ const Importer = () => {
     quantity: "",
     budget: "",
     tradeTerms: "",
+    image: {},
   });
   const [shippingInfo, setshippingInfo] = useState({
     shippingMethod: "",
@@ -38,7 +42,25 @@ const Importer = () => {
   });
 
   const addQuotation = async () => {
+    if (!terms && !businessCard) {
+      return toast.error("Please agree to terms and conditions");
+    }
     try {
+      if (!file) return toast.error("Product image is required");
+      const data = new FormData();
+      data.append("file", file);
+      data.append("upload_preset", "b2bwebsite");
+
+      const uploadRes = await axios.post(
+        "https://api.cloudinary.com/v1_1/mdalif/image/upload",
+        data
+      );
+      const { secure_url, public_id } = uploadRes.data;
+      productInfo.image.url = secure_url;
+      productInfo.image.public_id = public_id;
+
+      console.log(uploadRes.data);
+
       const res = await axios.post("/api/importerquotation", {
         productInfo,
         shippingInfo,
@@ -54,7 +76,7 @@ const Importer = () => {
 
   return (
     <>
-    <ToastContainer/>
+      <ToastContainer />
       <PrimaryHeader />
       <div className={styles.container}>
         <div className={styles.hero}>
@@ -69,6 +91,7 @@ const Importer = () => {
             <div className={styles.inputGroup}>
               <Input
                 placeholder="Product Name"
+                label="Product Name"
                 onChange={(e) =>
                   setproductInfo({
                     ...productInfo,
@@ -78,6 +101,7 @@ const Importer = () => {
               />
               <Input
                 placeholder="Product Category"
+                label="Product category"
                 onChange={(e) =>
                   setproductInfo({
                     ...productInfo,
@@ -87,6 +111,7 @@ const Importer = () => {
               />
               <Input
                 placeholder="Sourcing Type"
+                label="Sourcing Type"
                 onChange={(e) =>
                   setproductInfo({
                     ...productInfo,
@@ -98,6 +123,7 @@ const Importer = () => {
               <div className={styles.multiInput}>
                 <textarea
                   placeholder="About the product"
+                  label="Description"
                   onChange={(e) =>
                     setproductInfo({
                       ...productInfo,
@@ -108,16 +134,22 @@ const Importer = () => {
                 <div className={styles.productImagePicker}>
                   <label htmlFor="productImage">
                     <div>
-                      <BsPlusCircle size="30" /> <span>Upload Image </span>{" "}
+                      <BsPlusCircle size="30" />{" "}
+                      <span>Upload product Image </span>{" "}
                     </div>{" "}
                   </label>
-                  <input type={"file"} id="productImage" />
+                  <input
+                    type={"file"}
+                    id="productImage"
+                    onChange={(e) => setfile(e.target.files[0])}
+                  />
                 </div>
               </div>
 
               <div className={styles.multiInput}>
                 <QuantityInput
                   placeholder="Enter quantity"
+                  label="Quantity"
                   onChange={(e) =>
                     setproductInfo({
                       ...productInfo,
@@ -127,6 +159,7 @@ const Importer = () => {
                 />
                 <BudgetInput
                   placeholder="Max Budget"
+                  label="Max Budget"
                   onChange={(e) =>
                     setproductInfo({
                       ...productInfo,
@@ -137,6 +170,7 @@ const Importer = () => {
               </div>
               <Input
                 placeholder="Trade Terms"
+                label="Trade terms"
                 onChange={(e) =>
                   setproductInfo({
                     ...productInfo,
@@ -151,6 +185,7 @@ const Importer = () => {
             <div className={styles.inputGroup}>
               <Input
                 placeholder="Shipping Method"
+                label="Shipping method"
                 onChange={(e) =>
                   setshippingInfo({
                     ...shippingInfo,
@@ -160,6 +195,7 @@ const Importer = () => {
               />
               <Input
                 placeholder="Destination"
+                label="Destination"
                 onChange={(e) =>
                   setshippingInfo({
                     ...shippingInfo,
@@ -169,6 +205,7 @@ const Importer = () => {
               />
               <Input
                 placeholder="Lead Time "
+                label="Lead time"
                 onChange={(e) =>
                   setshippingInfo({
                     ...shippingInfo,
@@ -178,6 +215,7 @@ const Importer = () => {
               />
               <Input
                 placeholder="Payment Method"
+                label="Payment method"
                 onChange={(e) =>
                   setshippingInfo({
                     ...shippingInfo,
@@ -192,6 +230,7 @@ const Importer = () => {
             <div className={styles.inputGroup}>
               <Input
                 placeholder="Full name"
+                label="Full name"
                 onChange={(e) =>
                   setuserInfo({
                     ...userInfo,
@@ -201,6 +240,7 @@ const Importer = () => {
               />
               <Input
                 placeholder="Company Name (if any)"
+                label="Company name"
                 onChange={(e) =>
                   setuserInfo({
                     ...userInfo,
@@ -211,6 +251,7 @@ const Importer = () => {
               <div className={styles.multiInput}>
                 <Input
                   placeholder="*Mobile Number"
+                  label="**Mobile number"
                   width={"40%"}
                   onChange={(e) =>
                     setuserInfo({
@@ -221,6 +262,7 @@ const Importer = () => {
                 />
                 <Input
                   placeholder="**Email "
+                  label="**Email"
                   width={"40%"}
                   onChange={(e) =>
                     setuserInfo({
@@ -254,7 +296,11 @@ const Importer = () => {
 
             <div className={styles.checkboxContainer}>
               <div>
-                <input type="checkbox" id="check1" />
+                <input
+                  type="checkbox"
+                  id="check1"
+                  onChange={() => setterms(true)}
+                />
                 <label htmlFor="check1">
                   I agree to all the Terms and Conditions & Policies
                 </label>
@@ -266,7 +312,11 @@ const Importer = () => {
                 </label>
               </div>
               <div>
-                <input type="checkbox" id="check3" />
+                <input
+                  type="checkbox"
+                  id="check3"
+                  onChange={() => setbusinessCard(true)}
+                />
                 <label htmlFor="check3">
                   I agree to share my Business Card with our Trusted, Reliable
                   and Certified Suppliers

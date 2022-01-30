@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.25.0",
+    "cloudinary": "^1.28.1",
     "dotenv": "^14.3.2",
     "ityped": "^1.0.3",
     "mongoose": "^6.1.8",

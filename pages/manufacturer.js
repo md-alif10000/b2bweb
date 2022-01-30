@@ -5,7 +5,7 @@ import { FloatingButton, Input } from "../src/components/ui/ui";
 import styles from "../styles/Manufacturer.module.css";
 import { BsCloudArrowUp } from "react-icons/bs";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import axios from "axios";
 
 const Manufacturer = () => {

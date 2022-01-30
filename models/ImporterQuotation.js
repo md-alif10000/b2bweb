@@ -18,18 +18,16 @@ const ImporterQuotation = mongoose.Schema(
         type: String,
         required: true,
       },
-      images: [
-        {
-          public_id: {
-            type: String,
-            required: true,
-          },
-          url: {
-            type: String,
-            required: true,
-          },
+      image: {
+        public_id: {
+          type: String,
+          required: true,
         },
-      ],
+        url: {
+          type: String,
+          required: true,
+        },
+      },
       quantity: {
         type: String,
         required: true,
@@ -83,9 +81,6 @@ const ImporterQuotation = mongoose.Schema(
         type: String,
       },
     },
-
-   
- 
   },
   { timestamps: true }
 );
@@ -98,7 +93,5 @@ const ImporterQuotation = mongoose.Schema(
 //     virtuals: true,
 // });
 
-
-
-
-export default mongoose.models.ImporterQuotation || mongoose.model("ImporterQuotation", ImporterQuotation);
+export default mongoose.models.ImporterQuotation ||
+  mongoose.model("ImporterQuotation", ImporterQuotation);
