@@ -6,6 +6,7 @@ import Footer from "../src/components/Footer";
 import Head from "next/head";
 import { init } from "ityped";
 import { useRef, useEffect } from "react";
+import Link from "next/link";
 
 const HomePage = () => {
   const textRef = useRef();
@@ -62,8 +63,10 @@ const HomePage = () => {
             Join us in the mission to help local suppliers to connect acoss the
             worls and become a part on the thriving economy
           </p>
-
+          <Link href="/manufacturer" >
           <button>Sign Up</button>
+          </Link>
+         
         </div>
 
         <div className={styles.testimonials}>
