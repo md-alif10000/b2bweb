@@ -2,9 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import styles from "../../styles/admin/ImportersQuotations.module.css";
 import PrimaryHeader from '../../src/components/PrimaryHeader'
+import  { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 const Importersquotations = () => {
   const [data, setdata] = useState([]);
+  const { user } = useSelector((state) => state.auth);
+  const router=useRouter();
 
   const getQuotations = async () => {
     const res = await axios.get("/api/importerquotation");
@@ -15,7 +19,20 @@ const Importersquotations = () => {
 
   useEffect(() => {
     getQuotations();
+
+    if (!user) {
+      return router.push("/admin/login");
+    }
+  
+    if (user.role != "admin") {
+     return router.push("/admin/login");
+    }
   }, []);
+
+
+
+ 
+
 
   return (
     <>

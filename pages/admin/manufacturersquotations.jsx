@@ -3,9 +3,13 @@ import { useEffect, useState } from "react";
 import styles from "../../styles/admin/ImportersQuotations.module.css";
 import PrimaryHeader from "../../src/components/PrimaryHeader";
 import { toast, ToastContainer } from "react-toastify";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 const ManufacturersQuotations = () => {
   const [data, setdata] = useState([]);
+  const { user } = useSelector((state) => state.auth);
+  const router = useRouter();
 
   const getQuotations = async () => {
     const res = await axios.get("/api/manufacturer");
@@ -30,6 +34,21 @@ const ManufacturersQuotations = () => {
       toast.error("Something went wrong");
     }
   };
+
+
+  useEffect(() => {
+    
+    if (!user) {
+      return router.push("/admin/login");
+    }
+  
+    if (user.role != "admin") {
+      router.push("/admin/login");
+    }
+  }, []);
+
+  
+
 
   return (
     <>
@@ -104,7 +123,7 @@ const ManufacturersQuotations = () => {
                   <span> Email </span> <span>{productInfo.identification}</span>{" "}
                 </div>
                 <div className={styles.item}>
-                  <span> Website </span> <span>{productInfo.description}</span>{" "}
+                  <span> Website </span> <span>{productInfo.description}</span>
                 </div>
                 <div className={styles.item}>
                   <span> Affiliate </span> <span>{productInfo.persona}</span>{" "}

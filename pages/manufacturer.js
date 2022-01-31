@@ -5,6 +5,7 @@ import { FloatingButton, Input } from "../src/components/ui/ui";
 import styles from "../styles/Manufacturer.module.css";
 import { BsCloudArrowUp } from "react-icons/bs";
 import { ToastContainer, toast } from "react-toastify";
+import { manufacturerValidate } from "../utils/manufacturerValidate";
 
 import axios from "axios";
 
@@ -36,13 +37,22 @@ const Manufacturer = () => {
   const addManufacturer = async (e) => {
     e.preventDefault();
 
+    const error = await manufacturerValidate({
+      fullName: userInfo.fullName,
+      email: userInfo.email,
+      productInfo,
+      businessInfo,
+    });
+    if (error) {
+      return toast.warn(error);
+    }
+
     if (files.length == 0) return toast.error("Product image is required");
 
     try {
       const images = [];
       const uploadFile = async () => {
         for (let i = 0; i < files.length; i++) {
-         
           const data = new FormData();
           data.append("file", files[i]);
           data.append("upload_preset", "b2bwebsite");

@@ -11,6 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { BsCheckCircleFill, BsPlusCircle } from "react-icons/bs";
 import Footer from "../src/components/Footer";
 import axios from "axios";
+import { importersValidate } from "../utils/importersValidate";
 
 const Importer = () => {
   const [terms, setterms] = useState(false);
@@ -42,6 +43,10 @@ const Importer = () => {
   });
 
   const addQuotation = async () => {
+   const error= await importersValidate({ productInfo, shippingInfo, userInfo });
+    if(error){
+      return toast.warn(error)
+    }
     if (!terms && !businessCard) {
       return toast.error("Please agree to terms and conditions");
     }
@@ -337,41 +342,70 @@ const Importer = () => {
               better responses you will get.
             </p>
             <div className={styles.checks}>
-              <p> {productInfo.productName} </p>
-              <p> {productInfo.productDetails} </p>
-              <p> {productInfo.productCategory} </p>
-              <p> {productInfo.sourcingType} </p>
-              <p> {productInfo.quantity} </p>
-              <p> {productInfo.budget} </p>
-              <div>
+              <div
+                className={productInfo.productName ? styles.activeCheck : ""}
+              >
                 <BsCheckCircleFill /> <span>Product Name</span>
               </div>
-              <div>
+              <div
+                className={
+                  productInfo.productCategory ? styles.activeCheck : ""
+                }
+              >
                 <BsCheckCircleFill /> <span>Product Category</span>
               </div>
-              <div>
+              <div
+                className={productInfo.productDetails ? styles.activeCheck : ""}
+              >
                 <BsCheckCircleFill /> <span>About Your Product</span>
               </div>
-              <div>
+              <div
+                className={productInfo.sourcingType ? styles.activeCheck : ""}
+              >
                 <BsCheckCircleFill /> <span>Sourcing Type </span>
               </div>
-              <div>
-                <BsCheckCircleFill /> <span>Upload Product</span>
+              <div className={productInfo.quantity ? styles.activeCheck : ""}>
+                <BsCheckCircleFill /> <span>Quantity </span>
               </div>
-              <div>
+              <div className={productInfo.budget ? styles.activeCheck : ""}>
+                <BsCheckCircleFill /> <span>Max Budget </span>
+              </div>
+              <div className={productInfo.tradeTerms ? styles.activeCheck : ""}>
+                <BsCheckCircleFill /> <span>Trade Terms</span>
+              </div>
+              <div
+                className={
+                  shippingInfo.shippingMethod ? styles.activeCheck : ""
+                }
+              >
                 <BsCheckCircleFill /> <span> Shiping Method </span>
               </div>
-              <div>
+              <div
+                className={shippingInfo.destination ? styles.activeCheck : ""}
+              >
                 <BsCheckCircleFill /> <span> Destination </span>
               </div>
-              <div>
+              <div className={shippingInfo.leadtime ? styles.activeCheck : ""}>
                 <BsCheckCircleFill /> <span>Lead Time</span>
               </div>
-              <div>
+              <div
+                className={shippingInfo.paymentMethod ? styles.activeCheck : ""}
+              >
                 <BsCheckCircleFill /> <span>Full Name</span>
               </div>
-              <div>
+              <div className={userInfo.fullName ? styles.activeCheck : ""}>
+                <BsCheckCircleFill /> <span>Full Name</span>
+              </div>
+              <div
+                className={productInfo.companyName ? styles.activeCheck : ""}
+              >
+                <BsCheckCircleFill /> <span>Company Name</span>
+              </div>
+              <div className={userInfo.mobileNumber ? styles.activeCheck : ""}>
                 <BsCheckCircleFill /> <span>Mobile Number</span>
+              </div>
+              <div className={userInfo.email ? styles.activeCheck : ""}>
+                <BsCheckCircleFill /> <span>Email</span>
               </div>
             </div>
           </div>

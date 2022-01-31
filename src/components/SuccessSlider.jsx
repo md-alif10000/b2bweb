@@ -20,7 +20,7 @@ const SuccessSlider = () => {
       <>
         <Swiper
           autoplay={{
-            delay: 3500,
+            delay: 7500,
             disableOnInteraction: true,
           }}
           loop={true}

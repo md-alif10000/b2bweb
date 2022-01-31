@@ -1,7 +1,9 @@
 import styles from "../../styles/components/PrimaryHeader.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 const PrimaryHeader = () => {
+  const { user } = useSelector((state) => state.auth);
   return (
     <div className={styles.header} id="header">
       <div className={styles.logo}>
@@ -12,14 +14,19 @@ const PrimaryHeader = () => {
 
       <div>
         <Link href={"/manufacturer"} passHref>
-          <a >Manufacturer</a>
+          <a>Manufacturer</a>
         </Link>
 
         <Link href={"/importer"} passHref>
           <a>Importer</a>
         </Link>
 
-        <button className={styles.button}>Login</button>
+        {
+          user ?  <button className={styles.button}>Logout</button>:<button className={styles.button}>Login</button>
+        }
+
+        
+       
       </div>
     </div>
   );
