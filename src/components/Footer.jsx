@@ -1,8 +1,10 @@
 import Image from "next/image";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import styles from "../../styles/components/Footer.module.css";
 
 const Footer = () => {
+  const {t}=useTranslation()
   return (
     <footer className={styles.container}>
       <div className={styles.footerTop}>
@@ -17,7 +19,7 @@ const Footer = () => {
       </div>
       <hr className={styles.hr} />
       <div className={styles.footerBottom}>
-        <span>Copyright &copy; 2022 ImpoNexpo. All Rights Reserved</span>
+        <span> {t('copy_right')} </span>
       </div>
     </footer>
   );

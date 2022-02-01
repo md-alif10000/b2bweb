@@ -22,16 +22,16 @@ const Input = ({ type, onChange, label, placeholder, width }) => {
 
 const FloatingButton = () => {
   return (
-    <a href="#header" className={styles.floatingButton}>
+    <a href="#hero" className={styles.floatingButton}  onClick={()=>window.pageYOffset===0} >
       <BsChevronDoubleUp size={32} />
     </a>
   );
 };
 
-const QuantityInput = ({ placeholder, onChange }) => {
+const QuantityInput = ({ placeholder, onChange ,onUnitChange}) => {
   return (
     <div className={styles.quantityInput}>
-      <input type="text" placeholder={placeholder} onChange={onChange} />
+      <input type="text" placeholder={placeholder} onChange={onChange} onUnitChange={onUnitChange}/>
       <select name="" id="">
         <option value="">UNIT</option>
         <option value="">kg</option>

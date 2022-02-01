@@ -28,8 +28,8 @@ const PrimaryHeader = () => {
     window.addEventListener("scroll", () => {
       if (window.pageYOffset > 100) {
         setisScrolled(true);
-      }else{
-        setisScrolled(false)
+      } else {
+        setisScrolled(false);
       }
     });
   }, []);
@@ -65,9 +65,12 @@ const PrimaryHeader = () => {
             id=""
             onChange={(e) => i18next.changeLanguage(e.target.value)}
           >
-            {languages.map((lang) => (
-              <option value={lang.code} selected={lang.code === currentLang}>
-                {" "}
+            {languages.map((lang, index) => (
+              <option
+                key={index}
+                value={lang.code}
+                selected={lang.code === currentLang}
+              >
                 {lang.name}{" "}
               </option>
             ))}

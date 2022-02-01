@@ -1,30 +1,55 @@
 import PrimaryHeader from "../src/components/PrimaryHeader";
 import styles from "../styles/Home.module.css";
-import { FloatingButton, Input } from "../src/components/ui/ui";
+import {
+  BudgetInput,
+  FloatingButton,
+  Input,
+  QuantityInput,
+} from "../src/components/ui/ui";
 import SuccessSlider from "../src/components/SuccessSlider";
 import Footer from "../src/components/Footer";
 import Head from "next/head";
 import { init } from "ityped";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
 const HomePage = () => {
   const { t } = useTranslation();
   const textRef = useRef();
-  
+
+  const [email, setemail] = useState("");
 
   useEffect(() => {
     init(textRef.current, {
       showCursor: true,
       backDelay: 1500,
       backSpeed: 40,
-      strings: ["Brand owner","Manufacturer","Supplier"],
+      strings: ["Brand owner", "Manufacturer", "Supplier"],
     });
   }, []);
 
+  const addEmail = async (e) => {
+    e.preventDefault();
+    if (!email) {
+      return toast.error("Type a valid email address");
+    }
+    try {
+      const res = await axios.post("/api/email", { email });
+      if (res.status == 201) {
+        toast.success("Your Email submitted");
+        setemail("");
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
+  };
+
   return (
     <>
+      <ToastContainer />
       <PrimaryHeader />
       <Head>
         <title>ImpoNexpo</title>
@@ -33,7 +58,7 @@ const HomePage = () => {
       </Head>
 
       <div className={styles.container}>
-        <div className={styles.hero}>
+        <div className={styles.hero}  id="hero" >
           <div className={styles.left}>
             <h1> {t("home_heading")} </h1>
             <img src="/images/line.png" alt="" />
@@ -41,17 +66,24 @@ const HomePage = () => {
           </div>
           <div className={styles.right}>
             <h2>{t("home_hero_right_heading")}</h2>
-            <div className={styles.email}>
-              <input type="text" placeholder={t("email_box_text")} />
-              <button> {t("email_button_text")} </button>
-            </div>
+            <form className={styles.email} onSubmit={addEmail}>
+              <input
+                type="email"
+                placeholder={t("email_box_text")}
+                required={true}
+                onChange={(e) => setemail(e.target.value)}
+              />
+              <button type="submit" onClick={() => addEmail}>
+                {" "}
+                {t("email_button_text")}{" "}
+              </button>
+            </form>
           </div>
         </div>
 
         <div className={styles.signIn}>
           <h2> {t("are_you_a")} </h2>
           <h1>
-        
             <span ref={textRef}> </span> ?
           </h1>
           <img src="/images/line.png" alt="" />
@@ -111,12 +143,12 @@ const HomePage = () => {
 
           <div className={styles.formContainer}>
             <div className={styles.left}>
-              <p>{t('worlds_best')}</p>
+              <p>{t("worlds_best")}</p>
 
               <div>
                 <span> {t("industries")} </span>
-                <span>  {t("categories")} </span>
-                <span>  {t("duration")} </span>
+                <span> {t("categories")} </span>
+                <span> {t("duration")} </span>
               </div>
             </div>
             <div className={styles.right}>
@@ -124,16 +156,13 @@ const HomePage = () => {
               <Input placeholder={t("please_enter_what_you_are_looking_for")} />
 
               <div className={styles.inputsContainer}>
-                <Input placeholder={"Enter Quantity"} />
-                <Input placeholder={" Pieces"} />
+                <QuantityInput placeholder={"Enter Quantity"} />
+                <BudgetInput placeholder={"Pieces"} />
               </div>
 
               <div className={styles.checkbox}>
                 <input type="checkbox" id="check" />
-                <label htmlFor="check">
-                  {t("agree_terms")}
-               
-                </label>
+                <label htmlFor="check">{t("agree_terms")}</label>
               </div>
 
               <div className={styles.submitButton}>
@@ -187,22 +216,19 @@ const HomePage = () => {
 
             <div className={styles.contacts}>
               <div>
-                <h4>  {t("for_developers")} </h4>
+                <h4> {t("for_developers")} </h4>
                 <span>abcd@imponexpo.team</span>
               </div>
 
               <div className={styles.line}></div>
 
               <div>
-                <h4>  {t("for_manufacturers")} </h4>
+                <h4> {t("for_manufacturers")} </h4>
                 <span>abcd@imponexpo.team</span>
               </div>
               <div className={styles.line}></div>
               <div>
-                <h4>
-                   {t("for_buyers")}
-               
-                </h4>
+                <h4>{t("for_buyers")}</h4>
                 <span>abcd@imponexpo.team</span>
               </div>
             </div>

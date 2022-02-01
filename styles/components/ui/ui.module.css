@@ -64,7 +64,6 @@
   border-radius: 15px;
   background-color: #eaf0ff;
   min-width: 200px;
-  max-width: 400px;
   margin: 15px;
 }
 .quantityInput input,.budgetInput input{
@@ -72,12 +71,13 @@
   padding: 5px 10px;
   outline: none;
   border: none;
-  flex-grow: 1;
+  flex: 1;
   background-color: inherit;
   font-size: 16px;
+  width: 100%;
 }
 .quantityInput select,.budgetInput span{
-  width: 80px;
+  width: 80px!important;
   height: 100%;
   border-bottom-right-radius: 15px;
   border-top-right-radius: 15px;
@@ -87,5 +87,6 @@
   outline: none;
   padding: 10px;
   text-align: center;
+  outline: 2px solid white;
 
 }
