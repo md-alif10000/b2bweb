@@ -1,4 +1,4 @@
-import toast from "react-toastify";
+import { toast } from "react-toastify";
 import { authConstants } from "../constants";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
