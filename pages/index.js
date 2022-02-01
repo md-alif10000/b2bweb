@@ -12,13 +12,14 @@ import { useTranslation } from "react-i18next";
 const HomePage = () => {
   const { t } = useTranslation();
   const textRef = useRef();
+  
 
   useEffect(() => {
     init(textRef.current, {
       showCursor: true,
       backDelay: 1500,
       backSpeed: 40,
-      strings: ["Brand Owner", "Manufacturer!", "Supplier"],
+      strings: ["Brand owner","Manufacturer","Supplier"],
     });
   }, []);
 
@@ -36,44 +37,32 @@ const HomePage = () => {
           <div className={styles.left}>
             <h1> {t("home_heading")} </h1>
             <img src="/images/line.png" alt="" />
-            <p>
-              We connect People and Businesses with Manufacturers who are
-              Trusted, Certified and Secured.
-            </p>
+            <p>{t("home_hero_text")}</p>
           </div>
           <div className={styles.right}>
-            <h2>Get an Early Access and Exclusive Benifits</h2>
+            <h2>{t("home_hero_right_heading")}</h2>
             <div className={styles.email}>
-              <input
-                type="text"
-                placeholder="Please Email me when it’s ready!"
-              />
-              <button>Send !</button>
+              <input type="text" placeholder={t("email_box_text")} />
+              <button> {t("email_button_text")} </button>
             </div>
           </div>
         </div>
 
         <div className={styles.signIn}>
-          <h2>Are you a</h2>
+          <h2> {t("are_you_a")} </h2>
           <h1>
-            {" "}
-            <span ref={textRef}> </span> ?{" "}
+        
+            <span ref={textRef}> </span> ?
           </h1>
           <img src="/images/line.png" alt="" />
-          <p>
-            Join us in the mission to help local suppliers to connect acoss the
-            worls and become a part on the thriving economy
-          </p>
+          <p>{t("join_us")}</p>
           <Link href="/manufacturer">
-            <button>Sign Up</button>
+            <button> {t("sign_in")} </button>
           </Link>
         </div>
 
         <div className={styles.testimonials}>
-          <p>
-            An Online & Offline <br /> Cross-Border B2B System <br /> that makes
-            you <strong>Succeed</strong>!
-          </p>
+          <p>{t("an_online_&_offline")}</p>
 
           <img className={styles.img1} src="/images/dotted3.png" alt="" />
           <img className={styles.img2} src="/images/dotted2.png" alt="" />
@@ -82,32 +71,32 @@ const HomePage = () => {
             <div>
               <div className={styles.imgContainer}>
                 <img src="images/overview1.png" alt="" />
-                <span>Reliable Manufacturer</span>
+                <span>{t("reliable_manufacturer")}</span>
               </div>
               <div className={styles.imgContainer}>
                 <img src="images/overview2.png" alt="" />
-                <span>Solving Language Barrier</span>
+                <span>{t("solving_language_barrier")} </span>
               </div>
 
               <div className={styles.imgContainer}>
                 <img src="images/overview3.png" alt="" />
-                <span>Secure Payment</span>
+                <span>{t("secure_payment")}</span>
               </div>
 
               <div className={styles.imgContainer}>
                 <img src="images/overview4.png" alt="" />
-                <span>Customer Service</span>
+                <span> {t("customer_service")} </span>
               </div>
             </div>
 
             <div>
               <div className={styles.imgContainer}>
                 <img src="images/logistics.jpg" alt="" />
-                <span>Logistics</span>
+                <span> {t("logistics")} </span>
               </div>
               <div className={styles.imgContainer}>
                 <img src="images/overview6.png" alt="" />
-                <span>Localisation</span>
+                <span> {t("localisation")} </span>
               </div>
             </div>
           </div>
@@ -115,30 +104,24 @@ const HomePage = () => {
 
         <section className={styles.requirement}>
           <div className={styles.top}>
-            <h3>
-              Get in touch with Reliable Manufacturers of <br />
-              Quality Goods at <span>The Best Prices </span>!
-            </h3>
+            <h3>{t("get_in_touch")}</h3>
             <img src="/images/line.png" alt="" />
-            <p>
-              We connect with sellers across the globe to provide services{" "}
-              <br /> and goods at the best prices possible{" "}
-            </p>
+            <p>{t("we_connect_with_sellers")}</p>
           </div>
 
           <div className={styles.formContainer}>
             <div className={styles.left}>
-              <p>World’s Best Sourcing Platform</p>
+              <p>{t('worlds_best')}</p>
 
               <div>
-                <span>100+ Industries</span>
-                <span>2200+ Categories</span>
-                <span>20h Avg Quotation Duration</span>
+                <span> {t("industries")} </span>
+                <span>  {t("categories")} </span>
+                <span>  {t("duration")} </span>
               </div>
             </div>
             <div className={styles.right}>
-              <p>One Request, Multiple Quotes</p>
-              <Input placeholder={"Please enter what you are looking for.."} />
+              <p> {t("one_request")} </p>
+              <Input placeholder={t("please_enter_what_you_are_looking_for")} />
 
               <div className={styles.inputsContainer}>
                 <Input placeholder={"Enter Quantity"} />
@@ -148,14 +131,15 @@ const HomePage = () => {
               <div className={styles.checkbox}>
                 <input type="checkbox" id="check" />
                 <label htmlFor="check">
-                  I agree to the Terms and Conditions
+                  {t("agree_terms")}
+               
                 </label>
               </div>
 
               <div className={styles.submitButton}>
                 <button>
                   {" "}
-                  <Link href={"/importer"}>Submit Requirement</Link>{" "}
+                  <Link href={"/importer"}>{t("submit_requirement")}</Link>{" "}
                 </button>
               </div>
             </div>
@@ -163,12 +147,10 @@ const HomePage = () => {
         </section>
 
         <section className={styles.success}>
-          <h1>Success Stories !</h1>
+          <h1>{t("success_stories")} !</h1>
           <img src="/images/line.png" alt="" />
 
-          <div className={styles.slider}>
-            {/* <SuccessSlider /> */}
-          </div>
+          <div className={styles.slider}>{/* <SuccessSlider /> */}</div>
 
           <div className={styles.successTestimonials}>
             <div>
@@ -200,26 +182,26 @@ const HomePage = () => {
 
         <section className={styles.contact}>
           <div className={styles.contactBox}>
-            <h1>Contact Us</h1>
+            <h1>{t("contact_us")} </h1>
             <img src="/images/line.png" alt="" />
 
             <div className={styles.contacts}>
               <div>
-                <h4> For Investors</h4>
+                <h4>  {t("for_developers")} </h4>
                 <span>abcd@imponexpo.team</span>
               </div>
 
               <div className={styles.line}></div>
 
               <div>
-                <h4> For Manufacturers</h4>
+                <h4>  {t("for_manufacturers")} </h4>
                 <span>abcd@imponexpo.team</span>
               </div>
               <div className={styles.line}></div>
               <div>
                 <h4>
-                  For Buyers/ <br />
-                  Costumer Support
+                   {t("for_buyers")}
+               
                 </h4>
                 <span>abcd@imponexpo.team</span>
               </div>
