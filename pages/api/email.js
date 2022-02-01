@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import Email from "../../models/email";
+import Email from "../../models/Email";
 import connectDatabase from "../../utils/dbconnect";
 export default async function handler(req, res) {
   const { method } = req;
