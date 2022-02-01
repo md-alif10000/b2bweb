@@ -13,6 +13,9 @@
 .hero img {
   max-width: 600px;
 }
+.hero h1{
+  text-shadow: 2px 2px 3px #DEDEDE;
+}
 .formContainer {
   flex: 3;
   background-color: #ffffff;

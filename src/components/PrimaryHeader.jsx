@@ -8,22 +8,28 @@ const PrimaryHeader = () => {
     <div className={styles.header} id="header">
       <div className={styles.logo}>
         <Link href="/" passHref>
-          <img src={"/images/logo_white.png"} width={200} height={80} />
+          <img src={"/images/logo_white.png"} />
         </Link>
       </div>
 
       <div>
         <Link href={"/manufacturer"} passHref>
-          <a>Manufacturer</a>
+          <a>Exporters</a>
         </Link>
 
         <Link href={"/importer"} passHref>
           <a>Importer</a>
         </Link>
 
-        {
+        {/* {
           user ?  <button className={styles.button}>Logout</button>:<button className={styles.button}>Login</button>
-        }
+        } */}
+
+        <select name="" id="">
+          <option value="">Select Lang</option>
+          <option value="">English</option>
+          <option value="">Chainiese</option>
+        </select>
 
         
        
