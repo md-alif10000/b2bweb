@@ -61,15 +61,19 @@ const PrimaryHeader = () => {
         <div className={styles.select}>
           <BsGlobe2 />
           <select
+            value={currentLang}
             name=""
             id=""
-            onChange={(e) => i18next.changeLanguage(e.target.value)}
+            onChange={(e) => {
+              i18next.changeLanguage(e.target.value);
+              setcurrentLang(e.target.value);
+            }}
           >
             {languages.map((lang, index) => (
               <option
                 key={index}
                 value={lang.code}
-                selected={lang.code === currentLang}
+                // selected={lang.code === currentLang}
               >
                 {lang.name}{" "}
               </option>

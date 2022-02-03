@@ -43,7 +43,10 @@ const HomePage = () => {
         setemail("");
       }
     } catch (error) {
-      toast.error("Something went wrong");
+    
+ 
+        toast.error(error.response.data.message)
+   
     }
   };
 
@@ -68,6 +71,7 @@ const HomePage = () => {
             <h2>{t("home_hero_right_heading")}</h2>
             <form className={styles.email} onSubmit={addEmail}>
               <input
+              value={email}
                 type="email"
                 placeholder={t("email_box_text")}
                 required={true}
@@ -179,7 +183,9 @@ const HomePage = () => {
           <h1>{t("success_stories")} !</h1>
           <img src="/images/line.png" alt="" />
 
-          <div className={styles.slider}>{/* <SuccessSlider /> */}</div>
+          <div className={styles.slider}>
+            <SuccessSlider />
+            </div>
 
           <div className={styles.successTestimonials}>
             <div>

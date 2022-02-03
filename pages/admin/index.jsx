@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import styles from "../../styles/admin/Admin.module.css";
 import PrimaryHeader from "../../src/components/PrimaryHeader";
 import Link from "next/link";
+import AdminSidebar from "../../src/components/AdminSidebar";
 
 const Admin = () => {
   const { user } = useSelector((state) => state.auth);
@@ -23,6 +24,7 @@ const Admin = () => {
     <>
       <PrimaryHeader />
       <div className={styles.container}>
+        <AdminSidebar/>
         <Link href="/admin/importersquotations">
           <button>Importers</button>
         </Link>

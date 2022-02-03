@@ -4,6 +4,7 @@ import styles from "../../styles/admin/ImportersQuotations.module.css";
 import PrimaryHeader from '../../src/components/PrimaryHeader'
 import  { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import AdminSidebar from "../../src/components/AdminSidebar";
 
 const Importersquotations = () => {
   const [data, setdata] = useState([]);
@@ -27,7 +28,7 @@ const Importersquotations = () => {
     if (user.role != "admin") {
      return router.push("/admin/login");
     }
-  }, []);
+  }, [user]);
 
 
 
@@ -37,7 +38,10 @@ const Importersquotations = () => {
   return (
     <>
     <PrimaryHeader/>
-    <div>
+    <div  className={styles.container} >
+      <AdminSidebar/>
+
+      <div className={styles.quotations} >
       {data?.map(({ productInfo, userInfo, shippingInfo },index) => (
         <div className={styles.quotation} key={index} >
           <div>
@@ -109,6 +113,8 @@ const Importersquotations = () => {
         </div>
       ))}
     </div>
+    </div>
+   
     </>
   );
 };

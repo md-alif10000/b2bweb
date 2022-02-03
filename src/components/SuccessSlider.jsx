@@ -9,10 +9,10 @@ import "swiper/css/pagination";
 import styles from "../../styles/components/SuccessSlider.module.css";
 
 // import Swiper core and required modules
-import SwiperCore, { EffectCoverflow, Pagination, Autoplay } from "swiper";
+import SwiperCore, { EffectCoverflow, Pagination } from "swiper";
 
 // install Swiper modules
-SwiperCore.use([EffectCoverflow, Pagination, Autoplay]);
+SwiperCore.use([EffectCoverflow, Pagination]);
 
 const SuccessSlider = () => {
   return (
@@ -42,8 +42,7 @@ const SuccessSlider = () => {
           <div className={styles.slideContainer}>
             <SwiperSlide>
               <video
-                src="/videos/video1.mp4"
-                autoPlay={true}
+                src="/videos/video4.mp4"
                 controls={true}
                 loop={true}
               ></video>
@@ -53,7 +52,7 @@ const SuccessSlider = () => {
           <div className={styles.slideContainer}>
             <SwiperSlide>
               <video
-                src="/videos/video2.mp4"
+                src="/videos/video4.mp4"
                 autoPlay={true}
                 controls={true}
                 loop={true}
@@ -63,7 +62,7 @@ const SuccessSlider = () => {
           <div className={styles.slideContainer}>
             <SwiperSlide>
               <video
-                src="/videos/video3.mp4"
+                src="/videos/video4.mp4"
                 autoPlay={true}
                 controls={true}
                 loop={true}
@@ -85,7 +84,7 @@ const SuccessSlider = () => {
           <div className={styles.slideContainer}>
             <SwiperSlide>
               <video
-                src="/videos/video2.mp4"
+                src="/videos/video4.mp4"
                 autoPlay={true}
                 controls={true}
                 loop={true}

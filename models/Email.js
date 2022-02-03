@@ -5,6 +5,7 @@ const emailSchema = new mongoose.Schema(
     email: {
       type: String,
       required: [true, "Please Enter Your Email"],
+      unique:true
     },
   },
   { timestamps: true }

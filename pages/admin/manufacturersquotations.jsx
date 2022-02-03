@@ -5,6 +5,7 @@ import PrimaryHeader from "../../src/components/PrimaryHeader";
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import AdminSidebar from "../../src/components/AdminSidebar";
 
 const ManufacturersQuotations = () => {
   const [data, setdata] = useState([]);
@@ -45,7 +46,7 @@ const ManufacturersQuotations = () => {
     if (user.role != "admin") {
       router.push("/admin/login");
     }
-  }, []);
+  }, [user]);
 
   
 
@@ -54,7 +55,10 @@ const ManufacturersQuotations = () => {
     <>
       <PrimaryHeader />
       <ToastContainer />
-      <div>
+      <div className={styles.container} >
+        <AdminSidebar/>
+        <div className={styles.quotations} >
+        <div>
         {data?.map(
           (
             { _id, fullName, email, role, productInfo, businessInfo },
@@ -142,6 +146,11 @@ const ManufacturersQuotations = () => {
           )
         )}
       </div>
+
+        </div>
+
+      </div>
+     
     </>
   );
 };

@@ -1,0 +1,66 @@
+.sidebar {
+  width: 300px;
+  height: 100vh;
+  background-color: var(--primary);
+  box-shadow: 10px -1px 14px -9px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px -1px 14px -9px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px -1px 14px -9px rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+  padding-top: 90px;
+}
+.sidebar h2 {
+  text-align: center;
+  color: white;
+  font-size: 28px;
+  border-bottom: 2px solid var(--secondary);
+  padding: 20px;
+}
+.sidebar > div {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+.sidebar > div ul {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  font-size: 18px;
+  color: white;
+}
+.sidebar > div ul li {
+  margin-bottom: 10px;
+  transition: color 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+
+}
+.sidebar > div ul li *:first-child{
+    margin-right: 15px;
+}
+.sidebar > div ul li:hover {
+  color: var(--secondary);
+}
+
+.logout {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 10px;
+  background-color: var(--secondary);
+  font-weight: bold;
+}
+.logout span {
+  margin-right: 15px;
+  cursor: pointer;
+}

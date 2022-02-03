@@ -1,9 +1,18 @@
+.container{
+  display: flex;
+
+}
+.quotations{
+  flex: 1;
+  margin-left: 300px;
+}
+
 .quotation {
   display: flex;
-  width: 80vw;
+  width: 80%;
   background-color: var(--primary);
   border-radius: 20px;
-  padding: 3vw;
+  padding: 2vw;
   color: white;
   margin: 20px auto;
   justify-content: space-around;
