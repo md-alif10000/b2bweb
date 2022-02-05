@@ -28,11 +28,23 @@ const AdminSidebar = () => {
 
           <li>
             <BsFillArrowDownCircleFill size={24} />
-            <Link href="/admin/importersquotations"> Importers </Link>{" "}
+            <Link href="/admin/importers"> Importers </Link>{" "}
           </li>
           <li>
             <BsFillArrowUpCircleFill size={24} />
-            <Link href="/admin/manufacturersquotations"> Exporters </Link>{" "}
+            <Link href="/admin/manufacturers"> Exporters </Link>{" "}
+          </li>
+          <li>
+            <BsFillArrowUpCircleFill size={24} />
+            <Link href="/admin/category"> Categories </Link>
+          </li>
+          <li>
+            <BsFillArrowUpCircleFill size={24} />
+            <Link href="/admin/category"> Categories </Link>
+          </li>
+          <li>
+            <BsFillArrowUpCircleFill size={24} />
+            <Link href="/admin/edit/homepage"> Home Page </Link>
           </li>
         </ul>
         <div className={styles.logout}>

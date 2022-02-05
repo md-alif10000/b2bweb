@@ -1,19 +1,21 @@
 import PrimaryHeader from "../src/components/PrimaryHeader";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   BudgetInput,
   FloatingButton,
   Input,
   QuantityInput,
+  CategorySelect,
 } from "../src/components/ui/ui";
 import styles from "../styles/Importer.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import { BsCheckCircleFill, BsPlusCircle } from "react-icons/bs";
 import Footer from "../src/components/Footer";
-import axios from "axios";
+import axios, { Axios } from "axios";
 import { importersValidate } from "../utils/importersValidate";
 
 const Importer = () => {
+  const [categories, setcategories] = useState([]);
   const [terms, setterms] = useState(false);
   const [businessCard, setbusinessCard] = useState(false);
   const [file, setfile] = useState(null);
@@ -43,9 +45,13 @@ const Importer = () => {
   });
 
   const addQuotation = async () => {
-   const error= await importersValidate({ productInfo, shippingInfo, userInfo });
-    if(error){
-      return toast.warn(error)
+    const error = await importersValidate({
+      productInfo,
+      shippingInfo,
+      userInfo,
+    });
+    if (error) {
+      return toast.warn(error);
     }
     if (!terms && !businessCard) {
       return toast.error("Please agree to terms and conditions");
@@ -79,6 +85,23 @@ const Importer = () => {
     }
   };
 
+  const getCategory = async () => {
+    try {
+      const res = await axios.get("/api/category");
+      console.log(res);
+      if (res.status == 200) {
+        setcategories(res.data.categories);
+        console.log(categories);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getCategory();
+  }, []);
+
   return (
     <>
       <ToastContainer />
@@ -104,6 +127,8 @@ const Importer = () => {
                   })
                 }
               />
+
+              <CategorySelect options={categories} />
               <Input
                 placeholder="Product Category"
                 label="Product category"

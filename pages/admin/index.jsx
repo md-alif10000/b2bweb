@@ -5,7 +5,10 @@ import styles from "../../styles/admin/Admin.module.css";
 import PrimaryHeader from "../../src/components/PrimaryHeader";
 import Link from "next/link";
 import AdminSidebar from "../../src/components/AdminSidebar";
-
+import AdminHeader from "../../src/components/admin/AdminHeader";
+import { BsFillBarChartLineFill } from "react-icons/bs";
+import Chart from "../../src/components/admin/AdminChart";
+import AdminLayout from "../../src/components/admin/AdminLayout";
 const Admin = () => {
   const { user } = useSelector((state) => state.auth);
   const router = useRouter();
@@ -22,17 +25,51 @@ const Admin = () => {
 
   return (
     <>
-      <PrimaryHeader />
-      <div className={styles.container}>
-        <AdminSidebar/>
-        <Link href="/admin/importersquotations">
-          <button>Importers</button>
-        </Link>
+      
+    <AdminLayout>
+    <div className={styles.top}>
+          <div className={styles.infoBox}>
+            <span>
+              <BsFillBarChartLineFill />
+            </span>
+            <div>
+              <h4>Total Visits</h4>
+              <p>255252352</p>
+            </div>
+          </div>
+          <div className={styles.infoBox}>
+            <span>
+              <BsFillBarChartLineFill />
+            </span>
+            <div>
+              <h4>Total Visits</h4>
+              <p>255252352</p>
+            </div>
+          </div>
+          <div className={styles.infoBox}>
+            <span>
+              <BsFillBarChartLineFill />
+            </span>
+            <div>
+              <h4>Total Visits</h4>
+              <p>255252352</p>
+            </div>
+          </div>
+          <div className={styles.infoBox}>
+            <span>
+              <BsFillBarChartLineFill />
+            </span>
+            <div>
+              <h4>Total Visits</h4>
+              <p>255252352</p>
+            </div>
+          </div>
+        </div>
 
-        <Link href="/admin/manufacturersquotations">
-          <button>Manufacturers</button>
-        </Link>
-      </div>
+        <div className={styles.center}>
+          <Chart />
+        </div>
+    </AdminLayout>
     </>
   );
 };

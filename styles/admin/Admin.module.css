@@ -1,19 +1,42 @@
-.container{
-    display: flex;
-    flex-wrap: wrap;
-    /* margin: 100px auto; */
-  
-    width: 100vw;
-    left: 0;
+ .top {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
 }
-.container > button{
-    width: 250px;
-    height: 45px;
+ .center{
+    width: 100%;
+    background-color: #FFFFFF;
+    height: 500px;
+    padding: 20px;
     border-radius: 20px;
-    color: white;
-    background-color: var(--primary);
-    margin: 15px 20px;
-    padding: 0px 20px;
-    font-size: 18px;
-    text-align: center;
+}
+.infoBox {
+  width: 230px;
+  height: 120px;
+  border-radius: 15px;
+  padding: 20px;
+  background-color: #ffffff;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+}
+.infoBox > span{
+    height: 60px;
+    width: 60px;
+    background: #a6b3f1;
+    color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+}
+.infoBox > div {
+  display: flex;
+  flex-direction: column;
+}
+.infoBox > div p{
+    font-size: 14px;
+    color: #B9B9B9;
 }

@@ -1,9 +1,7 @@
 import styles from "../../styles/components/PrimaryHeader.module.css";
-import Image from "next/image";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { BsGlobe2 } from "react-icons/bs";
-import "flag-icons/css/flag-icons.min.css";
 import i18next from "i18next";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";

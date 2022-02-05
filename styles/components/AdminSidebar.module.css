@@ -1,5 +1,5 @@
 .sidebar {
-  width: 300px;
+  width: 250px;
   height: 100vh;
   background-color: var(--primary);
   box-shadow: 10px -1px 14px -9px rgba(0, 0, 0, 0.75);
@@ -12,6 +12,9 @@
   left: 0;
   top: 0;
   padding-top: 90px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  z-index: 2;
 }
 .sidebar h2 {
   text-align: center;
@@ -26,12 +29,13 @@
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
+  padding: 20px;
 }
 .sidebar > div ul {
   padding: 0;
   margin: 0;
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
   color: white;
 }
 .sidebar > div ul li {
@@ -39,12 +43,11 @@
   transition: color 0.4s;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 5px;
-
 }
-.sidebar > div ul li *:first-child{
-    margin-right: 15px;
+.sidebar > div ul li *:first-child {
+  margin-right: 15px;
 }
 .sidebar > div ul li:hover {
   color: var(--secondary);

@@ -1,7 +1,7 @@
 import styles from "../../../styles/components/ui/ui.module.css";
 import { BsChevronDoubleUp } from "react-icons/bs";
 
-const Input = ({ type, onChange, label, placeholder, width }) => {
+const Input = ({ type, onChange, label, placeholder, width, value }) => {
   return (
     <div
       className={styles.inputContainer}
@@ -11,6 +11,7 @@ const Input = ({ type, onChange, label, placeholder, width }) => {
         {label}
       </label>
       <input
+        value={value}
         className={styles.input}
         type={type}
         onChange={onChange}
@@ -22,16 +23,25 @@ const Input = ({ type, onChange, label, placeholder, width }) => {
 
 const FloatingButton = () => {
   return (
-    <a href="#hero" className={styles.floatingButton}  onClick={()=>window.pageYOffset===0} >
+    <a
+      href="#hero"
+      className={styles.floatingButton}
+      onClick={() => window.pageYOffset === 0}
+    >
       <BsChevronDoubleUp size={32} />
     </a>
   );
 };
 
-const QuantityInput = ({ placeholder, onChange ,onUnitChange}) => {
+const QuantityInput = ({ placeholder, onChange, onUnitChange }) => {
   return (
     <div className={styles.quantityInput}>
-      <input type="text" placeholder={placeholder} onChange={onChange} onUnitChange={onUnitChange}/>
+      <input
+        type="text"
+        placeholder={placeholder}
+        onChange={onChange}
+        onUnitChange={onUnitChange}
+      />
       <select name="" id="">
         <option value="">UNIT</option>
         <option value="">kg</option>
@@ -51,4 +61,19 @@ const BudgetInput = ({ placeholder, onChange }) => {
   );
 };
 
-export { Input, FloatingButton, QuantityInput, BudgetInput };
+const CategorySelect = ({ onChange, options }) => {
+  console.log(options)
+  return (
+    <div className={styles.categorySelect}>
+      <select>
+        {options.map((opt, index) => (
+          <option key={index} value={opt.name}>
+            {opt.name}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+};
+
+export { Input, FloatingButton, QuantityInput, BudgetInput, CategorySelect };

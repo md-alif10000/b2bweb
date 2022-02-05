@@ -1,10 +1,7 @@
-.container{
-  display: flex;
 
-}
 .quotations{
   flex: 1;
-  margin-left: 300px;
+  
 }
 
 .quotation {

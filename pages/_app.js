@@ -35,15 +35,35 @@ function MyApp({ Component, pageProps }) {
  
 
   useEffect(() => {
+    document.ge
+    
+    
+  }, []);
+
+  useEffect(() => {
+
+  const html=  document.getElementsByTagName("html")
+ const script= document.createElement("script")
+ script.src=""
+
+ document.body.appendChild(script)
+ 
+    
     
     
   }, []);
 
 
+
   return (
-    <Provider store={store}>
+    <>
+     <Provider store={store}>
+      <div id="google_element" align="right" ></div>
       <Component {...pageProps} />
     </Provider>
+    
+    </>
+   
   );
 }
 

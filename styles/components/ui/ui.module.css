@@ -10,7 +10,7 @@
   margin: 10px;
   letter-spacing: 0.6px;
 }
-.input {
+.input ,.categorySelect {
   height: 45px;
   border-radius: 20px;
   padding: 5px 15px;
@@ -88,5 +88,21 @@
   padding: 10px;
   text-align: center;
   outline: 2px solid white;
+
+}
+.categorySelect{
+  flex: 1;
+  height: 45px;
+  display: flex;
+  align-items: center;
+
+
+}
+.categorySelect select{
+  width: 100%;
+  background-color: inherit;
+  font-size: 16px;
+  outline: none;
+  border: none;
 
 }

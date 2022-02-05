@@ -1,0 +1,71 @@
+.wrapper{
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+.addCategory{
+    display: flex;
+    padding: 30px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.addCategory > div{
+    flex: 1;
+}
+.addCategory button{
+    height: 40px;
+    border-radius: 15px;
+    outline: none;
+    border: none;
+    padding: 3px 10px;
+    margin: 5px;
+    background-color: var(--primary);
+    color: white;
+}
+.categories{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 30px;
+    align-items: center;
+}
+.category{
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    padding:0px 10px;
+    background-color: rgb(185, 185, 233);
+    border-radius: 10px;
+    color: white;
+    min-width: 400px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.category > div{
+    display: flex;
+}
+.category > div span{
+    margin: 5px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.category > div span:hover{
+    background-color: #ffffff;
+}
+.category > div span:first-child{
+    color: rgb(253, 43, 43);
+}
+.category > div span:last-child{
+    color: orange;
+}
