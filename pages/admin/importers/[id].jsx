@@ -1,26 +1,32 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import styles from "../../styles/admin/ImportersQuotations.module.css";
-import PrimaryHeader from "../../src/components/PrimaryHeader";
+import styles from "../../../styles/admin/ImportersQuotations.module.css";
+import PrimaryHeader from "../../../src/components/PrimaryHeader";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import AdminSidebar from "../../src/components/AdminSidebar";
-import AdminLayout from "../../src/components/admin/AdminLayout";
+import AdminSidebar from "../../../src/components/AdminSidebar";
+import AdminLayout from "../../../src/components/admin/AdminLayout";
 
-const Importersquotations = () => {
-  const [data, setdata] = useState([]);
+const Importersquotations = (props) => {
+  const [data, setdata] = useState(null);
+
   const { user } = useSelector((state) => state.auth);
   const router = useRouter();
+  const { id } = router.query;
 
-  const getQuotations = async () => {
-    const res = await axios.get("/api/importerquotation");
+  let productInfo =data && data.productInfo;
+  let shippingInfo =data && data.shippingInfo;
+  let userInfo =data && data.userInfo;
+
+  const getQuotation = async () => {
+    const res = await axios.get(`/api/importers/${id}`);
     const data = res.data;
     console.log(data);
-    setdata(data.importerQuotations);
+    setdata(data.importer);
   };
 
   useEffect(() => {
-    getQuotations();
+    getQuotation();
 
     if (!user) {
       return router.push("/admin/login");
@@ -31,12 +37,24 @@ const Importersquotations = () => {
     }
   }, [user]);
 
+  useEffect(() => {
+      
+    getQuotation();
+  }, []);
+
   return (
     <>
       <AdminLayout>
         <div className={styles.quotations}>
-          {data?.map(({ productInfo, userInfo, shippingInfo }, index) => (
-            <div className={styles.quotation} key={index}>
+          {data && (
+            <div className={styles.quotation} >
+                 <span
+                      className={styles.delete}
+                      onClick={() => deleteItem(_id)}
+                    >
+                      {" "}
+                      de
+                    </span>
               <div>
                 <h2>Product Info</h2>
                 <div className={styles.item}>
@@ -109,7 +127,7 @@ const Importersquotations = () => {
                 </div>
               </div>
             </div>
-          ))}
+          )}
         </div>
       </AdminLayout>
     </>

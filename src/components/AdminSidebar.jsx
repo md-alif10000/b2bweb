@@ -38,10 +38,7 @@ const AdminSidebar = () => {
             <BsFillArrowUpCircleFill size={24} />
             <Link href="/admin/category"> Categories </Link>
           </li>
-          <li>
-            <BsFillArrowUpCircleFill size={24} />
-            <Link href="/admin/category"> Categories </Link>
-          </li>
+        
           <li>
             <BsFillArrowUpCircleFill size={24} />
             <Link href="/admin/edit/homepage"> Home Page </Link>

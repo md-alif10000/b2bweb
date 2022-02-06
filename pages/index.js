@@ -23,7 +23,13 @@ const HomePage = () => {
 
   const [email, setemail] = useState("");
 
+  const getData = async () => {
+    const res = await axios.get("/api/home");
+    console.log(res);
+  };
+
   useEffect(() => {
+    getData();
     init(textRef.current, {
       showCursor: true,
       backDelay: 1500,
@@ -44,10 +50,7 @@ const HomePage = () => {
         setemail("");
       }
     } catch (error) {
-    
- 
-        toast.error(error.response.data.message)
-   
+      toast.error(error.response.data.message);
     }
   };
 
@@ -68,8 +71,8 @@ function loadGoogleTranslate(){
       </Head>
 
       <div className={styles.container}>
-        <div id="google_translate" ></div>
-        <div className={styles.hero}  id="hero" >
+        <div id="google_translate"></div>
+        <div className={styles.hero} id="hero">
           <div className={styles.left}>
             <h1> {t("home_heading")} </h1>
             <img src="/images/line.png" alt="" />
@@ -79,7 +82,7 @@ function loadGoogleTranslate(){
             <h2>{t("home_hero_right_heading")}</h2>
             <form className={styles.email} onSubmit={addEmail}>
               <input
-              value={email}
+                value={email}
                 type="email"
                 placeholder={t("email_box_text")}
                 required={true}
@@ -193,7 +196,7 @@ function loadGoogleTranslate(){
 
           <div className={styles.slider}>
             <SuccessSlider />
-            </div>
+          </div>
 
           <div className={styles.successTestimonials}>
             <div>
@@ -251,8 +254,6 @@ function loadGoogleTranslate(){
       </div>
       <Footer />
       <FloatingButton />
-
-     
     </>
   );
 };

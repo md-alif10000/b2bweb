@@ -1,5 +1,5 @@
-import Manufacturer from "../../models/Manufacturer";
-import connectDatabase from "../../utils/dbconnect";
+import Manufacturer from "../../../models/Manufacturer";
+import connectDatabase from "../../../utils/dbconnect";
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -41,17 +41,5 @@ export default async function handler(req, res) {
     // } catch (error) {
     //   res.status(500).json({ error });
     // }
-  }
-  if (method ==="DELETE") {
-    const { _id } = req.body;
-    console.log(req.body);
-
-    try {
-      const deletedManufacturer = await Manufacturer.deleteOne({ _id });
-      return res.status(200).json({ deletedManufacturer });
-    } catch (error) {
-      console.log(error);
-      return res.status(500);
-    }
   }
 }

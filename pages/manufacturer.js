@@ -74,7 +74,7 @@ const Manufacturer = () => {
 
       productInfo.images = images;
 
-      const res = await axios.post("/api/manufacturer", {
+      const res = await axios.post("/api/exporters", {
         productInfo,
         businessInfo,
         ...userInfo,

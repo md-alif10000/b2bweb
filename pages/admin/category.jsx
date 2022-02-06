@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 const Category = () => {
   const [category, setcategory] = useState("");
   const [categories, setcategories] = useState([]);
+  const [categoryUpdate, setcategoryUpdate] = useState(null);
 
   const getCategories = async () => {
     try {
@@ -40,6 +41,43 @@ const Category = () => {
     }
   };
 
+  const deleteCategory = async (id) => {
+    try {
+      const res = await axios.delete(`/api/category/${id}`);
+
+      if (res.status == 200) {
+        toast.success("Successfully deleted  category");
+        setcategories(categories.filter((cat) => cat._id !== id));
+      }
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
+
+    getCategories();
+  };
+
+  const updateCategory = async () => {
+
+    console.log(categoryUpdate)
+    try {
+      const res = await axios.put(`/api/category/${categoryUpdate._id}`, {
+        category: categoryUpdate.name,
+      });
+
+      if (res.status == 200) {
+        toast.success("Successfully updated  category");
+    
+        getCategories()
+        setcategoryUpdate(null)
+      }
+    } catch (error) {
+      console.log(error)
+      toast.error("Something went wrong");
+    }
+
+
+  };
+
   useEffect(() => {
     getCategories();
   }, []);
@@ -55,15 +93,28 @@ const Category = () => {
           />
           <button onClick={createCategory}>Add new Category</button>
         </div>
+        {categoryUpdate && (
+          <div className={styles.addCategory}>
+            <Input
+              placeholder={"Enter category name"}
+              value={categoryUpdate.name}
+              onChange={(e) =>
+                setcategoryUpdate({ ...categoryUpdate, name: e.target.value })
+              }
+            />
+            <button onClick={updateCategory}>Update Category</button>
+          </div>
+        )}
+
         <div className={styles.categories}>
           {categories.map((cat, index) => (
             <div className={styles.category} key={index}>
               <span>{cat.name}</span>
               <div>
-                <span>
+                <span onClick={() => deleteCategory(cat._id)}>
                   <BsArchive />{" "}
                 </span>
-                <span>
+                <span onClick={() => setcategoryUpdate(cat)}>
                   <FaEdit />
                 </span>
               </div>

@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import Category from "../../models/Category";
-import connectDatabase from "../../utils/dbconnect";
+import Category from "../../../models/Category";
+import connectDatabase from "../../../utils/dbconnect";
 export default async function handler(req, res) {
   const { method } = req;
 
@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 
   if (method === "GET") {
     try {
-      const categories = await Category.find().sort({createdAt:-1});
+      const categories = await Category.find().sort({ createdAt: -1 });
 
       return res.status(200).json({ categories });
     } catch (error) {
@@ -41,4 +41,6 @@ export default async function handler(req, res) {
       res.status(500).json({ error });
     }
   }
+
+ 
 }

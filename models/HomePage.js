@@ -6,11 +6,11 @@ const HomePage = mongoose.Schema(
       image: {
         public_id: {
           type: String,
-          required: true,
+          // required: true,
         },
         url: {
           type: String,
-          required: true,
+          // required: true,
         },
       },
       heading: {
@@ -62,6 +62,10 @@ const HomePage = mongoose.Schema(
         type: String,
         required: true,
       },
+      formHeading: {
+        type: String,
+        required: true,
+      },
     },
 
     testimonial: {
@@ -69,14 +73,7 @@ const HomePage = mongoose.Schema(
         type: String,
         required: true,
       },
-      videos: [
-        {
-          link: {
-            type: String,
-            required: true,
-          },
-        },
-      ],
+      videos: [String],
       testimonials: [
         {
           text: {
@@ -92,44 +89,29 @@ const HomePage = mongoose.Schema(
     },
 
     contact: {
-      headnig: {
+      heading: {
         type: String,
         required: true,
       },
-      contact1: {
-        title: {
-          type: String,
-          required: true,
-        },
-        contact: {
-          type: String,
-          required: true,
-        },
-      },
-      contact2: {
-        title: {
-          type: String,
-          required: true,
-        },
-        contact: {
-          type: String,
-          required: true,
-        },
-      },
-      contact3: {
-        title: {
-          type: String,
-          required: true,
-        },
-        contact: {
-          type: String,
-          required: true,
-        },
-      },
+      contact1title: String,
+      contact1detail: String,
+      contact2title: String,
+      contact2detail: String,
+      contact3title: String,
+      contact3detail: String,
     },
-    footer:{
-      
-    }
+    footer: {
+      social: [
+        {
+          link: {
+            type: String,
+          },
+          icon: {
+            type: String,
+          },
+        },
+      ],
+    },
   },
   { timestamps: true }
 );

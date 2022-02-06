@@ -1,36 +1,45 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import styles from "../../styles/admin/ImportersQuotations.module.css";
-import PrimaryHeader from "../../src/components/PrimaryHeader";
+import styles from "../../../styles/admin/ImportersQuotations.module.css";
+import PrimaryHeader from "../../../src/components/PrimaryHeader";
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import AdminSidebar from "../../src/components/AdminSidebar";
-import AdminLayout from "../../src/components/admin/AdminLayout";
+import AdminSidebar from "../../../src/components/AdminSidebar";
+import AdminLayout from "../../../src/components/admin/AdminLayout";
 
 const ManufacturersQuotations = () => {
-  const [data, setdata] = useState([]);
+  const [data, setdata] = useState(null);
   const { user } = useSelector((state) => state.auth);
   const router = useRouter();
+  const {id}=router.query
 
-  const getQuotations = async () => {
-    const res = await axios.get("/api/manufacturer");
+  // let productInfo =data && data.productInfo;
+  // let shippingInfo =data && data.businessInfo;
+  // let userInfo =data && data.userInfo;
+  const {productInfo,businessInfo,fullName,_id,email,role}=data ? data:{}
+
+  const getQuotation = async () => {
+    const res = await axios.get(`/api/exporters/${id}`);
     const data = res.data;
     console.log(data);
-    setdata(data.manufacturers);
+    setdata(data.manufacturer);
   };
 
   useEffect(() => {
-    getQuotations();
+    getQuotation();
   }, []);
 
   const deleteItem = async (id) => {
     console.log(id);
     try {
-      const res = await axios.delete("/api/manufacturer", { _id: id });
+      const res = await axios.delete(`/api/exporters/${id}`);
+      console.log(res);
       if (res.status == 200) {
         toast.success("Successfully deleted");
-        setdata(data.filter((itemId) => itemId != id));
+        setdata(data.filter((item) => item._id != id));
+
+        
       }
     } catch (error) {
       toast.error("Something went wrong");
@@ -54,12 +63,8 @@ const ManufacturersQuotations = () => {
           <AdminSidebar />
           <div className={styles.quotations}>
             <div>
-              {data?.map(
-                (
-                  { _id, fullName, email, role, productInfo, businessInfo },
-                  index
-                ) => (
-                  <div className={styles.quotation} key={index}>
+             
+                  {data && <div className={styles.quotation} >
                     <span
                       className={styles.delete}
                       onClick={() => deleteItem(_id)}
@@ -145,9 +150,8 @@ const ManufacturersQuotations = () => {
                         ))}
                       </div>
                     </div>
-                  </div>
-                )
-              )}
+                  </div>}
+             
             </div>
           </div>
         </div>
