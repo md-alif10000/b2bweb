@@ -55,3 +55,45 @@
   outline: none;
   color: white;
 }
+.fileInput input{
+  display: none;
+
+}
+.fileInput label div{
+  height: 40px;
+  border-radius: 20px;
+  padding: 5px 20px;
+  background-color: var(--secondary);
+  color: #ffffff;
+  width: 300px;
+  margin: 15px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.videoLinks{
+  width: 100%;
+  margin: 20px 0;
+}
+.videoLink{
+  max-width: 800px;
+  display: flex;
+  width: 100%;
+  background-color: aliceblue;
+  padding: 5px 20px;
+  height: 30px;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.videoLink p{
+  max-width: 500px;
+  overflow: hidden;
+}
+.videoLink span{
+  padding: 5px;
+  color: red;
+  cursor: pointer;
+}

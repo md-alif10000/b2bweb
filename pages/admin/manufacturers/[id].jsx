@@ -28,7 +28,7 @@ const ManufacturersQuotations = () => {
 
   useEffect(() => {
     getQuotation();
-  }, []);
+  }, [id]);
 
   const deleteItem = async (id) => {
     console.log(id);

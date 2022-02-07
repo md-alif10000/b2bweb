@@ -1,32 +1,27 @@
 import { useEffect } from "react";
 import AdminLayout from "../../../src/components/admin/AdminLayout";
-import { Input } from "../../../src/components/ui/ui";
+import { Input, Loader } from "../../../src/components/ui/ui";
 import styles from "../../../styles/admin/edit/HomePage.module.css";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { BsArchive } from "react-icons/bs";
 
 const homepage = () => {
-  const [homePageData, sethomePageData] = useState(null);
-  const [homePage, sethomePage] = useState(homePageData ? homePageData[0]:null);
+  const [file, setfile] = useState(null);
+  const [homePage, sethomePage] = useState(null);
   const [social, setsocial] = useState({ link: "", icon: "" });
   const [videoLink, setvideoLink] = useState("");
+  const [animatedText, setanimatedText] = useState("");
 
   const [testimonials, settestimonials] = useState({
     text: "",
     username: "",
   });
 
-  const [hero, sethero] = useState(
-    homePage
-      ? homePage.hero
-      : {
-          heading: "",
-          paragraph: "",
-          emainHeading: "",
-        }
-  );
+  const [hero, sethero] = useState(homePage?.hero);
   const [signin, setsignin] = useState(
     homePage
       ? homepage.signin
@@ -94,11 +89,26 @@ const homepage = () => {
         ...testimonial,
         testimonials: [...testimonial.testimonials, testimonials],
       });
+    settestimonials({
+      text: "",
+      username: "",
+    });
+  };
+
+  const addAnimatedText = (e) => {
+    e.preventDefault();
+    setsignin({ ...signin, texts: [...signin.texts, animatedText] });
+
+    setanimatedText("");
+  };
+  const removeAnimatedText = (Text) => {
+    setsignin({ ...signin, texts: signin.texts.filter((txt) => txt !== Text) });
   };
 
   const addSocialLink = (e) => {
     e.preventDefault();
     setfooter({ ...footer, social: [...footer.social, social] });
+    setsocial({ link: "", icon: "" });
   };
 
   const addVideoLink = (e) => {
@@ -108,13 +118,30 @@ const homepage = () => {
       ...testimonial,
       videos: [...testimonial.videos, videoLink],
     });
+    setvideoLink("");
   };
 
+  const removeVideoLink = (link) => {
+    settestimonial({
+      ...testimonial,
+      videos: testimonial.videos.filter((video) => video !== link),
+    });
+  };
   const getHomePageData = async () => {
     const res = await axios.get("/api/home");
-    const data = res.data.home;
-    sethomePageData(data);
 
+    if (res.status == 200) {
+      const data = res.data.home;
+     
+      sethomePage(data);
+      sethero(data.hero);
+      setcontact(data.contact);
+      setquote(data.quote);
+      setfacilities(data.facilities);
+      setsignin(data.signin);
+      settestimonial(data.testimonial);
+      setfooter(data.footer);
+    }
   };
 
   useEffect(async () => {
@@ -134,22 +161,55 @@ const homepage = () => {
   const addHome = async (e) => {
     e.preventDefault();
 
-    const res = await axios.post("/api/home", {
-      hero,
-      signin,
-      facilities,
-      quote,
-      contact,
-      testimonial,
-      footer,
-    });
+    try {
+      if (file) {
+        const data = new FormData();
+        data.append("file", file);
+        data.append("upload_preset", "b2bwebsite");
+        const uploadRes = await axios.post(
+          "https://api.cloudinary.com/v1_1/mdalif/image/upload",
+          data
+        );
 
+        const { secure_url, public_id } = uploadRes.data;
+        hero.image.url = secure_url;
+        hero.image.public_id = public_id;
+        console.log("....")
+      }
+
+      const res = await axios.put("/api/home", {
+        _id: homePage._id,
+        hero,
+        signin,
+        facilities,
+        quote,
+        contact,
+        testimonial,
+        footer,
+      });
+      console.log(res)
+
+      if (res.status == 201) {
+        toast.success("Successfully saved update");
+      }
+    } catch (error) {
+      console.log(error)
+      toast.error("Something went wrong");
+    }
   };
 
-  console.log(homePageData);
+  console.log(homePage);
 
-  if (!homePageData) {
-    return <div>Loading...</div>;
+  if (
+    !hero &&
+    !signin &&
+    !facilities &&
+    !quote &&
+    !contact &&
+    !testimonial &&
+    !footer
+  ) {
+    return <Loader/>;
   }
 
   return (
@@ -159,21 +219,34 @@ const homepage = () => {
           <h2>Hero section</h2>
           <div>
             <Input
-              value={hero.heading}
+              value={hero?.heading}
               label={"Heading"}
               onChange={(e) => sethero({ ...hero, heading: e.target.value })}
             />
             <Input
-              value={hero.paragraph}
+              value={hero?.paragraph}
               label={"Short paragraph"}
               onChange={(e) => sethero({ ...hero, paragraph: e.target.value })}
             />
             <Input
+              value={hero?.emailHeading}
               label={"Email box headnig"}
               onChange={(e) =>
                 sethero({ ...hero, emailHeading: e.target.value })
               }
             />
+
+            <div className={styles.fileInput}>
+              <label htmlFor="fileInput">
+                {" "}
+                <div>Select Background Image</div>{" "}
+              </label>
+              <input
+                id="fileInput"
+                type="file"
+                onChange={(e) => setfile(e.target.files[0])}
+              />
+            </div>
           </div>
         </div>
         <div className={styles.signIn}>
@@ -193,7 +266,27 @@ const homepage = () => {
                 setsignin({ ...signin, paragraph: e.target.value })
               }
             />
-            <Input label={"Animated texts"} />
+            <div className={styles.videoLinks}>
+              {signin.texts.map((text, index) => (
+                <div className={styles.videoLink} key={index}>
+                  {" "}
+                  <p>{text}</p>{" "}
+                  <span onClick={() => removeAnimatedText(text)}>
+                    <BsArchive />{" "}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div className={styles.inputGroup}>
+              <Input
+                value={animatedText}
+                label={"Animated Texts"}
+                onChange={(e) => setanimatedText(e.target.value)}
+              />
+              <button className={styles.button} onClick={addAnimatedText}>
+                Add Animated Text
+              </button>
+            </div>
           </div>
         </div>
 
@@ -214,20 +307,24 @@ const homepage = () => {
           <h2>Quote section</h2>
           <div>
             <Input
+              value={quote.heading}
               label={"Heading"}
               onChange={(e) => setquote({ ...quote, heading: e.target.value })}
             />
             <Input
+              value={quote.paragraph}
               label={"Paragraph"}
               onChange={(e) =>
                 setquote({ ...quote, paragraph: e.target.value })
               }
             />
             <Input
+              value={quote.leftText}
               label="Left text"
               onChange={(e) => setquote({ ...quote, leftText: e.target.value })}
             />
             <Input
+              value={quote.formHeading}
               label="Right form heading"
               onChange={(e) =>
                 setquote({ ...quote, formHeading: e.target.value })
@@ -246,8 +343,20 @@ const homepage = () => {
                 settestimonial({ ...testimonial, heading: e.target.value })
               }
             />
+            <div className={styles.videoLinks}>
+              {testimonial.videos.map((link, index) => (
+                <div className={styles.videoLink} key={index}>
+                  {" "}
+                  <p>{link}</p>{" "}
+                  <span onClick={() => removeVideoLink(link)}>
+                    <BsArchive />{" "}
+                  </span>
+                </div>
+              ))}
+            </div>
             <div className={styles.inputGroup}>
               <Input
+                value={videoLink}
                 label={"Testimonial videos link"}
                 onChange={(e) => setvideoLink(e.target.value)}
               />
@@ -287,12 +396,14 @@ const homepage = () => {
             />
             <div className={styles.inputGroup}>
               <Input
+                value={contact.contact1title}
                 label={"Contact 1 title"}
                 onChange={(e) =>
                   setcontact({ ...contact, contact1title: e.target.value })
                 }
               />
               <Input
+                value={contact.contact1detail}
                 label={"Contact 1 address"}
                 onChange={(e) =>
                   setcontact({ ...contact, contact1detail: e.target.value })

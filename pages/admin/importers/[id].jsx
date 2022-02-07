@@ -14,9 +14,9 @@ const Importersquotations = (props) => {
   const router = useRouter();
   const { id } = router.query;
 
-  let productInfo =data && data.productInfo;
-  let shippingInfo =data && data.shippingInfo;
-  let userInfo =data && data.userInfo;
+  let productInfo = data && data.productInfo;
+  let shippingInfo = data && data.shippingInfo;
+  let userInfo = data && data.userInfo;
 
   const getQuotation = async () => {
     const res = await axios.get(`/api/importers/${id}`);
@@ -38,23 +38,19 @@ const Importersquotations = (props) => {
   }, [user]);
 
   useEffect(() => {
-      
     getQuotation();
-  }, []);
+  }, [id]);
 
   return (
     <>
       <AdminLayout>
         <div className={styles.quotations}>
           {data && (
-            <div className={styles.quotation} >
-                 <span
-                      className={styles.delete}
-                      onClick={() => deleteItem(_id)}
-                    >
-                      {" "}
-                      de
-                    </span>
+            <div className={styles.quotation}>
+              <span className={styles.delete} onClick={() => deleteItem(_id)}>
+                {" "}
+                de
+              </span>
               <div>
                 <h2>Product Info</h2>
                 <div className={styles.item}>

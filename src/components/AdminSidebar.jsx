@@ -6,7 +6,9 @@ import {
   BsFillGrid3X2GapFill,
   BsFillArrowDownCircleFill,
   BsFillArrowUpCircleFill,
+
 } from "react-icons/bs";
+import { BiCategoryAlt ,BiHome} from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { logout } from "./redux/actions/authAction";
 
@@ -35,13 +37,20 @@ const AdminSidebar = () => {
             <Link href="/admin/manufacturers"> Exporters </Link>{" "}
           </li>
           <li>
-            <BsFillArrowUpCircleFill size={24} />
+            <BiCategoryAlt size={24} />
             <Link href="/admin/category"> Categories </Link>
           </li>
         
           <li>
-            <BsFillArrowUpCircleFill size={24} />
+            <BiHome size={24} />
             <Link href="/admin/edit/homepage"> Home Page </Link>
+          </li><li>
+            <BiHome size={24} />
+            <Link href="/admin/facility"> Facilities</Link>
+          </li>
+          <li>
+            <BiHome size={24} />
+            <Link href="/admin/partner"> Partners</Link>
           </li>
         </ul>
         <div className={styles.logout}>

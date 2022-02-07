@@ -2,14 +2,12 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import styles from "../../styles/admin/Admin.module.css";
-import PrimaryHeader from "../../src/components/PrimaryHeader";
 import Link from "next/link";
-import AdminSidebar from "../../src/components/AdminSidebar";
-import AdminHeader from "../../src/components/admin/AdminHeader";
 import { BsFillBarChartLineFill } from "react-icons/bs";
 import Chart from "../../src/components/admin/AdminChart";
 import AdminLayout from "../../src/components/admin/AdminLayout";
 import axios from "axios";
+import { Loader } from "../../src/components/ui/ui";
 const Admin = () => {
   const [data, setdata] = useState(null);
   const { user } = useSelector((state) => state.auth);
@@ -33,13 +31,14 @@ const Admin = () => {
     }
   }, [user]);
   if (!data) {
-    return <div>Loading....</div>;
+    return <Loader/>;
   }
 
   return (
     <>
       <AdminLayout>
         <div className={styles.top}>
+          <Link href="/admin/importers" >
           <div className={styles.infoBox}>
             <span>
               <BsFillBarChartLineFill />
@@ -49,6 +48,9 @@ const Admin = () => {
               <p>{data.totalImportersQuotations}</p>
             </div>
           </div>
+          </Link>
+
+          <Link href={"/admin/manufacturers"} >
           <div className={styles.infoBox}>
             <span>
               <BsFillBarChartLineFill />
@@ -58,6 +60,10 @@ const Admin = () => {
               <p>{data.totalExportersQuotations}</p>
             </div>
           </div>
+          </Link>
+
+          <Link href={"/admin/category"} >
+
           <div className={styles.infoBox}>
             <span>
               <BsFillBarChartLineFill />
@@ -67,6 +73,11 @@ const Admin = () => {
               <p>{data.totalCategories}</p>
             </div>
           </div>
+          </Link>
+
+
+          <Link href={""} >
+
           <div className={styles.infoBox}>
             <span>
               <BsFillBarChartLineFill />
@@ -76,6 +87,11 @@ const Admin = () => {
               <p>255252352</p>
             </div>
           </div>
+          </Link>
+         
+         
+         
+         
         </div>
 
         <div className={styles.center}>

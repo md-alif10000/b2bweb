@@ -20,6 +20,9 @@
   margin: 20px;
   display: flex;
   align-items: center;
+  box-shadow: 0px 0px 7px 0px rgba(91,193,255,0.75);
+-webkit-box-shadow: 0px 0px 7px 0px rgba(91,193,255,0.75);
+-moz-box-shadow: 0px 0px 7px 0px rgba(91,193,255,0.75);
 }
 .infoBox > span{
     height: 60px;
@@ -35,8 +38,10 @@
 .infoBox > div {
   display: flex;
   flex-direction: column;
+  font-size: 16px;
 }
 .infoBox > div p{
     font-size: 14px;
     color: #B9B9B9;
+    font-weight: 500;
 }

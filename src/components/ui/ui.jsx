@@ -76,4 +76,8 @@ const CategorySelect = ({ onChange, options }) => {
   );
 };
 
-export { Input, FloatingButton, QuantityInput, BudgetInput, CategorySelect };
+const Loader=()=>{
+  return <div className={styles.loader} >  </div>
+}
+
+export { Input, FloatingButton, QuantityInput, BudgetInput, CategorySelect ,Loader};

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import AdminLayout from "../../src/components/admin/AdminLayout";
 import styles from "../../styles/admin/Categories.module.css";
-import { Input } from "../../src/components/ui/ui";
+import { Input, Loader } from "../../src/components/ui/ui";
 import { FaEdit } from "react-icons/fa";
 import { BsArchive } from "react-icons/bs";
 import axios from "axios";
@@ -81,6 +81,8 @@ const Category = () => {
   useEffect(() => {
     getCategories();
   }, []);
+
+  if(!categories) return <Loader/>
 
   return (
     <AdminLayout>
