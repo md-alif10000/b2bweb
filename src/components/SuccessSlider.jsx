@@ -52,7 +52,7 @@ const SuccessSlider = () => {
           <div className={styles.slideContainer}>
             <SwiperSlide>
               <video
-                src="/videos/video4.mp4"
+                src="https://youtu.be/DgqguSG9ZB4"
                 autoPlay={true}
                 controls={true}
                 loop={true}

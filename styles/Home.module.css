@@ -284,6 +284,7 @@
 }
 .regions div {
   display: flex;
+  flex-wrap: wrap;
 }
 .regions div img {
   width: 100px;
@@ -551,6 +552,20 @@
   }
   .successTestimonials > div {
     margin: 10px;
+  }
+  .formContainer .left h2{
+    font-size: 20px;
+    padding: 20px 0;
+  }
+  .formContainer .left ul{
+    font-size: 14px;
+  }
+  .regions div img{
+    width: 60px;
+    height: 45px;
+  }
+  .partners div img{
+    width: 60px;
   }
   .contacts {
     flex-wrap: wrap;
