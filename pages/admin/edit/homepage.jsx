@@ -132,7 +132,7 @@ const Homepage = () => {
 
     if (res.status == 200) {
       const data = res.data.home;
-     
+
       sethomePage(data);
       sethero(data.hero);
       setcontact(data.contact);
@@ -144,8 +144,8 @@ const Homepage = () => {
     }
   };
 
-  useEffect(async () => {
-    await getHomePageData();
+  useEffect(() => {
+    getHomePageData();
   }, []);
 
   useEffect(() => {
@@ -174,7 +174,7 @@ const Homepage = () => {
         const { secure_url, public_id } = uploadRes.data;
         hero.image.url = secure_url;
         hero.image.public_id = public_id;
-        console.log("....")
+        console.log("....");
       }
 
       const res = await axios.put("/api/home", {
@@ -187,18 +187,16 @@ const Homepage = () => {
         testimonial,
         footer,
       });
-      console.log(res)
+      console.log(res);
 
       if (res.status == 201) {
         toast.success("Successfully saved update");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
       toast.error("Something went wrong");
     }
   };
-
-  console.log(homePage);
 
   if (
     !hero &&
@@ -209,12 +207,12 @@ const Homepage = () => {
     !testimonial &&
     !footer
   ) {
-    return <Loader/>;
+    return <Loader />;
   }
 
   return (
     <AdminLayout>
-      <form action="" className={styles.form} onSubmit={addHome}>
+      <form  className={styles.form} onSubmit={addHome}>
         <div className={styles.hero}>
           <h2>Hero section</h2>
           <div>
@@ -238,8 +236,8 @@ const Homepage = () => {
 
             <div className={styles.fileInput}>
               <label htmlFor="fileInput">
-                {" "}
-                <div>Select Background Image</div>{" "}
+                
+                <div>Select Background Image</div>
               </label>
               <input
                 id="fileInput"
@@ -269,10 +267,9 @@ const Homepage = () => {
             <div className={styles.videoLinks}>
               {signin.texts.map((text, index) => (
                 <div className={styles.videoLink} key={index}>
-                  {" "}
-                  <p>{text}</p>{" "}
+                  <p>{text}</p>
                   <span onClick={() => removeAnimatedText(text)}>
-                    <BsArchive />{" "}
+                    <BsArchive />
                   </span>
                 </div>
               ))}
@@ -346,10 +343,10 @@ const Homepage = () => {
             <div className={styles.videoLinks}>
               {testimonial.videos.map((link, index) => (
                 <div className={styles.videoLink} key={index}>
-                  {" "}
-                  <p>{link}</p>{" "}
+                  
+                  <p>{link}</p>
                   <span onClick={() => removeVideoLink(link)}>
-                    <BsArchive />{" "}
+                    <BsArchive />
                   </span>
                 </div>
               ))}
