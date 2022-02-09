@@ -96,8 +96,7 @@ const HomePage = () => {
                 onChange={(e) => setemail(e.target.value)}
               />
               <button type="submit" onClick={() => addEmail}>
-                {" "}
-                {t("email_button_text")}{" "}
+                {t("email_button_text")}
               </button>
             </form>
           </div>
@@ -167,7 +166,7 @@ const HomePage = () => {
             <div className={styles.left}>
               <div className={styles.about}>
                 <p>{t("worlds_best")}</p>
-                <h2>World’s Best Quality and Secure Sourcing Platform!</h2>
+                <h2>{"World’s Best Quality and Secure Sourcing Platform!"}</h2>
 
                 <ul>
                   <li>Submit an RFQ in just one minute.</li>
@@ -246,7 +245,7 @@ const HomePage = () => {
 
               <div className={styles.submitButton}>
                 <button>
-                  <Link href={"/importer"}>{t("submit_requirement")}</Link>{" "}
+                  <Link href={"/importer"}>{t("submit_requirement")}</Link>
                 </button>
               </div>
             </div>
