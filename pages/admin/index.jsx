@@ -31,67 +31,60 @@ const Admin = () => {
     }
   }, [user]);
   if (!data) {
-    return <Loader/>;
+    return <Loader />;
   }
 
   return (
     <>
       <AdminLayout>
         <div className={styles.top}>
-          <Link href="/admin/importers" >
-          <div className={styles.infoBox}>
-            <span>
-              <BsFillBarChartLineFill />
-            </span>
-            <div>
-              <h4>Total Importer's Quote</h4>
-              <p>{data.totalImportersQuotations}</p>
+          <Link href="/admin/importers">
+            <div className={styles.infoBox}>
+              <span>
+                <BsFillBarChartLineFill />
+              </span>
+              <div>
+                <h4>{"Total Importer's Quote"}</h4>
+                <p>{data.totalImportersQuotations}</p>
+              </div>
             </div>
-          </div>
           </Link>
 
-          <Link href={"/admin/manufacturers"} >
-          <div className={styles.infoBox}>
-            <span>
-              <BsFillBarChartLineFill />
-            </span>
-            <div>
-              <h4>Total Exporter's quote</h4>
-              <p>{data.totalExportersQuotations}</p>
+          <Link href={"/admin/manufacturers"}>
+            <div className={styles.infoBox}>
+              <span>
+                <BsFillBarChartLineFill />
+              </span>
+              <div>
+                <h4>{"Total Exporter's quote"}</h4>
+                <p>{data.totalExportersQuotations}</p>
+              </div>
             </div>
-          </div>
           </Link>
 
-          <Link href={"/admin/category"} >
-
-          <div className={styles.infoBox}>
-            <span>
-              <BsFillBarChartLineFill />
-            </span>
-            <div>
-              <h4>Total Categories</h4>
-              <p>{data.totalCategories}</p>
+          <Link href={"/admin/category"}>
+            <div className={styles.infoBox}>
+              <span>
+                <BsFillBarChartLineFill />
+              </span>
+              <div>
+                <h4>Total Categories</h4>
+                <p>{data.totalCategories}</p>
+              </div>
             </div>
-          </div>
           </Link>
 
-
-          <Link href={""} >
-
-          <div className={styles.infoBox}>
-            <span>
-              <BsFillBarChartLineFill />
-            </span>
-            <div>
-              <h4>Total Visits</h4>
-              <p>255252352</p>
+          <Link href={"/admin"}>
+            <div className={styles.infoBox}>
+              <span>
+                <BsFillBarChartLineFill />
+              </span>
+              <div>
+                <h4>Total Visits</h4>
+                <p>255252352</p>
+              </div>
             </div>
-          </div>
           </Link>
-         
-         
-         
-         
         </div>
 
         <div className={styles.center}>
