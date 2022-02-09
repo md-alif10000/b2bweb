@@ -1,0 +1,39 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    padding: 5vw;
+    min-height: 100vh;
+    width: 100vw;
+    align-items: center;
+    background-color: #ffffff;
+}
+.container h1{
+    font-size: 5vw;
+}
+.container hr{
+    width: 80vw;
+    height: 5px;
+    background-color: var(--secondary);
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    margin-top: 15px;
+}
+.container div{
+    padding: 3vw;
+}
+.container div h2{
+    margin-bottom: 30px;
+    color: var(--secondary);
+}
+.container div ul{
+    margin-left: 5vw;
+    color: var(--primary);
+}
+.container div ul li{
+    line-height: 30px;
+    letter-spacing: 1.1px;
+    list-style-type: square;
+    font-size: 16px;
+    font-weight: 400;
+}

@@ -10,3 +10,36 @@
     width: 300px!important;
     height: 200px;
 }
+
+.testimonial {
+    width: 300px !important;
+    height: 220px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: white;
+    background: var(--primary);
+    justify-content: space-between;
+  }
+  .testimonial p {
+    padding: 20px;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .testimonial .user {
+    padding: 10px;
+    display: flex;
+    background: var(--bg);
+    color: var(--footer);
+    font-weight: 500;
+    align-items: center;
+  }
+  .testimonial .user img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 10px;
+  }

@@ -42,6 +42,7 @@
   background-color: rgb(137, 137, 231);
   align-items: center;
   border-radius: 20px;
+  margin-bottom: 10px;
 }
 .item img {
   width: 60px;

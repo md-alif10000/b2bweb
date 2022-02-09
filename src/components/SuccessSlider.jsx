@@ -41,54 +41,47 @@ const SuccessSlider = () => {
         >
           <div className={styles.slideContainer}>
             <SwiperSlide>
-              <video
-                src="/videos/video4.mp4"
-                controls={true}
-                loop={true}
-              ></video>
-            </SwiperSlide>
-          </div>
-
-          <div className={styles.slideContainer}>
-            <SwiperSlide>
-              <video
-                src="https://youtu.be/DgqguSG9ZB4"
-                autoPlay={true}
-                controls={true}
-                loop={true}
-              ></video>
+              <div>
+                <iframe
+                  controls={true}
+                  autoPlay={true}
+                  src="https://www.youtube.com/embed/kHjCkfBWP_o"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
             </SwiperSlide>
           </div>
           <div className={styles.slideContainer}>
             <SwiperSlide>
-              <video
-                src="/videos/video4.mp4"
-                autoPlay={true}
-                controls={true}
-                loop={true}
-              ></video>
+              <div>
+                <iframe
+                  controls={true}
+                  autoPlay={true}
+                  src="https://www.youtube.com/embed/kHjCkfBWP_o"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
             </SwiperSlide>
           </div>
-
           <div className={styles.slideContainer}>
             <SwiperSlide>
-              <video
-                src="/videos/video4.mp4"
-                autoPlay={true}
-                controls={true}
-                loop={true}
-              ></video>
-            </SwiperSlide>
-          </div>
-
-          <div className={styles.slideContainer}>
-            <SwiperSlide>
-              <video
-                src="/videos/video4.mp4"
-                autoPlay={true}
-                controls={true}
-                loop={true}
-              ></video>
+              <div>
+                <iframe
+                  controls={true}
+                  autoPlay={true}
+                  src="https://www.youtube.com/embed/kHjCkfBWP_o"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
             </SwiperSlide>
           </div>
         </Swiper>

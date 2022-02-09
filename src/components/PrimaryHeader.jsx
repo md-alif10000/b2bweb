@@ -55,6 +55,12 @@ const PrimaryHeader = () => {
         <Link href={"/importer"} passHref>
           <a>Importer</a>
         </Link>
+        <Link href={"/about"} passHref>
+          <a>About us</a>
+        </Link>
+        <Link href={"/terms"} passHref>
+          <a>Terms & Conditions</a>
+        </Link>
 
         <div className={styles.select}>
           <BsGlobe2 />

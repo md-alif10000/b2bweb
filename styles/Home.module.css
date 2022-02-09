@@ -198,7 +198,7 @@
   border-radius: 50px;
   margin: 5vw;
   border-radius: 30px;
-  background: #FFFFFF;
+  background: #ffffff;
 }
 .requirement h3 {
   font-size: 24px;
@@ -260,8 +260,7 @@
 }
 .formContainer .about ul {
   margin-left: 5vw;
-  color: 
-  #9F9F9F;
+  color: #9f9f9f;
 }
 .formContainer .about ul li {
   line-height: 40px;
@@ -290,9 +289,9 @@
   width: 100px;
   height: 80px;
   margin: 10px;
-  box-shadow: 1px 1px 9px 0px rgba(0,0,0,0.75);
--webkit-box-shadow: 1px 1px 9px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 1px 1px 9px 0px rgba(0,0,0,0.75);
+  box-shadow: 1px 1px 9px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 1px 1px 9px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 1px 9px 0px rgba(0, 0, 0, 0.75);
 }
 .formContainer .right {
   flex: 2;
@@ -365,7 +364,6 @@
   font-size: 38px;
 }
 .success > h1 {
-  
   color: white;
   text-align: left;
 }
@@ -382,38 +380,7 @@
   display: flex;
   justify-content: space-around;
 }
-.successTestimonials > div {
-  width: 300px !important;
-  height: 220px;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  color: white;
-  background: var(--primary);
-  justify-content: space-between;
-}
-.successTestimonials > div p {
-  padding: 20px;
-  font-size: 16px;
-  text-align: center;
-}
 
-.successTestimonials > div .user {
-  padding: 10px;
-  display: flex;
-  background: var(--bg);
-  color: var(--footer);
-  font-weight: 500;
-  align-items: center;
-}
-.successTestimonials > div .user img {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin: 0 10px;
-}
 
 .contact {
   padding: 5vw;
@@ -440,12 +407,16 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .contacts > div {
+  min-width: max(30%, 250px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 3vw;
+  border-bottom: 4px solid var(--primary);
 }
 .contacts > div h4 {
   color: var(--primary);
@@ -553,18 +524,18 @@
   .successTestimonials > div {
     margin: 10px;
   }
-  .formContainer .left h2{
+  .formContainer .left h2 {
     font-size: 20px;
     padding: 20px 0;
   }
-  .formContainer .left ul{
+  .formContainer .left ul {
     font-size: 14px;
   }
-  .regions div img{
+  .regions div img {
     width: 60px;
     height: 45px;
   }
-  .partners div img{
+  .partners div img {
     width: 60px;
   }
   .contacts {

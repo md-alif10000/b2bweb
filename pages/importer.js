@@ -6,17 +6,26 @@ import {
   Input,
   QuantityInput,
   CategorySelect,
+  Loader,
 } from "../src/components/ui/ui";
 import styles from "../styles/Importer.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import { BsCheckCircleFill, BsPlusCircle } from "react-icons/bs";
 import Footer from "../src/components/Footer";
-import axios, { Axios } from "axios";
+import axios from "axios";
 import { importersValidate } from "../utils/importersValidate";
+import Link from "next/link";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 const Importer = () => {
+  const [percentage, setpercentage] = useState(50);
+  const [loading, setloading] = useState(false);
+  const [isAffiliate, setisAffiliate] = useState(false);
+  const [paymentMethods, setPaymentMethods] = useState([]);
+  const [units, setunits] = useState([]);
+  const [terms, setTerms] = useState([]);
   const [categories, setcategories] = useState([]);
-  const [terms, setterms] = useState(false);
   const [businessCard, setbusinessCard] = useState(false);
   const [file, setfile] = useState(null);
   const [productInfo, setproductInfo] = useState({
@@ -97,10 +106,56 @@ const Importer = () => {
       console.log(error);
     }
   };
+  const getUnits = async () => {
+    setloading(true);
+    const res = await axios.get("/api/unit");
+    if (res.status == 200) {
+      setunits(res.data.units);
+    }
+
+    setloading(false);
+  };
+  const getTerms = async () => {
+    setloading(true);
+    const res = await axios.get("/api/term");
+    if (res.status == 200) {
+      setTerms(res.data.terms);
+    }
+
+    setloading(false);
+  };
+
+  const getPaymentMethods = async () => {
+    setloading(true);
+    const res = await axios.get("/api/paymentmethod");
+    if (res.status == 200) {
+      setPaymentMethods(res.data.paymentmethods);
+    }
+
+    setloading(false);
+  };
+
+  const countScore=()=>{
+
+    const score=(productInfo.productName ? 10:0)+(productInfo.productCategory ? 10:0)+(productInfo.sourcingType ? 10:0)+(productInfo.productDetails ? 10:0)+(productInfo.quantity ? 10:0)+(productInfo.budget ? 10:0)+(productInfo.tradeTerms ? 10:0)+(productInfo.image ? 10:0)
+
+    setpercentage(score)
+ 
+  }
+
+  useEffect(() => {
+    
+    countScore()
+  }, [productInfo,userInfo,shippingInfo]);
 
   useEffect(() => {
     getCategory();
+    getUnits();
+    getTerms();
+    getPaymentMethods();
   }, []);
+
+  if (loading) return <Loader />;
 
   return (
     <>
@@ -128,9 +183,8 @@ const Importer = () => {
                 }
               />
 
-              <CategorySelect options={categories} />
-              <Input
-                placeholder="Product Category"
+              <CategorySelect
+                options={categories}
                 label="Product category"
                 onChange={(e) =>
                   setproductInfo({
@@ -139,6 +193,7 @@ const Importer = () => {
                   })
                 }
               />
+
               <Input
                 placeholder="Sourcing Type"
                 label="Sourcing Type"
@@ -180,6 +235,7 @@ const Importer = () => {
                 <QuantityInput
                   placeholder="Enter quantity"
                   label="Quantity"
+                  options={units}
                   onChange={(e) =>
                     setproductInfo({
                       ...productInfo,
@@ -198,16 +254,17 @@ const Importer = () => {
                   }
                 />
               </div>
-              <Input
-                placeholder="Trade Terms"
-                label="Trade terms"
+
+              <CategorySelect
+                options={terms}
+                value={productInfo.tradeTerms}
+                label="Trade Terms"
                 onChange={(e) =>
-                  setproductInfo({
-                    ...productInfo,
-                    tradeTerms: e.target.value,
-                  })
+                  setproductInfo({ ...productInfo, tradeTerms: e.target.value })
                 }
-              />
+              >
+                <option value={""}>Select Trade Terms</option>
+              </CategorySelect>
             </div>
             <div className={styles.formHeader}>
               <h3>Shipping and Payment</h3>
@@ -243,9 +300,9 @@ const Importer = () => {
                   })
                 }
               />
-              <Input
-                placeholder="Payment Method"
+              <CategorySelect
                 label="Payment method"
+                options={paymentMethods}
                 onChange={(e) =>
                   setshippingInfo({
                     ...shippingInfo,
@@ -312,7 +369,13 @@ const Importer = () => {
                 }
               />
 
-              <h4>Where you refered by our Affiliate Partner?</h4>
+              <div className={styles.affiliate}>
+                <h4>Where you refered by our Affiliate Partner?</h4>{" "}
+                <select onChange={(e) => setisAffiliate(e.target.value)}>
+                  <option value={true}>Yes</option>{" "}
+                  <option value={false}>No</option>{" "}
+                </select>{" "}
+              </div>
               <Input
                 placeholder="If yes, Enter there Name"
                 onChange={(e) =>
@@ -329,10 +392,13 @@ const Importer = () => {
                 <input
                   type="checkbox"
                   id="check1"
-                  onChange={() => setterms(true)}
+                  // onChange={() => setterms(true)}
                 />
                 <label htmlFor="check1">
-                  I agree to all the Terms and Conditions & Policies
+                  I agree to all the{" "}
+                  <Link href={"/terms"}>
+                    <a>Terms and Conditions & Policies</a>
+                  </Link>
                 </label>
               </div>
               <div>
@@ -366,6 +432,21 @@ const Importer = () => {
               faster response from the right suppliers. The higher the score the
               better responses you will get.
             </p>
+            <CircularProgressbar
+              value={percentage}
+              text={`${percentage}%`}
+              styles={buildStyles({
+                rotation: 0.25,
+                strokeLinecap: "butt",
+                textSize: "20px",
+                pathTransitionDuration: 0.75,
+                pathColor: `#537fff`,
+                textColor: "#f88",
+                trailColor: "#d6d6d6",
+                backgroundColor: "#537fff",
+              })}
+            />
+            ;
             <div className={styles.checks}>
               <div
                 className={productInfo.productName ? styles.activeCheck : ""}
@@ -416,13 +497,13 @@ const Importer = () => {
               <div
                 className={shippingInfo.paymentMethod ? styles.activeCheck : ""}
               >
-                <BsCheckCircleFill /> <span>Full Name</span>
+                <BsCheckCircleFill /> <span>PaymentMethod</span>
               </div>
               <div className={userInfo.fullName ? styles.activeCheck : ""}>
                 <BsCheckCircleFill /> <span>Full Name</span>
               </div>
               <div
-                className={productInfo.companyName ? styles.activeCheck : ""}
+                className={userInfo.companyName ? styles.activeCheck : ""}
               >
                 <BsCheckCircleFill /> <span>Company Name</span>
               </div>

@@ -33,20 +33,24 @@ const FloatingButton = () => {
   );
 };
 
-const QuantityInput = ({ placeholder, onChange, onUnitChange }) => {
+const QuantityInput = ({
+  placeholder,
+  onChange,
+  onUnitChange,
+  options = [],
+}) => {
   return (
     <div className={styles.quantityInput}>
       <input
-        type="text"
+        type="number"
         placeholder={placeholder}
         onChange={onChange}
         onUnitChange={onUnitChange}
       />
       <select name="" id="">
-        <option value="">UNIT</option>
-        <option value="">kg</option>
-        <option value="">Pcs</option>
-        <option value="">Gm</option>
+        {options.map((option, index) => (
+          <option value={option.name}>{option.name}</option>
+        ))}
       </select>
     </div>
   );
@@ -61,11 +65,13 @@ const BudgetInput = ({ placeholder, onChange }) => {
   );
 };
 
-const CategorySelect = ({ onChange, options }) => {
-  console.log(options)
+const CategorySelect = ({ onChange, options, children ,label}) => {
+  console.log(options);
   return (
     <div className={styles.categorySelect}>
-      <select>
+      <select onChange={onChange}>
+        {label && <option>{label}</option>}
+        {children}
         {options.map((opt, index) => (
           <option key={index} value={opt.name}>
             {opt.name}
@@ -76,8 +82,15 @@ const CategorySelect = ({ onChange, options }) => {
   );
 };
 
-const Loader=()=>{
-  return <div className={styles.loader} >  </div>
-}
+const Loader = () => {
+  return <div className={styles.loader}> </div>;
+};
 
-export { Input, FloatingButton, QuantityInput, BudgetInput, CategorySelect ,Loader};
+export {
+  Input,
+  FloatingButton,
+  QuantityInput,
+  BudgetInput,
+  CategorySelect,
+  Loader,
+};

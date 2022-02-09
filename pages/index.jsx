@@ -15,13 +15,16 @@ import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
-import { BsGoogle } from "react-icons/bs";
+import TestimonialSlider from "../src/components/TestimonialSlider";
+
 
 const HomePage = () => {
   const { t } = useTranslation();
   const textRef = useRef();
 
   const [email, setemail] = useState("");
+  const [units, setunits] = useState([]);
+  const [loading, setloading] = useState(false);
 
   const getData = async () => {
     const res = await axios.get("/api/home");
@@ -30,13 +33,25 @@ const HomePage = () => {
 
   useEffect(() => {
     getData();
+
     init(textRef.current, {
       showCursor: true,
       backDelay: 1500,
       backSpeed: 40,
       strings: ["Brand owner", "Manufacturer", "Supplier"],
     });
+    getUnits()
   }, []);
+
+  const getUnits = async () => {
+    setloading(true);
+    const res = await axios.get("/api/unit");
+    if (res.status == 200) {
+      setunits(res.data.units);
+    }
+
+    setloading(false);
+  };
 
   const addEmail = async (e) => {
     e.preventDefault();
@@ -220,8 +235,8 @@ const HomePage = () => {
               <Input placeholder={t("please_enter_what_you_are_looking_for")} />
 
               <div className={styles.inputsContainer}>
-                <QuantityInput placeholder={"Enter Quantity"} />
-                <BudgetInput placeholder={"Pieces"} />
+                <QuantityInput options={units} placeholder={"Enter Quantity"} />
+                <BudgetInput placeholder={"Max budgets"} />
               </div>
 
               <textarea name="" id="" cols="30" rows="10"></textarea>
@@ -233,7 +248,6 @@ const HomePage = () => {
 
               <div className={styles.submitButton}>
                 <button>
-                  {" "}
                   <Link href={"/importer"}>{t("submit_requirement")}</Link>{" "}
                 </button>
               </div>
@@ -249,33 +263,14 @@ const HomePage = () => {
             <SuccessSlider />
           </div>
 
-          <div><h1>Read from our Customers</h1></div>
+          <div>
+            <h1>Read from our Customers</h1>
+          </div>
 
           <div className={styles.successTestimonials}>
-            <div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                iste ratione harum adipisci earum, voluptates beatae nisi
-                deleniti enim cumque.
-              </p>
-
-              <div className={styles.user}>
-                <img src="/images/user2.png" alt="" />
-                <span>Md Morsalin alif</span>
-              </div>
-            </div>
-            <div>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                iste ratione harum adipisci earum, voluptates beatae nisi
-                deleniti enim cumque.
-              </p>
-
-              <div className={styles.user}>
-                <img src="/images/user1.png" alt="" />
-                <span>Md Morsalin alif</span>
-              </div>
-            </div>
+            <TestimonialSlider/>
+           
+           
           </div>
         </section>
 
@@ -289,14 +284,23 @@ const HomePage = () => {
                 <h4> {t("for_developers")} </h4>
                 <span>abcd@imponexpo.team</span>
               </div>
-
-              <div className={styles.line}></div>
+              <div>
+                <h4> {t("for_developers")} </h4>
+                <span>abcd@imponexpo.team</span>
+              </div>
 
               <div>
                 <h4> {t("for_manufacturers")} </h4>
                 <span>abcd@imponexpo.team</span>
               </div>
-              <div className={styles.line}></div>
+              <div>
+                <h4>{t("for_buyers")}</h4>
+                <span>abcd@imponexpo.team</span>
+              </div>
+              <div>
+                <h4>{t("for_buyers")}</h4>
+                <span>abcd@imponexpo.team</span>
+              </div>
               <div>
                 <h4>{t("for_buyers")}</h4>
                 <span>abcd@imponexpo.team</span>

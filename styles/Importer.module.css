@@ -81,6 +81,10 @@
   font-size: 13px;
   letter-spacing: 0.7px;
 }
+.checkboxContainer a {
+  color: var(--secondary);
+}
+  
 .checkboxContainer input {
   margin: 10px;
 }
@@ -116,6 +120,18 @@
 }
 .activeCheck{
   color: var(--primary);
+}
+.affiliate{
+  display: flex;
+  justify-content: space-between;
+}
+.affiliate select{
+  height: 40px;
+  width: 60px;
+  border-radius: 10px;
+  background-color: var(--primary);
+  outline: var(--secondary);
+  color: white;
 }
 
 @media screen and (max-width: 900px) {

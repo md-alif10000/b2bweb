@@ -50,7 +50,7 @@ a {
   text-align: center;
 }
 
-.swiper-slide video{
+.swiper-slide video,.swiper-slide iframe{
   width: 500px!important;
   height: 300px;
   border-radius: 20px!important;
