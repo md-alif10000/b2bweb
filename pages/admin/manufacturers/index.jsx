@@ -39,7 +39,7 @@ const Importer = () => {
           <h1>Exporters</h1>
 
           {data.map((item, index) => (
-            <Link href={`/admin/manufacturers/${item._id}`}>
+            <Link href={`/admin/manufacturers/${item._id}`}  key={index} >
               <div className={styles.quotation}>
                 <div className={styles.left}>{item.productInfo.name}</div>
                 <div className={styles.center}>

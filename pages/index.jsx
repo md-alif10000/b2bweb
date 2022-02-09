@@ -17,7 +17,6 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import TestimonialSlider from "../src/components/TestimonialSlider";
 
-
 const HomePage = () => {
   const { t } = useTranslation();
   const textRef = useRef();
@@ -28,7 +27,6 @@ const HomePage = () => {
 
   const getData = async () => {
     const res = await axios.get("/api/home");
-    console.log(res);
   };
 
   useEffect(() => {
@@ -40,7 +38,7 @@ const HomePage = () => {
       backSpeed: 40,
       strings: ["Brand owner", "Manufacturer", "Supplier"],
     });
-    getUnits()
+    getUnits();
   }, []);
 
   const getUnits = async () => {
@@ -268,9 +266,7 @@ const HomePage = () => {
           </div>
 
           <div className={styles.successTestimonials}>
-            <TestimonialSlider/>
-           
-           
+            <TestimonialSlider />
           </div>
         </section>
 
