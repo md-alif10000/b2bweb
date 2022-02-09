@@ -49,7 +49,7 @@ const QuantityInput = ({
       />
       <select name="" id="">
         {options.map((option, index) => (
-          <option value={option.name}>{option.name}</option>
+          <option key={index} value={option.name}>{option.name}</option>
         ))}
       </select>
     </div>
@@ -66,7 +66,7 @@ const BudgetInput = ({ placeholder, onChange }) => {
 };
 
 const CategorySelect = ({ onChange, options, children ,label}) => {
-  console.log(options);
+
   return (
     <div className={styles.categorySelect}>
       <select onChange={onChange}>

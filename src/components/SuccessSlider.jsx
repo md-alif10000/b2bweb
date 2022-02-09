@@ -47,7 +47,7 @@ const SuccessSlider = () => {
                   autoPlay={true}
                   src="https://www.youtube.com/embed/kHjCkfBWP_o"
                   title="YouTube video player"
-                  frameborder="0"
+                  frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
@@ -62,7 +62,7 @@ const SuccessSlider = () => {
                   autoPlay={true}
                   src="https://www.youtube.com/embed/kHjCkfBWP_o"
                   title="YouTube video player"
-                  frameborder="0"
+                  frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
@@ -77,7 +77,7 @@ const SuccessSlider = () => {
                   autoPlay={true}
                   src="https://www.youtube.com/embed/kHjCkfBWP_o"
                   title="YouTube video player"
-                  frameborder="0"
+                  frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>

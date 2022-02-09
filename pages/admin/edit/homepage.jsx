@@ -9,7 +9,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { BsArchive } from "react-icons/bs";
 
-const homepage = () => {
+const Homepage = () => {
   const [file, setfile] = useState(null);
   const [homePage, sethomePage] = useState(null);
   const [social, setsocial] = useState({ link: "", icon: "" });
@@ -474,4 +474,4 @@ const homepage = () => {
   );
 };
 
-export default homepage;
+export default Homepage;
