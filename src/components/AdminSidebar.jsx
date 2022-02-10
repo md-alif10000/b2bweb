@@ -47,6 +47,10 @@ const AdminSidebar = () => {
           </li>
           <li>
             <BiHome size={24} />
+            <Link href="/admin/edit/terms"> Terms Page</Link>
+          </li>
+          <li>
+            <BiHome size={24} />
             <Link href="/admin/facility"> Facilities</Link>
           </li>
           <li>

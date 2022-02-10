@@ -1,6 +1,6 @@
 .hero {
   height: calc(100vh - 90px);
-  background: url("/images/port.jpg");
+  /* background: url("/images/port.jpg"); */
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
@@ -312,6 +312,9 @@
   resize: none;
   border-radius: 20px;
   margin: 15px;
+  padding: 15px;
+  font-size: 16px;
+  letter-spacing: 1px;
 }
 .formContainer .right h1 {
   font-size: 36px;

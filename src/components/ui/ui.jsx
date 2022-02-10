@@ -37,11 +37,13 @@ const QuantityInput = ({
   placeholder,
   onChange,
   onUnitChange,
+  value,
   options = [],
 }) => {
   return (
     <div className={styles.quantityInput}>
       <input
+      value={value}
         type="number"
         placeholder={placeholder}
         onChange={onChange}
@@ -65,11 +67,11 @@ const BudgetInput = ({ placeholder, onChange }) => {
   );
 };
 
-const CategorySelect = ({ onChange, options, children ,label}) => {
+const CategorySelect = ({ onChange, options, children ,label,value}) => {
 
   return (
     <div className={styles.categorySelect}>
-      <select onChange={onChange}>
+      <select  value={value} onChange={onChange}>
         {label && <option>{label}</option>}
         {children}
         {options.map((opt, index) => (

@@ -24,7 +24,7 @@ const Homepage = () => {
   const [hero, sethero] = useState(homePage?.hero);
   const [signin, setsignin] = useState(
     homePage
-      ? homepage.signin
+      ? homePage.signin
       : {
           heading: "",
           texts: [],
@@ -70,6 +70,12 @@ const Homepage = () => {
           contact2detail: "",
           contact3title: "",
           contact3detail: "",
+          contact4title: "",
+          contact4detail: "",
+          contact5title: "",
+          contact5detail: "",
+          contact6title: "",
+          contact6detail: "",
         }
   );
   const [footer, setfooter] = useState(
@@ -410,14 +416,14 @@ const Homepage = () => {
             <div className={styles.inputGroup}>
               <Input
                 value={contact.contact2title}
-                label={"Contact 1 title"}
+                label={"Contact 2 title"}
                 onChange={(e) =>
                   setcontact({ ...contact, contact2title: e.target.value })
                 }
               />
               <Input
                 value={contact.contact2detail}
-                label={"Contact 1 address"}
+                label={"Contact 2 address"}
                 onChange={(e) =>
                   setcontact({ ...contact, contact2detail: e.target.value })
                 }
@@ -426,16 +432,64 @@ const Homepage = () => {
             <div className={styles.inputGroup}>
               <Input
                 value={contact.contact3title}
-                label={"Contact 1 title"}
+                label={"Contact 3 title"}
                 onChange={(e) =>
                   setcontact({ ...contact, contact3title: e.target.value })
                 }
               />
               <Input
                 value={contact.contact3detail}
-                label={"Contact 1 address"}
+                label={"Contact 3 address"}
                 onChange={(e) =>
                   setcontact({ ...contact, contact3detail: e.target.value })
+                }
+              />
+            </div>
+            <div className={styles.inputGroup}>
+              <Input
+                value={contact.contact3title}
+                label={"Contact 4 title"}
+                onChange={(e) =>
+                  setcontact({ ...contact, contact3title: e.target.value })
+                }
+              />
+              <Input
+                value={contact.contact4detail}
+                label={"Contact 4 address"}
+                onChange={(e) =>
+                  setcontact({ ...contact, contact4detail: e.target.value })
+                }
+              />
+            </div>
+            <div className={styles.inputGroup}>
+              <Input
+                value={contact.contact5title}
+                label={"Contact 5 title"}
+                onChange={(e) =>
+                  setcontact({ ...contact, contact5title: e.target.value })
+                }
+              />
+              <Input
+                value={contact.contact3detail}
+                label={"Contact 5 address"}
+                onChange={(e) =>
+                  setcontact({ ...contact, contact5detail: e.target.value })
+                }
+              />
+            </div>
+            <div className={styles.inputGroup}>
+              <Input
+                value={contact.contact6title}
+                label={"Contact 6 title"}
+                onChange={(e) =>
+                  setcontact({ ...contact, contact6title: e.target.value })
+                }
+              />
+              <Input
+                value={contact.contact6detail}
+                label={"Contact 6 address"}
+                onChange={(e) =>
+                  setcontact({ ...contact, contact6detail: e.target.value })
                 }
               />
             </div>

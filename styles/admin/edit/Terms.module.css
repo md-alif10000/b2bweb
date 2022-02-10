@@ -1,0 +1,69 @@
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+.addTerms{
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    padding: 3vw;
+}
+.addTerms > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.addTerms > div > div:first-child{
+    flex: 1;
+}
+.button{
+    height: 40px;
+    border-radius: 15px;
+    outline: none;
+    border: none;
+    background-color: var(--primary);
+    color: white;
+    margin: 15px;
+    padding: 5px 15px;
+}
+
+.termsWrapper{
+    padding: 3vw;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    background-color: #ffffff;
+    margin-top: 20px;
+}
+
+
+.term{
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+}
+.term span{
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgb(245, 57, 57);
+}
+.term p{
+    flex: 1;
+    overflow: hidden;
+}

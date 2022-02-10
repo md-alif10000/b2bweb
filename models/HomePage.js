@@ -99,6 +99,12 @@ const HomePage = mongoose.Schema(
       contact2detail: String,
       contact3title: String,
       contact3detail: String,
+      contact4title: String,
+      contact4detail: String,
+      contact5title: String,
+      contact5detail: String,
+      contact6title: String,
+      contact6detail: String,
     },
     footer: {
       social: [

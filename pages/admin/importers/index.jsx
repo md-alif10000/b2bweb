@@ -40,11 +40,9 @@ const Importer = () => {
           {data.map((item, index) => (
             <Link href={`/admin/importers/${item._id}`} key={index}>
               <div className={styles.quotation}>
-                <div className={styles.left}>Samsung galaxy S@! ultra </div>
+                <div className={styles.left}>{item.productInfo.productName}</div>
                 <div className={styles.center}>
-                  <img src="/images/overview1.png" alt="" />
-                  <img src="/images/overview1.png" alt="" />
-                  <img src="/images/overview1.png" alt="" />
+                  <img src={item.productInfo?.image?.url} alt="" />
                 </div>
                 <div className={styles.right}>
                   <button>view details</button>

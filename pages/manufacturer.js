@@ -1,16 +1,18 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Footer from "../src/components/Footer";
 import PrimaryHeader from "../src/components/PrimaryHeader";
-import { FloatingButton, Input } from "../src/components/ui/ui";
+import { CategorySelect, FloatingButton, Input } from "../src/components/ui/ui";
 import styles from "../styles/Manufacturer.module.css";
 import { BsCloudArrowUp } from "react-icons/bs";
 import { ToastContainer, toast } from "react-toastify";
 import { manufacturerValidate } from "../utils/manufacturerValidate";
 
 import axios from "axios";
+import Link from "next/link";
 
 const Manufacturer = () => {
   const [files, setfiles] = useState([]);
+  const [categories, setcategories] = useState([]);
 
   const [productInfo, setproductInfo] = useState({
     name: "",
@@ -86,6 +88,23 @@ const Manufacturer = () => {
       console.log(error);
     }
   };
+
+  const getCategory = async () => {
+    try {
+      const res = await axios.get("/api/category");
+      console.log(res);
+      if (res.status == 200) {
+        setcategories(res.data.categories);
+        console.log(categories);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getCategory();
+  }, []);
 
   return (
     <>
@@ -246,8 +265,8 @@ const Manufacturer = () => {
                   />
 
                   <div className={styles.inputGroup}>
-                    <Input
-                      width={"40%"}
+                    <CategorySelect
+                    options={categories}
                       label={"Product Category"}
                       placeholder={"Product Category"}
                       onChange={(e) =>
@@ -341,7 +360,10 @@ const Manufacturer = () => {
                   <div className={styles.checkbox}>
                     <input type={"checkbox"} id="check1" />
                     <label htmlFor="check1">
-                      I agree to all the <a>Terms and Conditions & Policies</a>
+                      I agree to all the{" "}
+                      <Link href={"/terms"}>
+                        Terms and Conditions & Policies
+                      </Link>
                     </label>
                   </div>
 

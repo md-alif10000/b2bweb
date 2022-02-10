@@ -1,9 +1,9 @@
 import PrimaryHeader from "../src/components/PrimaryHeader";
 import styles from "../styles/Home.module.css";
 import {
-  BudgetInput,
   FloatingButton,
   Input,
+  Loader,
   QuantityInput,
 } from "../src/components/ui/ui";
 import SuccessSlider from "../src/components/SuccessSlider";
@@ -16,28 +16,63 @@ import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import TestimonialSlider from "../src/components/TestimonialSlider";
+import { useRouter } from "next/router";
+
+// export async function getServerSideProps() {
+//   const res = await axios.get("/api/home");
+//   // const res2 = await axios.get("/api/partner");
+//   // const res3 = await axios.get("/api/unit");
+//   // var partners = res2.data.partners;
+//   // var partners = partners.json();
+//   // var units = res3.data.units;
+//   // var units = units.json();
+//   const data = res.data;
+//   console.log("Home page data", res.data.home);
+//   var home = data.home;
+//   var home = home.json();
+//   return {
+//     props: { home },
+//   };
+// }
 
 const HomePage = () => {
   const { t } = useTranslation();
   const textRef = useRef();
+  const [partners, setpartners] = useState([]);
+  const [regions, setregions] = useState([]);
+  const [units, setunits] = useState([]);
+  const [home, sethome] = useState(null);
+  const router = useRouter();
 
   const [email, setemail] = useState("");
-  const [units, setunits] = useState([]);
   const [loading, setloading] = useState(false);
+  const [productDetails, setproductDetails] = useState({
+    name: "",
+    email: "",
+    phoneNumber: "",
+    description: "",
+    quantity: "",
+  });
 
   const getData = async () => {
     const res = await axios.get("/api/home");
+    console.log(res.data);
+    const { home, partners, regions } = res.data;
+    sethome(home);
+    setpartners(partners);
+    setregions(regions);
   };
 
   useEffect(() => {
     getData();
 
-    init(textRef.current, {
-      showCursor: true,
-      backDelay: 1500,
-      backSpeed: 40,
-      strings: ["Brand owner", "Manufacturer", "Supplier"],
-    });
+    // init(textRef.current, {
+    //   showCursor: true,
+    //   backDelay: 1500,
+    //   backSpeed: 40,
+    //   strings: ["Exporter", "Importer"],
+    // });
+
     getUnits();
   }, []);
 
@@ -66,6 +101,11 @@ const HomePage = () => {
       toast.error(error.response.data.message);
     }
   };
+  // if (!home) return <Loader />;
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+  if (!home) return <Loader />;
 
   return (
     <>
@@ -78,15 +118,18 @@ const HomePage = () => {
       </Head>
 
       <div className={styles.container}>
-        <div id="google_translate"></div>
-        <div className={styles.hero} id="hero">
+        <div
+          className={styles.hero}
+          id="hero"
+          style={{ background: `url(${home.hero.image.url})` }}
+        >
           <div className={styles.left}>
-            <h1> {t("home_heading")} </h1>
+            <h1> {home.hero.heading} </h1>
             <img src="/images/line.png" alt="" />
-            <p>{t("home_hero_text")}</p>
+            <p>{home.hero.paragraph}</p>
           </div>
           <div className={styles.right}>
-            <h2>{t("home_hero_right_heading")}</h2>
+            <h2>{home.hero.emailHeading}</h2>
             <form className={styles.email} onSubmit={addEmail}>
               <input
                 value={email}
@@ -103,19 +146,19 @@ const HomePage = () => {
         </div>
 
         <div className={styles.signIn}>
-          <h2> {t("are_you_a")} </h2>
+          <h2> {home.signin.heading} </h2>
           <h1>
             <span ref={textRef}> </span> ?
           </h1>
           <img src="/images/line.png" alt="" />
-          <p>{t("join_us")}</p>
+          <p>{home.signin.paragraph}</p>
           <Link href="/manufacturer">
             <button> {t("sign_in")} </button>
           </Link>
         </div>
 
         <div className={styles.testimonials}>
-          <p>{t("an_online_&_offline")}</p>
+          <p>{home.facilities.heading}</p>
 
           <img className={styles.img1} src="/images/dotted3.png" alt="" />
           <img className={styles.img2} src="/images/dotted2.png" alt="" />
@@ -157,7 +200,7 @@ const HomePage = () => {
 
         <section className={styles.requirement}>
           <div className={styles.top}>
-            <h3>{t("get_in_touch")}</h3>
+            <h3>{home.quote.heading}</h3>
             <img src="/images/line.png" alt="" />
             <p>{t("we_connect_with_sellers")}</p>
           </div>
@@ -200,16 +243,9 @@ const HomePage = () => {
                 <img src="/images/line.png" alt="" />
 
                 <div>
-                  <img src="/images/partner.png" />
-                  <img src="/images/partner.png" />
-                  <img src="/images/partner.png" />
-                  <img src="/images/partner.png" />
-                  <img src="/images/partner.png" />
-                  <img src="/images/partner.png" />
-                  <img src="/images/partner.png" />
-                  <img src="/images/partner.png" />
-                  <img src="/images/partner.png" />
-                  <img src="/images/partner.png" />
+                  {partners.map((partner, index) => (
+                    <img key={index} src={partner.image.url} />
+                  ))}
                 </div>
               </div>
               <div className={styles.regions}>
@@ -217,26 +253,60 @@ const HomePage = () => {
                 <img src="/images/line.png" alt="" />
 
                 <div>
-                  <img src="/images/flag.png" alt="" />
-                  <img src="/images/flag.png" alt="" />
-                  <img src="/images/flag.png" alt="" />
-                  <img src="/images/flag.png" alt="" />
-                  <img src="/images/flag.png" alt="" />
+                  {regions.map((region, index) => (
+                    <img key={index} src={region.image.url} />
+                  ))}
                 </div>
               </div>
             </div>
             <div className={styles.right}>
               <h1>Tell us your Requirements, and get Multiple Quotes</h1>
-              <Input placeholder={t("please_enter_what_you_are_looking_for")} />
-              <Input placeholder={t("please_enter_what_you_are_looking_for")} />
-              <Input placeholder={t("please_enter_what_you_are_looking_for")} />
-
-              <div className={styles.inputsContainer}>
-                <QuantityInput options={units} placeholder={"Enter Quantity"} />
-                <BudgetInput placeholder={"Max budgets"} />
-              </div>
-
-              <textarea name="" id="" cols="30" rows="10"></textarea>
+              <Input
+                placeholder={t("please_enter_what_you_are_looking_for")}
+                onChange={(e) =>
+                  setproductDetails({ ...productDetails, name: e.target.value })
+                }
+              />
+              <Input
+                placeholder={"Email Address"}
+                onChange={(e) =>
+                  setproductDetails({
+                    ...productDetails,
+                    email: e.target.value,
+                  })
+                }
+              />
+              <Input
+                placeholder={"Phone Number"}
+                onChange={(e) =>
+                  setproductDetails({
+                    ...productDetails,
+                    phoneNumber: e.target.value,
+                  })
+                }
+              />
+              <textarea
+                name=""
+                id=""
+                cols="30"
+                rows="10"
+                onChange={(e) =>
+                  setproductDetails({
+                    ...productDetails,
+                    description: e.target.value,
+                  })
+                }
+              ></textarea>
+              <QuantityInput
+                options={units}
+                placeholder={"Enter Quantity"}
+                onChange={(e) =>
+                  setproductDetails({
+                    ...productDetails,
+                    quantity: e.target.value,
+                  })
+                }
+              />
 
               <div className={styles.checkbox}>
                 <input type="checkbox" id="check" />
@@ -245,7 +315,11 @@ const HomePage = () => {
 
               <div className={styles.submitButton}>
                 <button>
-                  <Link href={"/importer"}>{t("submit_requirement")}</Link>
+                  <Link
+                    href={`/importer/?name=${productDetails.name}&email=${productDetails.email}&phoneNumber=${productDetails.phoneNumber}&quantity=${productDetails.quantity}&description=${productDetails.description}`}
+                  >
+                    {t("submit_requirement")}
+                  </Link>
                 </button>
               </div>
             </div>

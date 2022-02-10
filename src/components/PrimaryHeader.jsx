@@ -1,16 +1,16 @@
 import styles from "../../styles/components/PrimaryHeader.module.css";
 import Link from "next/link";
 import { useSelector } from "react-redux";
-import { BsGlobe2 } from "react-icons/bs";
+import { BsFillGridFill, BsGlobe2 } from "react-icons/bs";
 import i18next from "i18next";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 
 const PrimaryHeader = () => {
   const [currentLang, setcurrentLang] = useState("en");
-  const [isScrolled, setisScrolled] = useState(false);
-
   const { user } = useSelector((state) => state.auth);
+  const [isScrolled, setisScrolled] = useState(false);
+  const [mobileMenu, setmobileMenu] = useState(false);
   const languages = [
     {
       code: "en",
@@ -49,11 +49,11 @@ const PrimaryHeader = () => {
 
       <div>
         <Link href={"/manufacturer"} passHref>
-          <a>Exporters</a>
+          <a>For Exporters</a>
         </Link>
 
         <Link href={"/importer"} passHref>
-          <a>Importer</a>
+          <a>For Importers</a>
         </Link>
         <Link href={"/about"} passHref>
           <a>About us</a>
@@ -61,6 +61,20 @@ const PrimaryHeader = () => {
         <Link href={"/terms"} passHref>
           <a>Terms & Conditions</a>
         </Link>
+        {user ? (
+          <Link href={"/"} passHref>
+            <a>Hi , {user.name}</a>
+          </Link>
+        ) : (
+          <>
+            <Link href={"/register"} passHref>
+              <a>Register</a>
+            </Link>
+            <Link href={"/login"} passHref>
+              <a>Login</a>
+            </Link>
+          </>
+        )}
 
         <div className={styles.select}>
           <BsGlobe2 />
@@ -84,6 +98,28 @@ const PrimaryHeader = () => {
             ))}
           </select>
         </div>
+      </div>
+      <div className={styles.mobileMenu}>
+        <span onClick={() => setmobileMenu(!mobileMenu)}>
+          <BsFillGridFill size={30} />
+        </span>
+        {mobileMenu && (
+          <div>
+            <Link href={"/manufacturer"} passHref>
+              <a>For Exporters</a>
+            </Link>
+
+            <Link href={"/importer"} passHref>
+              <a>For Importers</a>
+            </Link>
+            <Link href={"/about"} passHref>
+              <a>About us</a>
+            </Link>
+            <Link href={"/terms"} passHref>
+              <a>Terms & Conditions</a>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

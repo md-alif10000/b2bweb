@@ -13,8 +13,8 @@
 .hero img {
   max-width: 600px;
 }
-.hero h1{
-  text-shadow: 2px 2px 3px #DEDEDE;
+.hero h1 {
+  text-shadow: 2px 2px 3px #dedede;
 }
 .formContainer {
   flex: 3;
@@ -38,12 +38,12 @@
 .inputGroup {
   padding: 30px 5vw;
 }
-.multiInput{
+.multiInput {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.multiInput textarea{
+.multiInput textarea {
   flex-grow: 1;
   margin: 20px;
   border-radius: 20px;
@@ -57,23 +57,28 @@
   background-color: #eaf0ff;
   resize: none;
 }
-.multiInput > *{
+.multiInput > * {
   flex: 1;
 }
-.productImagePicker  div {
-
+.productImagePicker div {
   width: 200px;
   height: 200px;
+
   border-radius: 20px;
   display: flex;
   padding: 20px;
   align-items: center;
   justify-content: space-around;
-   background-color: #eaf0ff;
-   margin: 15px;
-
+  background-color: #eaf0ff;
+  margin: 15px;
 }
-.productImagePicker input{
+.productImagePicker img {
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+.productImagePicker input {
   display: none;
 }
 .checkboxContainer {
@@ -84,7 +89,7 @@
 .checkboxContainer a {
   color: var(--secondary);
 }
-  
+
 .checkboxContainer input {
   margin: 10px;
 }
@@ -118,14 +123,14 @@
   display: flex;
   align-items: center;
 }
-.activeCheck{
+.activeCheck {
   color: var(--primary);
 }
-.affiliate{
+.affiliate {
   display: flex;
   justify-content: space-between;
 }
-.affiliate select{
+.affiliate select {
   height: 40px;
   width: 60px;
   border-radius: 10px;
@@ -162,10 +167,10 @@
   .inputGroup {
     padding: 15px;
   }
-  .formHeader h3{
+  .formHeader h3 {
     font-size: 20px;
   }
-  .checks > div{
+  .checks > div {
     font-size: 16px;
   }
 }

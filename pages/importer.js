@@ -17,8 +17,14 @@ import { importersValidate } from "../utils/importersValidate";
 import Link from "next/link";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
 
 const Importer = () => {
+  const router = useRouter();
+  const { user } = useSelector((state) => state.auth);
+  const { name, email, phoneNumber, description, quantity } = router.query;
+  console.log(name);
   const [percentage, setpercentage] = useState(50);
   const [loading, setloading] = useState(false);
   const [isAffiliate, setisAffiliate] = useState(false);
@@ -28,12 +34,13 @@ const Importer = () => {
   const [categories, setcategories] = useState([]);
   const [businessCard, setbusinessCard] = useState(false);
   const [file, setfile] = useState(null);
+  const [Preview, setPreview] = useState(null);
   const [productInfo, setproductInfo] = useState({
-    productName: "",
+    productName: name ? name : "",
     productCategory: "",
     sourcingType: "",
-    productDetails: "",
-    quantity: "",
+    productDetails: description ? description : "",
+    quantity: quantity ? quantity : "",
     budget: "",
     tradeTerms: "",
     image: {},
@@ -45,13 +52,23 @@ const Importer = () => {
     paymentMethod: "",
   });
   const [userInfo, setuserInfo] = useState({
-    fullName: "",
+    fullName:user?.name ? user?.name: "",
     companyName: "",
-    mobileNumber: "",
-    email: "",
+    mobileNumber: phoneNumber ? phoneNumber :user?.phone ? user?.phone: "",
+    email: email ? email :user?.email ? user?.email: "",
     website: "",
     affiliate: "",
   });
+
+  useEffect(() => {
+    if (!file) {
+      setPreview(undefined);
+      return;
+    }
+    const objectUrl = URL.createObjectURL(file);
+    setPreview(objectUrl);
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [file]);
 
   const addQuotation = async () => {
     const error = await importersValidate({
@@ -81,7 +98,7 @@ const Importer = () => {
 
       console.log(uploadRes.data);
 
-      const res = await axios.post("/api/importerquotation", {
+      const res = await axios.post("/api/importers", {
         productInfo,
         shippingInfo,
         userInfo,
@@ -135,18 +152,31 @@ const Importer = () => {
     setloading(false);
   };
 
-  const countScore=()=>{
-
-    const score=(productInfo.productName ? 10:0)+(productInfo.productCategory ? 10:0)+(productInfo.sourcingType ? 10:0)+(productInfo.productDetails ? 10:0)+(productInfo.quantity ? 10:0)+(productInfo.budget ? 10:0)+(productInfo.tradeTerms ? 10:0)+(productInfo.image ? 10:0)
-
-    setpercentage(score)
- 
-  }
+  const countScore = () => {
+    const score =
+      (productInfo.productName ? 10 : 0) +
+      (productInfo.productCategory ? 5 : 0) +
+      (productInfo.sourcingType ? 5 : 0) +
+      (productInfo.productDetails ? 5 : 0) +
+      (productInfo.quantity ? 5 : 0) +
+      (productInfo.budget ? 5 : 0) +
+      (productInfo.tradeTerms ? 5 : 0) +
+      (shippingInfo.destination ? 5 : 0) +
+      (shippingInfo.leadtime ? 5 : 0) +
+      (shippingInfo.paymentMethod ? 5 : 0) +
+      (shippingInfo.shippingMethod ? 5 : 0) +
+      (userInfo.fullName ? 5 : 0) +
+      (userInfo.companyName ? 5 : 0) +
+      (userInfo.mobileNumber ? 10 : 0) +
+      (userInfo.email ? 5 : 0) +
+      (userInfo.website ? 5 : 0) +
+      (userInfo.affiliate ? 5 : 0);
+    setpercentage(score);
+  };
 
   useEffect(() => {
-    
-    countScore()
-  }, [productInfo,userInfo,shippingInfo]);
+    countScore();
+  }, [productInfo, userInfo, shippingInfo]);
 
   useEffect(() => {
     getCategory();
@@ -155,7 +185,7 @@ const Importer = () => {
     getPaymentMethods();
   }, []);
 
-  if (loading) return <Loader />;
+  console.log(isAffiliate);
 
   return (
     <>
@@ -173,6 +203,7 @@ const Importer = () => {
             </div>
             <div className={styles.inputGroup}>
               <Input
+                value={productInfo.productName}
                 placeholder="Product Name"
                 label="Product Name"
                 onChange={(e) =>
@@ -184,6 +215,7 @@ const Importer = () => {
               />
 
               <CategorySelect
+                value={productInfo.productCategory}
                 options={categories}
                 label="Product category"
                 onChange={(e) =>
@@ -195,6 +227,7 @@ const Importer = () => {
               />
 
               <Input
+                value={productInfo.sourcingType}
                 placeholder="Sourcing Type"
                 label="Sourcing Type"
                 onChange={(e) =>
@@ -207,6 +240,7 @@ const Importer = () => {
 
               <div className={styles.multiInput}>
                 <textarea
+                  value={productInfo.productDetails}
                   placeholder="About the product"
                   label="Description"
                   onChange={(e) =>
@@ -218,10 +252,17 @@ const Importer = () => {
                 ></textarea>
                 <div className={styles.productImagePicker}>
                   <label htmlFor="productImage">
-                    <div>
-                      <BsPlusCircle size="30" />{" "}
-                      <span>Upload product Image </span>{" "}
-                    </div>{" "}
+                    {Preview ? (
+                      <div>
+                        {" "}
+                        <img src={Preview} />{" "}
+                      </div>
+                    ) : (
+                      <div>
+                        <BsPlusCircle size="30" />
+                        <span>Upload product Image </span>
+                      </div>
+                    )}
                   </label>
                   <input
                     type={"file"}
@@ -233,6 +274,7 @@ const Importer = () => {
 
               <div className={styles.multiInput}>
                 <QuantityInput
+                  value={productInfo.quantity}
                   placeholder="Enter quantity"
                   label="Quantity"
                   options={units}
@@ -244,6 +286,7 @@ const Importer = () => {
                   }
                 />
                 <BudgetInput
+                  value={productInfo.budget}
                   placeholder="Max Budget"
                   label="Max Budget"
                   onChange={(e) =>
@@ -256,8 +299,8 @@ const Importer = () => {
               </div>
 
               <CategorySelect
-                options={terms}
                 value={productInfo.tradeTerms}
+                options={terms}
                 label="Trade Terms"
                 onChange={(e) =>
                   setproductInfo({ ...productInfo, tradeTerms: e.target.value })
@@ -271,6 +314,7 @@ const Importer = () => {
             </div>
             <div className={styles.inputGroup}>
               <Input
+                value={shippingInfo.shippingMethod}
                 placeholder="Shipping Method"
                 label="Shipping method"
                 onChange={(e) =>
@@ -281,6 +325,7 @@ const Importer = () => {
                 }
               />
               <Input
+                value={shippingInfo.destination}
                 placeholder="Destination"
                 label="Destination"
                 onChange={(e) =>
@@ -291,6 +336,7 @@ const Importer = () => {
                 }
               />
               <Input
+                value={shippingInfo.leadtime}
                 placeholder="Lead Time "
                 label="Lead time"
                 onChange={(e) =>
@@ -301,6 +347,7 @@ const Importer = () => {
                 }
               />
               <CategorySelect
+                value={shippingInfo.paymentMethod}
                 label="Payment method"
                 options={paymentMethods}
                 onChange={(e) =>
@@ -316,6 +363,7 @@ const Importer = () => {
             </div>
             <div className={styles.inputGroup}>
               <Input
+                value={userInfo.fullName}
                 placeholder="Full name"
                 label="Full name"
                 onChange={(e) =>
@@ -326,6 +374,7 @@ const Importer = () => {
                 }
               />
               <Input
+                value={userInfo.companyName}
                 placeholder="Company Name (if any)"
                 label="Company name"
                 onChange={(e) =>
@@ -337,6 +386,7 @@ const Importer = () => {
               />
               <div className={styles.multiInput}>
                 <Input
+                  value={userInfo.mobileNumber}
                   placeholder="*Mobile Number"
                   label="**Mobile number"
                   width={"40%"}
@@ -348,6 +398,7 @@ const Importer = () => {
                   }
                 />
                 <Input
+                  value={userInfo.email}
                   placeholder="**Email "
                   label="**Email"
                   width={"40%"}
@@ -360,6 +411,7 @@ const Importer = () => {
                 />
               </div>
               <Input
+                value={userInfo.website}
                 placeholder="Website (if any)"
                 onChange={(e) =>
                   setuserInfo({
@@ -371,20 +423,26 @@ const Importer = () => {
 
               <div className={styles.affiliate}>
                 <h4>Where you refered by our Affiliate Partner?</h4>{" "}
-                <select onChange={(e) => setisAffiliate(e.target.value)}>
-                  <option value={true}>Yes</option>{" "}
-                  <option value={false}>No</option>{" "}
-                </select>{" "}
+                <select
+                  defaultChecked={isAffiliate}
+                  onChange={(e) => setisAffiliate(e.target.value)}
+                >
+                  <option value={""}>No</option>
+                  <option value={"yeah"}>Yes</option>
+                </select>
               </div>
-              <Input
-                placeholder="If yes, Enter there Name"
-                onChange={(e) =>
-                  setuserInfo({
-                    ...userInfo,
-                    affiliate: e.target.value,
-                  })
-                }
-              />
+              {isAffiliate && (
+                <Input
+                  value={userInfo.affiliate}
+                  placeholder="If yes, Enter there Name"
+                  onChange={(e) =>
+                    setuserInfo({
+                      ...userInfo,
+                      affiliate: e.target.value,
+                    })
+                  }
+                />
+              )}
             </div>
 
             <div className={styles.checkboxContainer}>
@@ -441,7 +499,7 @@ const Importer = () => {
                 textSize: "20px",
                 pathTransitionDuration: 0.75,
                 pathColor: `#537fff`,
-                textColor: "#f88",
+                textColor: `${percentage > 70 ? "#1be314" : "#f88"}`,
                 trailColor: "#d6d6d6",
                 backgroundColor: "#537fff",
               })}
@@ -502,9 +560,7 @@ const Importer = () => {
               <div className={userInfo.fullName ? styles.activeCheck : ""}>
                 <BsCheckCircleFill /> <span>Full Name</span>
               </div>
-              <div
-                className={userInfo.companyName ? styles.activeCheck : ""}
-              >
+              <div className={userInfo.companyName ? styles.activeCheck : ""}>
                 <BsCheckCircleFill /> <span>Company Name</span>
               </div>
               <div className={userInfo.mobileNumber ? styles.activeCheck : ""}>
@@ -512,6 +568,9 @@ const Importer = () => {
               </div>
               <div className={userInfo.email ? styles.activeCheck : ""}>
                 <BsCheckCircleFill /> <span>Email</span>
+              </div>
+              <div className={userInfo.website ? styles.activeCheck : ""}>
+                <BsCheckCircleFill /> <span>Website</span>
               </div>
             </div>
           </div>

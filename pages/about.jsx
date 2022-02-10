@@ -4,7 +4,7 @@ import PrimaryHeader from '../src/components/PrimaryHeader';
 import styles from '../styles/About.module.css'
 import {BsFacebook,BsLinkedin,BsPinterest,BsInstagram,BsTwitter} from 'react-icons/bs'
 
-const about = () => {
+const About = () => {
   return <>
   <PrimaryHeader/>
   <div className={styles.container} >
@@ -49,4 +49,4 @@ const about = () => {
   </>;
 };
 
-export default about;
+export default About;

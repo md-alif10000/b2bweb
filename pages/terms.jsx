@@ -1,9 +1,24 @@
-import React from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import Footer from "../src/components/Footer";
 import PrimaryHeader from "../src/components/PrimaryHeader";
 import styles from "../styles/Terms.module.css";
 
 const Terms = () => {
+  const [exportersTerms, setexportersTerms] = useState([]);
+  const [importersTerms, setimportersTerms] = useState([]);
+
+  const getTerms = async () => {
+    const res = await axios.get("/api/terms");
+    const { importersTerms, exportersTerms } = res.data;
+    setexportersTerms(exportersTerms);
+    setimportersTerms(importersTerms);
+  };
+
+  useEffect(() => {
+    getTerms();
+  }, []);
+
   return (
     <>
       <PrimaryHeader />
@@ -13,68 +28,18 @@ const Terms = () => {
         <div className={styles.forImporters}>
           <h2>For Importers</h2>
           <ul>
-            <li>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Architecto quasi dicta aliquam facere explicabo?
-            </li>
-            <li>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Architecto quasi dicta aliquam facere explicabo?
-            </li>
-            <li>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Architecto quasi dicta aliquam facere explicabo?
-            </li>
-            <li>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Architecto quasi dicta aliquam facere explicabo?
-            </li>
-            <li>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Architecto quasi dicta aliquam facere explicabo?
-            </li>
-            <li>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Architecto quasi dicta aliquam facere explicabo?
-            </li>
-            <li>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Architecto quasi dicta aliquam facere explicabo?
-            </li>
+            {importersTerms.map((term, index) => (
+              <li>{term.text}</li>
+            ))}
           </ul>
         </div>
 
         <div className={styles.forExporters}>
           <h2>For Exporters</h2>
           <ul>
-            <li>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Architecto quasi dicta aliquam facere explicabo?
-            </li>
-            <li>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Architecto quasi dicta aliquam facere explicabo?
-            </li>
-            <li>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Architecto quasi dicta aliquam facere explicabo?
-            </li>
-            <li>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Architecto quasi dicta aliquam facere explicabo?
-            </li>
-            <li>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Architecto quasi dicta aliquam facere explicabo?
-            </li>
-            <li>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Architecto quasi dicta aliquam facere explicabo?
-            </li>
-            <li>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Architecto quasi dicta aliquam facere explicabo?
-            </li>
+            {exportersTerms.map((term, index) => (
+              <li>{term.text}</li>
+            ))}
           </ul>
         </div>
       </div>

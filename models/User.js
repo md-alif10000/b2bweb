@@ -25,10 +25,13 @@ const userSchema = new mongoose.Schema(
       type: String,
       length: 11,
     },
+    country: {
+      type: String,
+    },
 
     role: {
       type: String,
-      default: "admin",
+      enum: ["admin", "importer", "exporter"],
     },
   },
   { timestamps: true }
@@ -51,5 +54,4 @@ userSchema.methods.getJWTToken = function () {
   });
 };
 
-export default mongoose.models.USER ||
-  mongoose.model("USER", userSchema);
+export default mongoose.models.USER || mongoose.model("USER", userSchema);
