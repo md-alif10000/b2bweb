@@ -55,12 +55,7 @@ const PrimaryHeader = () => {
         <Link href={"/importer"} passHref>
           <a>For Importers</a>
         </Link>
-        <Link href={"/about"} passHref>
-          <a>About us</a>
-        </Link>
-        <Link href={"/terms"} passHref>
-          <a>Terms & Conditions</a>
-        </Link>
+
         {user ? (
           <Link href={"/"} passHref>
             <a>Hi , {user.name}</a>

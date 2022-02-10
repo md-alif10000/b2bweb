@@ -30,8 +30,7 @@
   align-items: center;
   background-color: var(--primary);
   padding: 5px;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-radius: 20px;
   color: white;
   width: 120px;
 }

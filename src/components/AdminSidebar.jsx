@@ -69,6 +69,10 @@ const AdminSidebar = () => {
             <BsCreditCard2Back size={24} />
             <Link href="/admin/payment"> Payment Methods</Link>
           </li>
+          <li>
+            <BsCreditCard2Back size={24} />
+            <Link href="/admin/social">Social Media</Link>
+          </li>
         </ul>
         <div className={styles.logout}>
           <span onClick={userLogout}>Logout</span>

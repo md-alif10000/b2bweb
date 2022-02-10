@@ -29,7 +29,7 @@ const Terms = () => {
           <h2>For Importers</h2>
           <ul>
             {importersTerms.map((term, index) => (
-              <li>{term.text}</li>
+              <li key={index} >{term.text}</li>
             ))}
           </ul>
         </div>
@@ -38,7 +38,7 @@ const Terms = () => {
           <h2>For Exporters</h2>
           <ul>
             {exportersTerms.map((term, index) => (
-              <li>{term.text}</li>
+              <li key={index} >{term.text}</li>
             ))}
           </ul>
         </div>
