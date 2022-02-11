@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import Footer from "../src/components/Footer";
 import PrimaryHeader from "../src/components/PrimaryHeader";
 import { CategorySelect, FloatingButton, Input } from "../src/components/ui/ui";
@@ -13,6 +13,7 @@ import Link from "next/link";
 const Manufacturer = () => {
   const [files, setfiles] = useState([]);
   const [categories, setcategories] = useState([]);
+  const ownersInfo=[];
 
   const [productInfo, setproductInfo] = useState({
     name: "",
@@ -30,7 +31,17 @@ const Manufacturer = () => {
     country: "",
     address: "",
   });
-  const [userInfo, setuserInfo] = useState({
+  const [userInfo1, setuserInfo1] = useState({
+    fullName: "",
+    email: "",
+    role: "",
+  });
+  const [userInfo2, setuserInfo2] = useState({
+    fullName: "",
+    email: "",
+    role: "",
+  });
+  const [userInfo3, setuserInfo3] = useState({
     fullName: "",
     email: "",
     role: "",
@@ -38,10 +49,20 @@ const Manufacturer = () => {
 
   const addManufacturer = async (e) => {
     e.preventDefault();
+    if (userInfo1.fullName) {
+   ownersInfo.push(userInfo1)
+    }
+    if (userInfo2.fullName) {
+      ownersInfo.push(userInfo2)
+
+    }
+    if (userInfo3.fullName) {
+      ownersInfo.push(userInfo3)
+
+    }
 
     const error = await manufacturerValidate({
-      fullName: userInfo.fullName,
-      email: userInfo.email,
+      ownersInfo,
       productInfo,
       businessInfo,
     });
@@ -75,11 +96,12 @@ const Manufacturer = () => {
       if (images.length == 0) return toast.warn("Product Image is required 2");
 
       productInfo.images = images;
+      console.log(ownersInfo,productInfo,businessInfo)
 
       const res = await axios.post("/api/exporters", {
         productInfo,
         businessInfo,
-        ...userInfo,
+        ownersInfo,
       });
       if (res.status == 201) {
         toast.success("Your credentials  submitted");
@@ -95,7 +117,7 @@ const Manufacturer = () => {
       console.log(res);
       if (res.status == 200) {
         setcategories(res.data.categories);
-        console.log(categories);
+  
       }
     } catch (error) {
       console.log(error);
@@ -147,7 +169,7 @@ const Manufacturer = () => {
                       label={"Ful Name"}
                       placeholder={"full name"}
                       onChange={(e) =>
-                        setuserInfo({ ...userInfo, fullName: e.target.value })
+                        setuserInfo1({ ...userInfo1, fullName: e.target.value })
                       }
                     />
                     <Input
@@ -155,21 +177,75 @@ const Manufacturer = () => {
                       label={"Email"}
                       placeholder={"example@gmail.com"}
                       onChange={(e) =>
-                        setuserInfo({ ...userInfo, email: e.target.value })
+                        setuserInfo1({ ...userInfo1, email: e.target.value })
                       }
                     />
                     <Input
                       width={"40%"}
+                      placeholder="Role in the company"
                       label={"Role in the company"}
                       onChange={(e) =>
-                        setuserInfo({ ...userInfo, role: e.target.value })
+                        setuserInfo1({ ...userInfo1, role: e.target.value })
                       }
                     />
                   </div>
+                  <div className={styles.inputGroup}>
+                    <Input
+                      width={"40%"}
+                      label={"Ful Name"}
+                      placeholder={"full name"}
+                      onChange={(e) =>
+                        setuserInfo2({ ...userInfo2, fullName: e.target.value })
+                      }
+                    />
+                    <Input
+                      width={"40%"}
+                      label={"Email"}
+                      placeholder={"example@gmail.com"}
+                      onChange={(e) =>
+                        setuserInfo2({ ...userInfo2, email: e.target.value })
+                      }
+                    />
+                    <Input
+                      placeholder="Role in the company"
+                      width={"40%"}
+                      label={"Role in the company"}
+                      onChange={(e) =>
+                        setuserInfo2({ ...userInfo2, role: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div className={styles.inputGroup}>
+                    <Input
+                      width={"40%"}
+                      label={"Ful Name"}
+                      placeholder={"full name"}
+                      onChange={(e) =>
+                        setuserInfo3({ ...userInfo3, fullName: e.target.value })
+                      }
+                    />
+                    <Input
+                      width={"40%"}
+                      label={"Email"}
+                      placeholder={"example@gmail.com"}
+                      onChange={(e) =>
+                        setuserInfo3({ ...userInfo3, email: e.target.value })
+                      }
+                    />
+                    <Input
+                      width={"40%"}
+                      placeholder="Role in the company"
+                      label={"Role in the company"}
+                      onChange={(e) =>
+                        setuserInfo3({ ...userInfo3, role: e.target.value })
+                      }
+                    />
+                  </div>
+                  <p> *Fill in 2 and 3 incase of multiple managers </p>
                 </div>
 
                 <div className={styles.inputsHeading}>
-                  <h2>Tell us about the Business Manager (s) or Owner(s) </h2>{" "}
+                  <h2>Tell us about the Business </h2>{" "}
                 </div>
                 <div className={styles.inputsBody}>
                   <div className={styles.inputGroup}>
@@ -266,7 +342,7 @@ const Manufacturer = () => {
 
                   <div className={styles.inputGroup}>
                     <CategorySelect
-                    options={categories}
+                      options={categories}
                       label={"Product Category"}
                       placeholder={"Product Category"}
                       onChange={(e) =>

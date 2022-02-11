@@ -1,6 +1,3 @@
-import HomePage from "../../models/HomePage";
-import Partner from "../../models/Partner";
-import Region from "../../models/Region";
 import About from "../../models/About";
 import Social from "../../models/Social";
 import connectDatabase from "../../utils/dbconnect";
@@ -12,16 +9,11 @@ export default async function handler(req, res) {
 
   if (method == "GET") {
     try {
-      const _home = await HomePage.find();
-      const regions = await Region.find();
-      const partners = await Partner.find();
-      const socials = await Social.find();
-
       const _about = await About.find();
+      const socials = await Social.find();
       const about = _about[0];
-      const home = _home[0];
 
-      return res.status(200).json({ home, regions, partners, socials, about });
+      return res.status(200).json({ about,socials });
     } catch (error) {
       console.log(error);
       return res.status(500).json({ error });
@@ -29,7 +21,7 @@ export default async function handler(req, res) {
   }
   if (method == "PUT") {
     try {
-      const home = await HomePage.findOneAndUpdate(
+      const home = await About.findOneAndUpdate(
         { _id: req.body._id },
         {
           ...req.body,
@@ -44,12 +36,12 @@ export default async function handler(req, res) {
   }
   if (method == "POST") {
     try {
-      const home = await new HomePage({
+      const about = await new About({
         ...req.body,
       });
-      const newHome = await home.save();
+      const newHome = await about.save();
 
-      return res.status(201).json({ home });
+      return res.status(201).json({ about });
     } catch (error) {
       return res.status(500).json({ error });
     }

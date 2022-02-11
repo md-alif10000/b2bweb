@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import Social from "../../../models/Social";
+import Testimonial from "../../../models/Testimonial";
 import connectDatabase from "../../../utils/dbconnect";
 export default async function handler(req, res) {
   const { method } = req;
@@ -8,9 +8,9 @@ export default async function handler(req, res) {
 
   if (method === "GET") {
     try {
-      const socials = await Social.find().sort({ createdAt: -1 });
+      const Testimonials = await Testimonial.find().sort({ createdAt: -1 });
 
-      return res.status(200).json({ socials });
+      return res.status(200).json({ Testimonials });
     } catch (error) {
       console.log(error);
       return res.status(500).json({ error });
@@ -22,7 +22,7 @@ export default async function handler(req, res) {
     
 
     try {
-      const _Social = new Social({
+      const _Testimonial = new Testimonial({
        ...req.body
       });
 

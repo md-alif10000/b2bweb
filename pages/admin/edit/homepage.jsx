@@ -83,6 +83,7 @@ const Homepage = () => {
       ? homePage.footer
       : {
           social: [],
+          copyText:""
         }
   );
 
@@ -138,6 +139,7 @@ const Homepage = () => {
 
     if (res.status == 200) {
       const data = res.data.home;
+      console.log(data)
 
       sethomePage(data);
       sethero(data.hero);
@@ -218,7 +220,7 @@ const Homepage = () => {
 
   return (
     <AdminLayout>
-      <form  className={styles.form} onSubmit={addHome}>
+      <form className={styles.form} onSubmit={addHome}>
         <div className={styles.hero}>
           <h2>Hero section</h2>
           <div>
@@ -242,7 +244,6 @@ const Homepage = () => {
 
             <div className={styles.fileInput}>
               <label htmlFor="fileInput">
-                
                 <div>Select Background Image</div>
               </label>
               <input
@@ -349,7 +350,6 @@ const Homepage = () => {
             <div className={styles.videoLinks}>
               {testimonial.videos.map((link, index) => (
                 <div className={styles.videoLink} key={index}>
-                  
                   <p>{link}</p>
                   <span onClick={() => removeVideoLink(link)}>
                     <BsArchive />
@@ -391,7 +391,7 @@ const Homepage = () => {
           <h2>Contact section</h2>
           <div>
             <Input
-              value={contact.heading}
+              value={contact?.heading}
               label={"Contact Heading"}
               onChange={(e) =>
                 setcontact({ ...contact, heading: e.target.value })
@@ -399,14 +399,14 @@ const Homepage = () => {
             />
             <div className={styles.inputGroup}>
               <Input
-                value={contact.contact1title}
+                value={contact?.contact1title}
                 label={"Contact 1 title"}
                 onChange={(e) =>
                   setcontact({ ...contact, contact1title: e.target.value })
                 }
               />
               <Input
-                value={contact.contact1detail}
+                value={contact?.contact1detail}
                 label={"Contact 1 address"}
                 onChange={(e) =>
                   setcontact({ ...contact, contact1detail: e.target.value })
@@ -415,14 +415,14 @@ const Homepage = () => {
             </div>
             <div className={styles.inputGroup}>
               <Input
-                value={contact.contact2title}
+                value={contact?.contact2title}
                 label={"Contact 2 title"}
                 onChange={(e) =>
                   setcontact({ ...contact, contact2title: e.target.value })
                 }
               />
               <Input
-                value={contact.contact2detail}
+                value={contact?.contact2detail}
                 label={"Contact 2 address"}
                 onChange={(e) =>
                   setcontact({ ...contact, contact2detail: e.target.value })
@@ -431,14 +431,14 @@ const Homepage = () => {
             </div>
             <div className={styles.inputGroup}>
               <Input
-                value={contact.contact3title}
+                value={contact?.contact3title}
                 label={"Contact 3 title"}
                 onChange={(e) =>
                   setcontact({ ...contact, contact3title: e.target.value })
                 }
               />
               <Input
-                value={contact.contact3detail}
+                value={contact?.contact3detail}
                 label={"Contact 3 address"}
                 onChange={(e) =>
                   setcontact({ ...contact, contact3detail: e.target.value })
@@ -447,14 +447,14 @@ const Homepage = () => {
             </div>
             <div className={styles.inputGroup}>
               <Input
-                value={contact.contact3title}
+                value={contact?.contact4title}
                 label={"Contact 4 title"}
                 onChange={(e) =>
-                  setcontact({ ...contact, contact3title: e.target.value })
+                  setcontact({ ...contact, contact4title: e.target.value })
                 }
               />
               <Input
-                value={contact.contact4detail}
+                value={contact?.contact4detail}
                 label={"Contact 4 address"}
                 onChange={(e) =>
                   setcontact({ ...contact, contact4detail: e.target.value })
@@ -463,14 +463,14 @@ const Homepage = () => {
             </div>
             <div className={styles.inputGroup}>
               <Input
-                value={contact.contact5title}
+                value={contact?.contact5title}
                 label={"Contact 5 title"}
                 onChange={(e) =>
                   setcontact({ ...contact, contact5title: e.target.value })
                 }
               />
               <Input
-                value={contact.contact3detail}
+                value={contact?.contact3detail}
                 label={"Contact 5 address"}
                 onChange={(e) =>
                   setcontact({ ...contact, contact5detail: e.target.value })
@@ -479,14 +479,14 @@ const Homepage = () => {
             </div>
             <div className={styles.inputGroup}>
               <Input
-                value={contact.contact6title}
+                value={contact?.contact6title}
                 label={"Contact 6 title"}
                 onChange={(e) =>
                   setcontact({ ...contact, contact6title: e.target.value })
                 }
               />
               <Input
-                value={contact.contact6detail}
+                value={contact?.contact6detail}
                 label={"Contact 6 address"}
                 onChange={(e) =>
                   setcontact({ ...contact, contact6detail: e.target.value })
@@ -499,19 +499,13 @@ const Homepage = () => {
         <div className={styles.footer}>
           <h2>Footer section</h2>
           <div>
-            <div className={styles.inputGroup}>
-              <Input
-                label={"Social media icon link"}
-                onChange={(e) => setsocial({ ...social, link: e.target.value })}
+          <Input
+                value={footer.copyText}
+                label={"Footer copyright text"}
+                onChange={(e) =>
+                  setcontact({ ...footer, copyText: e.target.value })
+                }
               />
-              <Input
-                label={"Social link"}
-                onChange={(e) => setsocial({ ...social, icon: e.target.value })}
-              />
-              <button className={styles.button} onClick={addSocialLink}>
-                Add social link
-              </button>
-            </div>
           </div>
         </div>
 

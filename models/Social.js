@@ -9,7 +9,7 @@ const SocialSchema = new mongoose.Schema(
     },
     url:{
         type: String,
-        required: [true, "Please Ente rSocial name"],
+        required: [true, "Please Enter social URL"],
         unique: true,
       },
     image:{

@@ -73,7 +73,7 @@ const HomePage = mongoose.Schema(
         type: String,
         required: true,
       },
-      videos: [String],
+      videos: [{type:String}],
       testimonials: [
         {
           text: {
@@ -117,6 +117,7 @@ const HomePage = mongoose.Schema(
           },
         },
       ],
+      copyText:String
     },
   },
   { timestamps: true }

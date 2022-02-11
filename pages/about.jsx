@@ -1,52 +1,56 @@
-import React from 'react';
-import Footer from '../src/components/Footer';
-import PrimaryHeader from '../src/components/PrimaryHeader';
-import styles from '../styles/About.module.css'
-import {BsFacebook,BsLinkedin,BsPinterest,BsInstagram,BsTwitter} from 'react-icons/bs'
+import { useState, useEffect } from "react";
+import Footer from "../src/components/Footer";
+import PrimaryHeader from "../src/components/PrimaryHeader";
+import styles from "../styles/About.module.css";
+
+import axios from "axios";
 
 const About = () => {
-  return <>
-  <PrimaryHeader/>
-  <div className={styles.container} >
-    <div className={styles.top} >
-      <div>
-        <h2>About Us</h2>
+  const [data, setdata] = useState(null);
+  const [socials, setsocials] = useState([]);
 
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur nemo nihil dolore sunt reprehenderit incidunt architecto aliquam alias, officia dignissimos suscipit eum consequuntur excepturi, quasi iure impedit blanditiis! Accusantium, officia?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ut enim suscipit delectus praesentium doloremque illo quas cum eaque dignissimos eligendi ex cumque accusamus iste esse totam eveniet nihil a perspiciatis, quis laborum corporis excepturi. Doloremque eum voluptas aspernatur ipsum.
-        </p>
+  const getData = async () => {
+    const res = await axios.get("/api/about");
+    console.log(res)
 
-      </div>
+    setdata(res.data.about);
+    setsocials(res.data.socials);
+  };
 
-      <div className={styles.imgContainer} >
-        <img src="/images/home_bg.png" alt="" />
-        <div>
-          <h2>Follow us on</h2>
-          <div className={styles.iconsContainer} >
-          <span> <BsFacebook/> </span>
-          <span> <BsInstagram/> </span>
-          <span> <BsTwitter/> </span>
-          <span> <BsPinterest/> </span>
-          <span><BsLinkedin/> </span>
+  useEffect(() => {
+    getData();
+  }, []);
 
+  return (
+    <>
+      <PrimaryHeader />
+      <div className={styles.container}>
+        <div className={styles.top}>
+          <div>
+            <h2>About Us</h2>
+
+            <p>{data?.text}</p>
           </div>
-         
-          
+
+          <div className={styles.imgContainer}>
+            <img src={data?.image.url} alt="" />
+            <div>
+              <h2>Follow us on</h2>
+              <div className={styles.iconsContainer}>
+                {socials?.map((item, index) => (
+                  <a href={item.url} target="_blank" key={index}>
+                    <img src={item?.image?.url} alt="" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-
-
-
-    </div>
-
-  </div>
-
-  <Footer/>
-  
-
-  </>;
+      <Footer />
+    </>
+  );
 };
 
 export default About;

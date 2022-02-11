@@ -8,6 +8,7 @@
   justify-content: space-between;
   padding: 2vw 7vw;
 }
+
 .hero > div {
   flex: 1;
   display: flex;
@@ -44,6 +45,8 @@
 .right h2 {
   font-size: 36px;
   text-shadow: 1px 8px 10px #080302;
+  max-width: 400px;
+  word-wrap: break-word;
 }
 .email {
   height: 45px;
@@ -93,6 +96,7 @@
   color: var(--primary);
   margin: 20px;
   font-size: 50px;
+  display: inline;
 }
 .signIn h2 {
   font-size: 38px;
@@ -142,6 +146,8 @@
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 30px;
+  max-width: 400px;
+  word-wrap: break-word;
 }
 .testimonials p strong {
   color: var(--primary);

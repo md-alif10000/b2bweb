@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { BsArchive, BsFile } from "react-icons/bs";
+import { BsArchive, BsFile, BsFillFileImageFill } from "react-icons/bs";
 import { toast } from "react-toastify";
 import AdminLayout from "../../../src/components/admin/AdminLayout";
 import styles from "../../../styles/admin/Facility.module.css";
@@ -8,6 +8,7 @@ import { Input, Loader } from "../../../src/components/ui/ui";
 
 const Socials = () => {
   const [loading, setloading] = useState(false);
+  const [file, setfile] = useState(null);
 
   const [socialInfo, setsocialInfo] = useState({
     name: "",
@@ -32,8 +33,8 @@ const Socials = () => {
         data
       );
       const { secure_url, public_id } = uploadRes.data;
-      partner.image.url = secure_url;
-      partner.image.public_id = public_id;
+      socialInfo.image.url = secure_url;
+      socialInfo.image.public_id = public_id;
 
       console.log(uploadRes.data);
       const res = await axios.post("/api/social", {
@@ -44,8 +45,14 @@ const Socials = () => {
         setloading(false);
 
         getSocials();
+        setsocialInfo({
+          name: "",
+          url: "",
+          image: { public_id: "", url: "" },
+        })
       }
     } catch (error) {
+      console.log(error);
       setloading(false);
 
       toast.error("Something went wrong");
@@ -65,7 +72,7 @@ const Socials = () => {
   const deleteSocial = async (id) => {
     try {
       const res = await axios.delete(`/api/social/${id}`);
-      setsocials(setsocials.filter((item) => item._id !== id));
+      setsocials(socials.filter((item) => item._id !== id));
       toast.success("Successfully deleted");
     } catch (error) {
       console.log(error);
@@ -90,6 +97,26 @@ const Socials = () => {
               setsocialInfo({ ...socialInfo, name: e.target.value })
             }
             value={socialInfo.name}
+          />
+          <label htmlFor="fileSelect">
+            <div
+              style={{
+                margin: "10px",
+                backgroundColor: "#3275a8",
+                padding: "10px",
+                borderRadius: "5px",
+                color: "white",
+              }}
+            >
+              {" "}
+              icon <BsFillFileImageFill />{" "}
+            </div>{" "}
+          </label>
+          <input
+            type="file"
+            id="fileSelect"
+            onChange={(e) => setfile(e.target.files[0])}
+            style={{ display: "none" }}
           />
           <Input
             label={"Url"}

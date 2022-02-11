@@ -44,10 +44,10 @@
 .iconsContainer{
   display: flex;
 }
-.iconsContainer span{
+.iconsContainer a{
   margin: 10px;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -57,7 +57,13 @@
   cursor: pointer;
   transition: all 0.3s;
 }
-.iconsContainer span:hover{
+.iconsContainer a img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.iconsContainer a:hover{
   color: var(--secondary);
 }
 

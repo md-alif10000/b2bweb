@@ -1,0 +1,38 @@
+.container{
+
+    display: flex;
+    width: 1200px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 30px;
+}
+.container form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.container textarea{
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    outline: none;
+    font-size: 16px;
+    letter-spacing: 1px;
+    resize: none;
+    height: 500px;
+
+}
+.form > div{
+    margin-top: 20px ;
+    width: 100%;
+}
+.button{
+    width: 250px;
+    margin: 10px auto;
+    height: 40px;
+    border-radius: 10px;
+    background-color: var(--primary);
+    color: white;
+    outline: none;
+}

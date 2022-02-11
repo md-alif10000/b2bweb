@@ -1,11 +1,24 @@
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import styles from "../../styles/components/Footer.module.css";
 
-const Footer = () => {
+const Footer = ({ copyText }) => {
   const { t } = useTranslation();
+  const [about, setabout] = useState(null);
+  const [socials, setsocials] = useState([]);
+
+  const getData = async () => {
+    const res = await axios.get("/api/footer");
+    setabout(res.data.about);
+    setsocials(res.data.socials);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -13,12 +26,8 @@ const Footer = () => {
           <div>
             <h2>About US</h2>
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit
-              aliquam autem dolorem quae est, vero architecto optio dicta
-              tempore vel, vitae accusantium ad deleniti quibusdam totam
-              voluptate modi mollitia fuga perspiciatis quaerat dolores facere
-              qui nam. Eveniet perspiciatis consequuntur voluptatibus.{" "}
-              <Link href={"/"}>
+              {about?.text.substr(0, 250)}
+              <Link href={"/about"}>
                 <a>Read more..</a>
               </Link>
             </p>
@@ -28,16 +37,15 @@ const Footer = () => {
               <Image src={"/images/logo.png"} width={300} height={120} />
             </div>
             <div className={styles.iconContainer}>
-              <img src="/images/facebook.png" alt="" />
-              <img src="/images/pintarest.png" alt="" />
-              <img src="/images/insta.png" alt="" />
+              {socials.map((item,index)=> <a href={item.url} target="_blank" key={index} >  <img src={item.image.url} alt="" /></a> )}
+          
             </div>
           </div>
         </div>
 
         <hr className={styles.hr} />
         <div className={styles.footerBottom}>
-          <span> {t("copy_right")} </span>
+          <span> {copyText} </span>
         </div>
       </div>
     </footer>

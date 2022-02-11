@@ -9,7 +9,7 @@ import {
 import SuccessSlider from "../src/components/SuccessSlider";
 import Footer from "../src/components/Footer";
 import Head from "next/head";
-import { init } from "ityped";
+
 import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
@@ -17,6 +17,7 @@ import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import TestimonialSlider from "../src/components/TestimonialSlider";
 import { useRouter } from "next/router";
+import ReactTyped from "react-typed";
 
 // export async function getServerSideProps() {
 //   const res = await axios.get("/api/home");
@@ -47,6 +48,7 @@ const HomePage = () => {
   const [email, setemail] = useState("");
   const [loading, setloading] = useState(false);
   const [productDetails, setproductDetails] = useState({
+    productName: "",
     name: "",
     email: "",
     phoneNumber: "",
@@ -65,16 +67,10 @@ const HomePage = () => {
 
   useEffect(() => {
     getData();
-
-    // init(textRef.current, {
-    //   showCursor: true,
-    //   backDelay: 1500,
-    //   backSpeed: 40,
-    //   strings: ["Exporter", "Importer"],
-    // });
-
     getUnits();
   }, []);
+
+  useEffect(() => {}, []);
 
   const getUnits = async () => {
     setloading(true);
@@ -147,13 +143,21 @@ const HomePage = () => {
 
         <div className={styles.signIn}>
           <h2> {home.signin.heading} </h2>
-          <h1>
-            <span ref={textRef}> </span> ?
-          </h1>
+
+          <ReactTyped
+            strings={[...home.signin.texts]}
+            typeSpeed={80}
+            backSpeed={80}
+            // attr="innertext"
+            loop
+          >
+            <h1> </h1>
+          </ReactTyped>
+
           <img src="/images/line.png" alt="" />
           <p>{home.signin.paragraph}</p>
           <Link href="/manufacturer">
-            <button> {t("sign_in")} </button>
+            <button> Register Now </button>
           </Link>
         </div>
 
@@ -262,13 +266,13 @@ const HomePage = () => {
             <div className={styles.right}>
               <h1>Tell us your Requirements, and get Multiple Quotes</h1>
               <Input
-                placeholder={t("please_enter_what_you_are_looking_for")}
+                placeholder={"Please enter what your Full Name"}
                 onChange={(e) =>
                   setproductDetails({ ...productDetails, name: e.target.value })
                 }
               />
               <Input
-                placeholder={"Email Address"}
+                placeholder={"Please enter your Contact email address"}
                 onChange={(e) =>
                   setproductDetails({
                     ...productDetails,
@@ -277,7 +281,7 @@ const HomePage = () => {
                 }
               />
               <Input
-                placeholder={"Phone Number"}
+                placeholder={"Please enter  your Contact Phone number."}
                 onChange={(e) =>
                   setproductDetails({
                     ...productDetails,
@@ -285,18 +289,40 @@ const HomePage = () => {
                   })
                 }
               />
-              <textarea
-                name=""
-                id=""
-                cols="30"
-                rows="10"
+
+              <Input
+                placeholder={
+                  "Please tell us what Product(s) or Services you are looking for.."
+                }
                 onChange={(e) =>
                   setproductDetails({
                     ...productDetails,
-                    description: e.target.value,
+                    productName: e.target.value,
                   })
                 }
-              ></textarea>
+              />
+              <ReactTyped
+                strings={[
+                  "Please describe the Products or services you are looking for..",
+                ]}
+                typeSpeed={40}
+                backSpeed={20}
+                attr="placeholder"
+                loop
+                smartBackspace
+                cursorChar=""
+              >
+                <textarea
+                  name=""
+                  id=""
+                  onChange={(e) =>
+                    setproductDetails({
+                      ...productDetails,
+                      description: e.target.value,
+                    })
+                  }
+                ></textarea>
+              </ReactTyped>
               <QuantityInput
                 options={units}
                 placeholder={"Enter Quantity"}
@@ -316,7 +342,7 @@ const HomePage = () => {
               <div className={styles.submitButton}>
                 <button>
                   <Link
-                    href={`/importer/?name=${productDetails.name}&email=${productDetails.email}&phoneNumber=${productDetails.phoneNumber}&quantity=${productDetails.quantity}&description=${productDetails.description}`}
+                    href={`/importer/?name=${productDetails.name}&email=${productDetails.email}&phoneNumber=${productDetails.phoneNumber}&quantity=${productDetails.quantity}&productName=${productDetails.productName}&description=${productDetails.description}`}
                   >
                     {t("submit_requirement")}
                   </Link>
@@ -331,7 +357,7 @@ const HomePage = () => {
           <img src="/images/line.png" alt="" />
 
           <div className={styles.slider}>
-            <SuccessSlider />
+            <SuccessSlider videos={home.testimonial.videos} />
           </div>
 
           <div>
@@ -350,35 +376,35 @@ const HomePage = () => {
 
             <div className={styles.contacts}>
               <div>
-                <h4> {t("for_developers")} </h4>
-                <span>abcd@imponexpo.team</span>
+                <h4> {home.contact?.contact1title}</h4>
+                <span> {home.contact?.contact1detail} </span>
               </div>
               <div>
-                <h4> {t("for_developers")} </h4>
-                <span>abcd@imponexpo.team</span>
+                <h4> {home.contact?.contact2title} </h4>
+                <span>{home.contact?.contact2detail} </span>
               </div>
 
               <div>
-                <h4> {t("for_manufacturers")} </h4>
-                <span>abcd@imponexpo.team</span>
+                <h4>{home.contact?.contact3title} </h4>
+                <span>{home.contact?.contact3detail} </span>
               </div>
               <div>
-                <h4>{t("for_buyers")}</h4>
-                <span>abcd@imponexpo.team</span>
+                <h4>{home.contact?.contact4title}</h4>
+                <span>{home.contact?.contact4detail} </span>
               </div>
               <div>
-                <h4>{t("for_buyers")}</h4>
-                <span>abcd@imponexpo.team</span>
+                <h4>{home.contact?.contact5title}</h4>
+                <span>{home.contact?.contact5detail} </span>
               </div>
               <div>
-                <h4>{t("for_buyers")}</h4>
-                <span>abcd@imponexpo.team</span>
+                <h4>{home.contact?.contact6title}</h4>
+                <span>{home.contact?.contact6detail} </span>
               </div>
             </div>
           </div>
         </section>
       </div>
-      <Footer />
+      <Footer copyText={home?.footer?.text} />
       <FloatingButton />
     </>
   );

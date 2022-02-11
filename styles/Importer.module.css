@@ -10,6 +10,14 @@
 .hero {
   padding: 3vw;
 }
+.hero p{
+  letter-spacing: 1px;
+  text-align: center;
+  max-width: 800px;
+  word-wrap: break-word;
+  font-weight: bold;
+  font-size: 18px;
+}
 .hero img {
   max-width: 600px;
 }

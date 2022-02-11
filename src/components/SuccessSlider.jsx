@@ -14,7 +14,7 @@ import SwiperCore, { EffectCoverflow, Pagination } from "swiper";
 // install Swiper modules
 SwiperCore.use([EffectCoverflow, Pagination]);
 
-const SuccessSlider = () => {
+const SuccessSlider = ({ videos }) => {
   return (
     <div>
       <>
@@ -39,51 +39,23 @@ const SuccessSlider = () => {
           pagination={true}
           className={styles.swiper}
         >
-          <div className={styles.slideContainer}>
-            <SwiperSlide>
-              <div>
-                <iframe
-                  controls={true}
-                  autoPlay={true}
-                  src="https://www.youtube.com/embed/kHjCkfBWP_o"
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            </SwiperSlide>
-          </div>
-          <div className={styles.slideContainer}>
-            <SwiperSlide>
-              <div>
-                <iframe
-                  controls={true}
-                  autoPlay={true}
-                  src="https://www.youtube.com/embed/kHjCkfBWP_o"
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            </SwiperSlide>
-          </div>
-          <div className={styles.slideContainer}>
-            <SwiperSlide>
-              <div>
-                <iframe
-                  controls={true}
-                  autoPlay={true}
-                  src="https://www.youtube.com/embed/kHjCkfBWP_o"
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            </SwiperSlide>
-          </div>
+          {videos.map((video, index) => (
+            <div className={styles.slideContainer} key={index}>
+              <SwiperSlide>
+                <div>
+                  <iframe
+                    controls={true}
+                    autoPlay={true}
+                    src={video}
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </SwiperSlide>
+            </div>
+          ))}
         </Swiper>
       </>
     </div>

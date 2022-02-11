@@ -23,7 +23,7 @@ import { useSelector } from "react-redux";
 const Importer = () => {
   const router = useRouter();
   const { user } = useSelector((state) => state.auth);
-  const { name, email, phoneNumber, description, quantity } = router.query;
+  const { name, email, phoneNumber, description, quantity ,productName} = router.query;
   console.log(name);
   const [percentage, setpercentage] = useState(50);
   const [loading, setloading] = useState(false);
@@ -36,7 +36,7 @@ const Importer = () => {
   const [file, setfile] = useState(null);
   const [Preview, setPreview] = useState(null);
   const [productInfo, setproductInfo] = useState({
-    productName: name ? name : "",
+    productName: productName ? productName : "",
     productCategory: "",
     sourcingType: "",
     productDetails: description ? description : "",
@@ -52,7 +52,7 @@ const Importer = () => {
     paymentMethod: "",
   });
   const [userInfo, setuserInfo] = useState({
-    fullName:user?.name ? user?.name: "",
+    fullName:user?.name ? user?.name: name ? name:"",
     companyName: "",
     mobileNumber: phoneNumber ? phoneNumber :user?.phone ? user?.phone: "",
     email: email ? email :user?.email ? user?.email: "",
@@ -193,6 +193,7 @@ const Importer = () => {
       <PrimaryHeader />
       <div className={styles.container}>
         <div className={styles.hero}>
+          <p>To help us and our Verified and Trusted Exporters (Manufacturers, Suppliers and Brands) to understand your needs, </p>
           <h1>Request for Quotations- RFQ</h1>
           <img src="/images/line.png" alt="" />
         </div>

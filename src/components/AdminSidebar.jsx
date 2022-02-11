@@ -7,6 +7,7 @@ import {
   BsFillArrowDownCircleFill,
   BsFillArrowUpCircleFill,
   BsCreditCard2Back,
+  BsFacebook,
 } from "react-icons/bs";
 import { BiCategoryAlt, BiHome } from "react-icons/bi";
 import { useDispatch } from "react-redux";
@@ -51,6 +52,10 @@ const AdminSidebar = () => {
           </li>
           <li>
             <BiHome size={24} />
+            <Link href="/admin/edit/about"> About Page</Link>
+          </li>
+          <li>
+            <BiHome size={24} />
             <Link href="/admin/facility"> Facilities</Link>
           </li>
           <li>
@@ -70,7 +75,7 @@ const AdminSidebar = () => {
             <Link href="/admin/payment"> Payment Methods</Link>
           </li>
           <li>
-            <BsCreditCard2Back size={24} />
+            <BsFacebook size={24} />
             <Link href="/admin/social">Social Media</Link>
           </li>
         </ul>

@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     }
   }
   if (method == "POST") {
-    const { productInfo, businessInfo, fullName, email, role } = req.body;
+    const { productInfo, businessInfo, ownersInfo } = req.body;
     if (
       !productInfo.name &&
       !productInfo.category &&
@@ -29,9 +29,7 @@ export default async function handler(req, res) {
 
     // try {
     const manufacturer = new Manufacturer({
-      fullName,
-      email,
-      role,
+      ownersInfo,
       businessInfo,
       productInfo,
     });

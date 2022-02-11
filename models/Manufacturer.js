@@ -2,18 +2,21 @@ const mongoose = require("mongoose");
 
 const Manufacturer = mongoose.Schema(
   {
-    fullName: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-    },
-    role: {
-      type: String,
-    },
-
+    ownersInfo: [
+      {
+        fullName: {
+          type: String,
+          required: true,
+        },
+        email: {
+          type: String,
+          required: true,
+        },
+        role: {
+          type: String,
+        },
+      },
+    ],
     businessInfo: {
       name: {
         type: String,

@@ -82,6 +82,10 @@
 .inputsBody {
   padding: max(4vw, 30px);
 }
+.inputsBody p{
+  color: #ffffff;
+  margin: 10px 0;
+}
 .inputGroup {
   width: 100%;
   display: flex;
