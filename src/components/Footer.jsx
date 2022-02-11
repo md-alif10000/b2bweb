@@ -37,7 +37,7 @@ const Footer = ({ copyText }) => {
               <Image src={"/images/logo.png"} width={300} height={120} />
             </div>
             <div className={styles.iconContainer}>
-              {socials.map((item,index)=> <a href={item.url} target="_blank" key={index} >  <img src={item.image.url} alt="" /></a> )}
+              {socials.map((item,index)=> <a href={item.url} target="_blank" rel="noreferrer" key={index} >  <img src={item.image.url} alt="" /></a> )}
           
             </div>
           </div>

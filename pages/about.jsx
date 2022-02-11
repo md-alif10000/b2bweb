@@ -38,7 +38,7 @@ const About = () => {
               <h2>Follow us on</h2>
               <div className={styles.iconsContainer}>
                 {socials?.map((item, index) => (
-                  <a href={item.url} target="_blank" key={index}>
+                  <a href={item.url} target="_blank" rel="noreferrer" key={index}>
                     <img src={item?.image?.url} alt="" />
                   </a>
                 ))}
